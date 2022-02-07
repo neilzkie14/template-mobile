@@ -10,10 +10,10 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="SplashScreen"
         screenOptions={{
-          header: Header,
-          headerMode: 'screen',
+          // header: Header,
+          // headerMode: 'screen',
           // mode: 'card', // 'modal'
         }}>
         <Stack.Screen
