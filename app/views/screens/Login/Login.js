@@ -7,7 +7,7 @@ import parentlineLogo from '../../../images/parentline-logo.png'
 import headstartLogo from '../../../images/headstart-logo.png'
 const {width} = Dimensions.get('screen');
 export default function Login() {
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
 
   const toLogin = () => {
     setShowLogin(true)
