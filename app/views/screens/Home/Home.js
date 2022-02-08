@@ -9,64 +9,6 @@ export default function Home() {
         <Header />
         <ScrollView style={{marginBottom: 80}}>
             <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page</Text>
-            <Text>This is Home Page End</Text>
         </ScrollView>
         <Footer />
     </View>
