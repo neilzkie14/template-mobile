@@ -12,7 +12,9 @@ import {
 import megaphone from '../images/megaphone.png';
 import book from '../images/book.png';
 import steps from '../images/steps.png';
-import eye_closed_img from '../images/eye-hide.png';
+import megaphoneGreen from '../images/megaphone-green.png';
+import bookGreen from '../images/book-green.png';
+import stepsGreen from '../images/steps-green.png';
 import {UserContext} from '../context/UserContext';
 
 const {width} = Dimensions.get('screen');
