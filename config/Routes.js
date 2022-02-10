@@ -6,32 +6,28 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SplashScreen from '../app/views/screens/SplashScreen/SplashScreen';
 import Login from '../app/views/screens/Login/Login';
 import Home from '../app/views/screens/Home/Home';
+import Lms from '../app/views/screens/Lms/LmsScreen';
+import Ontraq from '../app/views/screens/Ontraq/OntraqScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const homeName = 'Home';
-const settings = 'Setting';
-const img = require('../app/images/megaphone-green.png');
-
-function HomeScreen() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+const homeName = 'Announcements';
+const LmsName = 'LMS';
+const OntraqName = 'OnTraQ'
+const megaphone = require('../app/images/megaphone-green.png');
+const book = require('../app/images/book-green.png');
+const step = require('../app/images/steps-green.png');
 
 const MyTabs = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarActiveTintColor: '#A3D063',
+      tabBarInactiveTintColor: 'gray',
+      tabBarStyle:{paddingVertical: 5,borderTopLeftRadius:15,borderTopRightRadius:15,backgroundColor:'white',position:'absolute',height:60},
+      tabBarLabelStyle:{paddingBottom:3},
+  })}
+    >
       <Tab.Screen
         name={homeName}
         component={Home}
@@ -40,15 +36,46 @@ const MyTabs = () => {
           tabBarIcon: ({size, focused, color}) => {
             return (
               <Image
-                style={{width: 15, height: 15, tintColor: focused ? 'greeb' : 'gray'}}
-                source={img}
+                resizeMode='contain'
+                style={{width: 35, height: 35, tintColor: focused ? '#A3D063' : 'gray'}}
+                source={megaphone}
               />
             );
           },
         }}
       />
-      <Tab.Screen name={settings} component={SettingsScreen} />
-      <Tab.Screen name={'SampleScreen'} component={HomeScreen} />
+      <Tab.Screen
+        name={LmsName}
+        component={Lms}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({size, focused, color}) => {
+            return (
+              <Image
+                resizeMode='contain'
+                style={{width: 35, height: 35, tintColor: focused ? '#A3D063' : 'gray'}}
+                source={book}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name={OntraqName}
+        component={Ontraq}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({size, focused, color}) => {
+            return (
+              <Image
+                resizeMode='contain'
+                style={{width: 35, height: 35, tintColor: focused ? '#A3D063' : 'gray'}}
+                source={step}
+              />
+            );
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 };
