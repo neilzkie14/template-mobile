@@ -5,7 +5,7 @@ import Announcement from '../Announcement/Announcement';
 
 export default function Home() {
   return (
-    <View style = {{ flex: 1 }}>
+    <View style = {{ flex: 1 , marginBottom: 60}}>
         <Header />
         <ScrollView>
           <Announcement />
