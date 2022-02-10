@@ -7,13 +7,13 @@ import Lms from '../Lms/Lms';
 
 export default function Home() {
   return (
-    <View style = {{ flex: 1, backgroundColor: '#F0F0F0'}}>
+    <View style = {{ flex: 1 }}>
         <Header />
         <ScrollView style={{marginBottom: 80}}>
           {/* <Announcement /> */}
           <Lms />
         </ScrollView>
-        <Footer />
+        {/* <Footer /> */}
     </View>
   )
 }
