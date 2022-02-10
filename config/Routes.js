@@ -40,7 +40,7 @@ const MyTabs = () => {
           tabBarIcon: ({size, focused, color}) => {
             return (
               <Image
-                style={{width: 15, height: 15}}
+                style={{width: 15, height: 15, tintColor: focused ? 'greeb' : 'gray'}}
                 source={img}
               />
             );
