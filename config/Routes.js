@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -11,6 +11,7 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const homeName = 'Home';
 const settings = 'Setting';
+const img = require('../app/images/megaphone-green.png');
 
 function HomeScreen() {
   return (
@@ -30,21 +31,22 @@ function SettingsScreen() {
 
 const MyTabs = () => {
   return (
-    <Tab.Navigator
-      intialRouteName={HomeScreen}
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
-          let iconName;
-          let routeName = route.name;
-          if (routeName === homeName) {
-            iconName = focused ? 'home' : 'home-outline';
-          }
-          if (routeName === settings) {
-            iconName = focused ? 'settings' : 'settings-outline';
-          }
-        },
-      })}>
-      <Tab.Screen name={homeName} component={Home} options = {{headerShown: false}}/>
+    <Tab.Navigator>
+      <Tab.Screen
+        name={homeName}
+        component={Home}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({size, focused, color}) => {
+            return (
+              <Image
+                style={{width: 15, height: 15}}
+                source={img}
+              />
+            );
+          },
+        }}
+      />
       <Tab.Screen name={settings} component={SettingsScreen} />
       <Tab.Screen name={'SampleScreen'} component={HomeScreen} />
     </Tab.Navigator>
@@ -54,9 +56,7 @@ const MyTabs = () => {
 export default function Routes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="SplashScreen"
-        >
+      <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen
           name="SplashScreen"
           component={SplashScreen}
