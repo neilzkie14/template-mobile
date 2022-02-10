@@ -5,7 +5,7 @@ import Lms from '../Lms/Lms';
 
 export default function Home() {
   return (
-    <View style = {{ flex: 1 }}>
+    <View style = {{ flex: 1 , marginBottom: 60 }}>
         <Header />
         <ScrollView>
           <Lms />
