@@ -149,6 +149,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     position: 'absolute',
     right: 0,
+    top: 2,
   },
   iconStyle: {
     height: 31,
