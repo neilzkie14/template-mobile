@@ -1,62 +1,62 @@
 import AsyncStorage from '@react-native-community/async-storage';
-// import { DEV_API_URL } from '../../constants';
+import { DEV_API_URL } from '../constants';
 export default class Base {
   constructor() {}
 
-  // sendRequest = async ({path, method = 'GET', data = {}, base, headers}) => {
-  //   let url = base ? base + path : DEV_API_URL + path;
+  sendRequest = async ({path, method = 'GET', data = {}, base, headers}) => {
+    let url = base ? base + path : DEV_API_URL + path;
 
-  //   let config = {
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //       'Access-Control-Allow-Origin': '*',
-  //       'X-LMS-KEY': `Mobile|${await AsyncStorage.getItem('school-code')}`,
-  //       Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
-  //     },
-  //     method: method,
-  //   };
+    let config = {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'X-LMS-KEY': `Mobile|${await AsyncStorage.getItem('school-code')}`,
+        Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
+      },
+      method: method,
+    };
 
-  //   if (headers) config = {...config, headers};
+    if (headers) config = {...config, headers};
 
-  //   console.info('%cNew connection has established', 'color: red');
-  //   console.log({config, url, data});
+    console.info('%cNew connection has established', 'color: red');
+    console.log({config, url, data});
 
-  //   if (method != 'GET') {
-  //     config.body = JSON.stringify(data);
-  //   }
+    if (method != 'GET') {
+      config.body = JSON.stringify(data);
+    }
 
-  //   let response = await fetch(url, config)
-  //     .then(async function(res) {
-  //       return res;
-  //     })
-  //     .catch(function(error) {
-  //       if (error.message.match(/Network request failed/)) {
-  //         console.log({err: 'Failed to establish connection'});
-  //         // alert("Please check your internet connection");
-  //         return {network_error: true, ok: false};
-  //       }
-  //       return error;
-  //     });
+    let response = await fetch(url, config)
+      .then(async function(res) {
+        return res;
+      })
+      .catch(function(error) {
+        if (error.message.match(/Network request failed/)) {
+          console.log({err: 'Failed to establish connection'});
+          // alert("Please check your internet connection");
+          return {network_error: true, ok: false};
+        }
+        return error;
+      });
 
-  //   if (response.network_error) {
-  //     return response;
-  //   }
+    if (response.network_error) {
+      return response;
+    }
 
-  //   let responseData = await response.text();
+    let responseData = await response.text();
 
-  //   if (this.isJSON(responseData)) {
-  //     responseData = JSON.parse(responseData);
-  //   }
+    if (this.isJSON(responseData)) {
+      responseData = JSON.parse(responseData);
+    }
 
-  //   let output = {
-  //     ...response,
-  //     data: responseData,
-  //     statusMessage: this.getStatusMessage(response.status),
-  //   };
-  //   console.log(output);
-  //   return output;
-  // };
+    let output = {
+      ...response,
+      data: responseData,
+      statusMessage: this.getStatusMessage(response.status),
+    };
+    console.log(output);
+    return output;
+  };
 
   isJSON = str => {
     try {

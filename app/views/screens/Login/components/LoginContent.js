@@ -20,7 +20,11 @@ export default function LoginContent({
   showLogin,
   onPress,
   showForgotPassword,
-  setShowForgotPassword
+  setShowForgotPassword,
+  username,
+  setUsername,
+  password,
+  setPassword
 }) {
   const userContext = useContext(UserContext);
   const {user} = userContext.data;
@@ -40,6 +44,8 @@ export default function LoginContent({
         <>
           <View style={{marginBottom: 35}}>
             <FormInput
+              value={username}
+              onChangeText={text => setUsername(text)}
               data={{
                 label: 'E-mail / Username',
                 placeholder: 'Enter e-mail or username here',
@@ -47,6 +53,8 @@ export default function LoginContent({
             />
           </View>
           <FormInput
+            value={password}
+            onChangeText={text => setPassword(text)}
             data={{
               label: 'Password',
               placeholder: 'Enter password here',

@@ -24,6 +24,7 @@ export default function FormInput({
   setModalIcon,
   setModalMessage,
   setModalTitle,
+  onChangeText
 }) {
   const [hidePassword, setHidePassword] = useState(data?.isPassword);
   const userContext = useContext(UserContext);
@@ -42,7 +43,7 @@ export default function FormInput({
           placeholder={data?.placeholder}
           placeholderTextColor="#BCBCBC"
           underlineColorAndroid="transparent"
-        //   onChangeText={onChangeText}
+          onChangeText={onChangeText}
           maxLength={data?.maxLength}
           keyboardType={data?.type}
           style={[styles.textInput, data?.isPassword && styles.passTextInput], {borderRadius: 10, borderWidth: 1, borderColor: onFocus ? '#A3D063' : '#E9E9E9'}}

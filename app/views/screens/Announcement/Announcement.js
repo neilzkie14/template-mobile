@@ -84,6 +84,7 @@ export default function Announcement({
         {announcements?.map((item, index) => {
             return (
               <AnnouncementItem
+                key={index}
                 date={item?.date}
                 title={item?.title}
                 message={item?.message}
