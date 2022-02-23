@@ -1,0 +1,1 @@
+export const DEV_API_URL = 'https://api-parentline.tekteachlms.com/'
