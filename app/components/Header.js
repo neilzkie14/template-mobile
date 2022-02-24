@@ -55,9 +55,11 @@ export default function Header({
                 <ChildName name='Angel Parayno' />
                 <ChildName name='Angel Parayno' />
               </ScrollView>
-              <View style={{backgroundColor: '#A3D063', height: 30, justifyContent: 'center', margin: 2, borderRadius: 10}}>
-                <Text style={{ textAlign: 'center', color: '#fff'}}>+ Add Child</Text>
-              </View>
+                <TouchableWithoutFeedback onPress={() => alert('Under Development')}>
+                  <View style={{backgroundColor: '#A3D063', height: 30, justifyContent: 'center', margin: 2, borderRadius: 10}}>
+                    <Text style={{ textAlign: 'center', color: '#fff'}}>+ Add Child</Text>
+                  </View>
+                </TouchableWithoutFeedback>
             </View>
           <Text style={{fontSize: 20, color: '#707070'}}>Gil Christian Parayno</Text>
         </View>
