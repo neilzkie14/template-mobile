@@ -49,16 +49,17 @@ export default function LoginContent({
               data={{
                 label: 'E-mail / Username',
                 placeholder: 'Enter e-mail or username here',
-              }}
+                value: username
+            }}
             />
           </View>
           <FormInput
-            value={password}
             onChangeText={text => setPassword(text)}
             data={{
               label: 'Password',
               placeholder: 'Enter password here',
               isPassword: true,
+              value: password
             }}
           />
         </>
