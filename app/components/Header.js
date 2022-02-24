@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Text,
   TouchableWithoutFeedback,
-  ScrollView,
+  // ScrollView,
 } from 'react-native';
 import profile from '../images/profile.png';
 import menu from '../images/menu.png';
@@ -16,6 +16,7 @@ import arrow from '../images/arrow.png';
 import arrowUp from '../images/arrow-up.png';
 import {UserContext} from '../context/UserContext';
 import ChildName from './ChildName';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const {width} = Dimensions.get('screen');
 export default function Header({
@@ -33,15 +34,17 @@ export default function Header({
         </TouchableWithoutFeedback>
         <View style={{flexDirection: 'column', alignSelf: 'center', justifyContent: 'center', width: width * .6}}>
           <View style={{height: 25, flexDirection: 'row', alignItems: 'center', zIndex: 2}}>
-            <TouchableWithoutFeedback onPress={() => setParentDropdown(!parentDropdown)}>
-              <View style={{flexDirection:'row'}}>
-                <Text style={{ width: width * .5, fontSize: 12, borderRadius: 10, color: '#fff', padding: 4, textAlign: 'left', backgroundColor: parentDropdown ? '#A3D063' : '#2E3192'}}>Parent of Tercela Parayno {` `}
-                </Text>
-                <View style={{ justifyContent: 'center', position: 'absolute', right: 5, alignSelf: 'center'}}>
-                  <Image resizeMode='contain' source={ parentDropdown ? arrowUp : arrow} style={{height: 10, width: 10}} />
+            <View style={{ backgroundColor: parentDropdown ? '#A3D063' : '#2E3192', borderRadius: 10}}>
+              <TouchableWithoutFeedback onPress={() => setParentDropdown(!parentDropdown)}>
+                <View style={{flexDirection:'row'}}>
+                  <Text style={{ width: width * .5, fontSize: 12, color: '#fff', padding: 4, textAlign: 'left',  borderRadius: 10}}>Parent of Tercela Parayno {` `}
+                  </Text>
+                  <View style={{ justifyContent: 'center', position: 'absolute', right: 5, alignSelf: 'center'}}>
+                    <Image resizeMode='contain' source={ parentDropdown ? arrowUp : arrow} style={{height: 10, width: 10}} />
+                  </View>
                 </View>
-              </View>
-            </TouchableWithoutFeedback>
+              </TouchableWithoutFeedback>
+            </View>
           </View>
             <View elevation={10} style={{maxHeight: 190, borderRadius: 10, paddingTop: 15, top: 10, width: width * .5, position: 'absolute', backgroundColor: '#fff', zIndex: 1, display: parentDropdown ? 'flex' : 'none'}}>
               <ScrollView>

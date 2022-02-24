@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Text,
   TouchableWithoutFeedback,
+  Platform
 } from 'react-native';
 import curve from '../../../../images/curve.png';
 import {UserContext} from '../../../../context/UserContext';
@@ -37,7 +38,8 @@ export default function LoginUI({
             textAlignVertical: 'center',
             color: showLogin ? '#707070' : '#fff',
             fontSize: 25,
-            paddingTop: 20,
+            textAlign: 'center',
+            paddingTop: Platform.OS === 'android' ? 20 : 40,
           }}>
           Login
         </Text>
