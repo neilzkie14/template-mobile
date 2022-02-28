@@ -20,6 +20,7 @@ import LoginContent from './components/LoginContent';
 import SignUpContent from './components/SignUpContent';
 import Auth from './../../../api/Auth'
 import {UserContext} from './../../../context/UserContext'
+import AsyncStorage from '@react-native-community/async-storage';
 const {width} = Dimensions.get('screen');
 export default function Login() {
   const userContext = useContext(UserContext)
@@ -46,9 +47,9 @@ export default function Login() {
     });
     console.log({response})
     if(response.ok){
-    // await AsyncStorage.setItem('token', response?.data?.token)
+    await AsyncStorage.setItem('token', response.data.passToken)
     await refreshUser();
-    navigation.push('Dashboard')
+    await navigation.push('Dashboard')
     }else{
     alert(response?.data?.errorMessage)
     }

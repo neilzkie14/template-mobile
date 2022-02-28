@@ -11,7 +11,6 @@ export default class Base {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'X-LMS-KEY': `Mobile|${await AsyncStorage.getItem('school-code')}`,
         Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
       },
       method: method,
