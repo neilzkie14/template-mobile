@@ -16,8 +16,8 @@ export default function SplashScreen() {
   
 
   return (
-    <View style = {{ flex: 1 }}>
-      <Image source={splashScreenImg} resizeMode='contain' height={height} width={width} />
+    <View style = {{ flex: 1 , height:height, maxWidth:width }}>
+      <Image source={splashScreenImg} height={height} maxWidth={width} />
     </View>
   )
 }
