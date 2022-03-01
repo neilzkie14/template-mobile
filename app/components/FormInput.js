@@ -46,7 +46,7 @@ export default function FormInput({
           onChangeText={onChangeText}
           maxLength={data?.maxLength}
           keyboardType={data?.type}
-          style={[styles.textInput, data?.isPassword && styles.passTextInput], {borderRadius: 10, borderWidth: 1, borderColor: onFocus ? '#A3D063' : '#E9E9E9'}}
+          style={[styles.textInput, data?.isPassword && styles.passTextInput], {borderRadius: 10, borderWidth: 1, borderColor: onFocus ? '#A3D063' : '#E9E9E9', height: 40, paddingLeft: 10}}
           secureTextEntry={hidePassword}
         //   editable={item.editable}
           onFocus={() => setOnFocus(true)}

@@ -1,6 +1,8 @@
 import { NavigationContext } from '@react-navigation/native';
 import React, {useEffect, useContext} from 'react';
-import {View, Text} from 'react-native'
+import {View, Text, Dimensions, Image} from 'react-native'
+import splashScreenImg from '../../../images/splash-screen.gif' 
+const {width, height} = Dimensions.get('screen');
 
 export default function SplashScreen() {
   const navigation = useContext(NavigationContext)
@@ -14,8 +16,8 @@ export default function SplashScreen() {
   
 
   return (
-    <View style = {{ flex: 1 }}>
-      <Text>This is SplashScreen Page</Text>
+    <View style = {{ flex: 1 , height:height, maxWidth:width }}>
+      <Image source={splashScreenImg} height={height} maxWidth={width} />
     </View>
   )
 }
