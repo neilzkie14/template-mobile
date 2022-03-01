@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Text,
   TouchableWithoutFeedback,
-  // ScrollView,
 } from 'react-native';
 import profile from '../images/profile.png';
 import menu from '../images/menu.png';
@@ -49,11 +48,11 @@ export default function Header({
             <View elevation={10} style={{maxHeight: 190, borderRadius: 10, paddingTop: 15, top: 10, width: width * .5, position: 'absolute', backgroundColor: '#fff', zIndex: 1, display: parentDropdown ? 'flex' : 'none'}}>
               <ScrollView>
                 <ChildName name='Angel Parayno' />
-                <ChildName name='Angel Parayno' />
-                <ChildName name='Angel Parayno' />
-                <ChildName name='Angel Parayno' />
-                <ChildName name='Angel Parayno' />
-                <ChildName name='Angel Parayno' />
+                <ChildName name='Leo Ferrer' />
+                <ChildName name='Jayhiel Vhon Lopez' />
+                <ChildName name='Laurence Bautista' />
+                <ChildName name='Chromneil Pedeglorio' />
+                <ChildName name='Adonis Sarmiento' />
               </ScrollView>
                 <TouchableWithoutFeedback onPress={() => alert('Under Development')}>
                   <View style={{backgroundColor: '#A3D063', height: 30, justifyContent: 'center', margin: 2, borderRadius: 10}}>
@@ -61,7 +60,7 @@ export default function Header({
                   </View>
                 </TouchableWithoutFeedback>
             </View>
-          <Text style={{fontSize: 20, color: '#707070'}}>Gil Christian Parayno</Text>
+          <Text style={{fontSize: 20, color: '#707070'}}>{`${user[0]?.firstname} ${user[0]?.middlename} ${user[0]?.lastname}`}</Text>
         </View>
         <TouchableWithoutFeedback onPress={() => alert('Under Development!')}>
           <View style={{height: width * .2, width: width * .2, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}>
