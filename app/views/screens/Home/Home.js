@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native'
+import Footer from '../../../components/Footer';
 import Header from '../../../components/Header';
 import Announcement from '../Announcement/Announcement';
 

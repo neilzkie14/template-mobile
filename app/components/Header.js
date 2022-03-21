@@ -23,11 +23,11 @@ export default function Header({
   const userContext = useContext(UserContext);
   const {user} = userContext.data;
   const [parentDropdown, setParentDropdown] = useState(false);
-
+  console.log({user})
   return (
     <View style={{flexDirection: 'row', width: '100%', backgroundColor: '#fff', justifyContent: 'space-between', zIndex: 99}}>
-        <TouchableWithoutFeedback onPress={() => alert('Under Development!')}>
-          <View style={{height: width * .2, width: width * .2, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}>
+        {/* <TouchableWithoutFeedback onPress={() => alert('Under Development!')}>
+          <View style={{height: width * 0.2, width: width * 0.2, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}>
               <Image source={profile} style={{height: 50, width: 50, borderRadius: 25}} />
           </View>
         </TouchableWithoutFeedback>
@@ -36,7 +36,7 @@ export default function Header({
             <View style={{ backgroundColor: parentDropdown ? '#A3D063' : '#2E3192', borderRadius: 10}}>
               <TouchableWithoutFeedback onPress={() => setParentDropdown(!parentDropdown)}>
                 <View style={{flexDirection:'row'}}>
-                  <Text style={{ width: width * .5, fontSize: 12, color: '#fff', padding: 4, textAlign: 'left',  borderRadius: 10}}>Parent of Tercela Parayno {` `}
+                  <Text style={{ width: width * 0.5, fontSize: 12, color: '#fff', padding: 4, textAlign: 'left',  borderRadius: 10}}>Parent of Tercela Parayno {` `}
                   </Text>
                   <View style={{ justifyContent: 'center', position: 'absolute', right: 5, alignSelf: 'center'}}>
                     <Image resizeMode='contain' source={ parentDropdown ? arrowUp : arrow} style={{height: 10, width: 10}} />
@@ -45,7 +45,7 @@ export default function Header({
               </TouchableWithoutFeedback>
             </View>
           </View>
-            <View elevation={10} style={{maxHeight: 190, borderRadius: 10, paddingTop: 15, top: 10, width: width * .5, position: 'absolute', backgroundColor: '#fff', zIndex: 1, display: parentDropdown ? 'flex' : 'none'}}>
+            <View elevation={10} style={{maxHeight: 190, borderRadius: 10, paddingTop: 15, top: 10, width: width * 0.5, position: 'absolute', backgroundColor: '#fff', zIndex: 1, display: parentDropdown ? 'flex' : 'none'}}>
               <ScrollView>
                 <ChildName name='Angel Parayno' />
                 <ChildName name='Leo Ferrer' />
@@ -63,10 +63,10 @@ export default function Header({
           <Text style={{fontSize: 20, color: '#707070'}}>{`${user[0]?.firstname} ${user[0]?.middlename} ${user[0]?.lastname}`}</Text>
         </View>
         <TouchableWithoutFeedback onPress={() => alert('Under Development!')}>
-          <View style={{height: width * .2, width: width * .2, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}>
+          <View style={{height: width * 0.2, width: width * 0.2, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}>
               <Image resizeMode='contain' source={menu} style={{height: 30, width: 30}} />
           </View>
-        </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback> */}
     </View>
   );
 }
