@@ -20,7 +20,7 @@ export default function Login() {
   const userContext = useContext(UserContext);
   const {refreshUser} = userContext.data;
   const navigation = useContext(NavigationContext);
-  const [username, setUsername] = useState('parent1@tfi.com');
+  const [username, setUsername] = useState('lopezjayhielvhon@gmail.com');
   const [password, setPassword] = useState('password');
   const [loader, setLoader] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
@@ -34,7 +34,7 @@ export default function Login() {
     console.log({response});
     if (response.ok) {
       setLoader(false);
-      await AsyncStorage.setItem('token', response.data.passToken);
+      await AsyncStorage.setItem('token', response.data.token);
       await refreshUser();
       await navigation.replace('Dashboard');
     } else {

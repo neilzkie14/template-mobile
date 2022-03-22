@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationContext } from '@react-navigation/native';
 import React, {useEffect, useContext} from 'react';
-import {View, Text, Dimensions, Image} from 'react-native'
+import {View, Dimensions, Image} from 'react-native'
 import Auth from '../../../api/Auth';
 import { UserContext } from '../../../context/UserContext';
 import splashScreenImg from '../../../images/splash-screen.gif' 

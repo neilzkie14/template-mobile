@@ -1,75 +1,73 @@
 import React, {useState, useContext} from 'react';
 import {
   View,
-  TextInput,
   StyleSheet,
   Dimensions,
   Image,
   TouchableOpacity,
   Text,
-  TouchableWithoutFeedback,
 } from 'react-native';
 import profile from '../images/profile.png';
 import menu from '../images/menu.png';
 import arrow from '../images/arrow.png';
 import arrowUp from '../images/arrow-up.png';
 import {UserContext} from '../context/UserContext';
-import ChildName from './ChildName';
-import { ScrollView } from 'react-native-gesture-handler';
+import StudentModalSelection from './StudentModalSelection';
+import {StudentContext} from '../context/StudentContext';
 
 const {width} = Dimensions.get('screen');
-export default function Header({
-}) {
+export default function Header({}) {
   const userContext = useContext(UserContext);
+  const studentContext = useContext(StudentContext);
+  const {student} = studentContext.data;
+  const [showModal, setShowModal] = useState(false);
   const {user} = userContext.data;
-  const [parentDropdown, setParentDropdown] = useState(false);
-  console.log({user})
+  
   return (
-    <View style={{flexDirection: 'row', width: '100%', backgroundColor: '#fff', justifyContent: 'space-between', zIndex: 99}}>
-        {/* <TouchableWithoutFeedback onPress={() => alert('Under Development!')}>
-          <View style={{height: width * 0.2, width: width * 0.2, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}>
-              <Image source={profile} style={{height: 50, width: 50, borderRadius: 25}} />
-          </View>
-        </TouchableWithoutFeedback>
-        <View style={{flexDirection: 'column', alignSelf: 'center', justifyContent: 'center', width: width * .6}}>
-          <View style={{height: 25, flexDirection: 'row', alignItems: 'center', zIndex: 2}}>
-            <View style={{ backgroundColor: parentDropdown ? '#A3D063' : '#2E3192', borderRadius: 10}}>
-              <TouchableWithoutFeedback onPress={() => setParentDropdown(!parentDropdown)}>
-                <View style={{flexDirection:'row'}}>
-                  <Text style={{ width: width * 0.5, fontSize: 12, color: '#fff', padding: 4, textAlign: 'left',  borderRadius: 10}}>Parent of Tercela Parayno {` `}
-                  </Text>
-                  <View style={{ justifyContent: 'center', position: 'absolute', right: 5, alignSelf: 'center'}}>
-                    <Image resizeMode='contain' source={ parentDropdown ? arrowUp : arrow} style={{height: 10, width: 10}} />
-                  </View>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </View>
-            <View elevation={10} style={{maxHeight: 190, borderRadius: 10, paddingTop: 15, top: 10, width: width * 0.5, position: 'absolute', backgroundColor: '#fff', zIndex: 1, display: parentDropdown ? 'flex' : 'none'}}>
-              <ScrollView>
-                <ChildName name='Angel Parayno' />
-                <ChildName name='Leo Ferrer' />
-                <ChildName name='Jayhiel Vhon Lopez' />
-                <ChildName name='Laurence Bautista' />
-                <ChildName name='Chromneil Pedeglorio' />
-                <ChildName name='Adonis Sarmiento' />
-              </ScrollView>
-                <TouchableWithoutFeedback onPress={() => alert('Under Development')}>
-                  <View style={{backgroundColor: '#A3D063', height: 30, justifyContent: 'center', margin: 2, borderRadius: 10}}>
-                    <Text style={{ textAlign: 'center', color: '#fff'}}>+ Add Child</Text>
-                  </View>
-                </TouchableWithoutFeedback>
-            </View>
-          <Text style={{fontSize: 20, color: '#707070'}}>{`${user[0]?.firstname} ${user[0]?.middlename} ${user[0]?.lastname}`}</Text>
-        </View>
-        <TouchableWithoutFeedback onPress={() => alert('Under Development!')}>
-          <View style={{height: width * 0.2, width: width * 0.2, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}>
-              <Image resizeMode='contain' source={menu} style={{height: 30, width: 30}} />
-          </View>
-        </TouchableWithoutFeedback> */}
+    <View style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
+      <View>
+        <Image
+          source={profile}
+          style={{width: width / 10, height: width / 10}}
+          resizeMode="contain"
+        />
+      </View>
+      <View style={{marginLeft: 10}}>
+        <TouchableOpacity
+          onPress={() => setShowModal(!showModal)}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            flex: 1,
+            backgroundColor: '#2E3192',
+            borderRadius: 50,
+            paddingHorizontal: 5,
+            alignItems: 'center',
+          }}>
+          <Text style={{fontSize: 12, color: '#fff', fontWeight: '500'}}>
+            {student == null || student == ''
+              ? `No student Selected`
+              : `Parent of ${student?.user?.first_name}  ${student?.user?.last_name} `}
+          </Text>
+          <Image
+            source={arrow}
+            resizeMode="contain"
+            style={{width: width / 30, height: width / 30, marginLeft: 20}}
+          />
+        </TouchableOpacity>
+        <Text
+          style={{
+            fontWeight: '700',
+            color: '#707070',
+            fontSize: 14,
+          }}>{`${user?.first_name} ${user?.last_name}`}</Text>
+      </View>
+      <StudentModalSelection
+        onCloseModal={() => setShowModal(!showModal)}
+        modalVisible={showModal}
+      />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});

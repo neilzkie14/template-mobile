@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
+import StudentContextProvider from './app/context/StudentContext';
 import UserContextProvider from './app/context/UserContext';
 import Routes from './config/Routes';
 
@@ -14,9 +15,11 @@ function OtherScreen() {
 const App = () => {
   return (
     <UserContextProvider>
-      <SafeAreaView style={{flex: 1}}>
-        <Routes />
-      </SafeAreaView>
+      <StudentContextProvider>
+        <SafeAreaView style={{flex: 1}}>
+          <Routes />
+        </SafeAreaView>
+      </StudentContextProvider>
     </UserContextProvider>
   );
 };
