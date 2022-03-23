@@ -8,4 +8,12 @@ export default class Student extends Base {
       method: 'GET'
     });
   };
+
+  addStudent = async (data) => {
+    return this.sendRequest({
+      path: `/api/v2/students`,
+      method: 'POST',
+      data
+    });
+  };
 }

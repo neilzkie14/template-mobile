@@ -17,6 +17,9 @@ export class StudentContextProvider extends Component {
   };
 
   //API FOR STUDENT INFO CONTEXT
+  refreshStudent = async () => {
+    
+  }
 
   render() {
     const {children} = this.props;

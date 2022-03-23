@@ -9,6 +9,7 @@ import Home from '../app/views/screens/Home/Home';
 import Lms from '../app/views/screens/Lms/LmsScreen';
 import Ontraq from '../app/views/screens/Ontraq/OntraqScreen';
 import Settings from '../app/views/screens/Settings/Settings';
+import AddStudent from '../app/views/screens/AddStudent/AddStudent';
 const {width} = Dimensions.get('screen');
 
 const Stack = createStackNavigator();
@@ -158,6 +159,15 @@ export default function Routes() {
           component={MyTabs}
           options={{
             title: 'Dashboard',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+         <Stack.Screen
+          name="AddStudent"
+          component={AddStudent}
+          options={{
+            title: 'AddStudent',
             headerShown: false,
             gestureEnabled: false,
           }}

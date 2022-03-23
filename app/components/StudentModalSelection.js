@@ -1,3 +1,4 @@
+import { NavigationContext } from '@react-navigation/native';
 import React, {useState, useEffect, useContext} from 'react';
 import {
   Text,
@@ -21,6 +22,7 @@ export default function StudentModalSelection({
 }) {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigation = useContext(NavigationContext)
   const studentContext = useContext(StudentContext)
   const {setStudent} = studentContext.data 
 
@@ -118,9 +120,23 @@ export default function StudentModalSelection({
               </View>
             </ScrollView>
             <TouchableOpacity
-              onPress={onCloseModal}
+              onPress={() => navigation.navigate('AddStudent')}
               style={{
                 backgroundColor: '#A3D063',
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: 15,
+                borderRadius: 10,
+                marginBottom: 10
+              }}>
+              <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 14}}>
+                Add Student
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={onCloseModal}
+              style={{
+                backgroundColor: 'gray',
                 justifyContent: 'center',
                 alignItems: 'center',
                 padding: 15,
