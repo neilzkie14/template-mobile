@@ -20,8 +20,8 @@ export default function Login() {
   const userContext = useContext(UserContext);
   const {refreshUser} = userContext.data;
   const navigation = useContext(NavigationContext);
-  const [username, setUsername] = useState('lopezjayhielvhon@gmail.com');
-  const [password, setPassword] = useState('password');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [loader, setLoader] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
 
@@ -42,6 +42,10 @@ export default function Login() {
       alert(response?.data?.errorMessage);
     }
   };
+
+  const onToggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
   return (
     <KeyboardAvoidingView style={{flex: 1}} behavior={'height'}>
       <View style={{flex: 1, backgroundColor: 'white'}}>
@@ -91,8 +95,11 @@ export default function Login() {
                 borderWidth: 0.5,
                 borderColor: '#E9E9E9',
                 borderRadius: 10,
+                paddingHorizontal: 10,
+                flexDirection: 'row',
+                alignItems: 'center'
               }}>
-              <TextInput placeholder="Enter email here" value = {username} onChangeText ={(text) => setUsername(text)}/>
+              <TextInput placeholder="Enter email here" onChangeText ={(text) => setUsername(text)}/>
             </View>
           </View>
           <View>
@@ -117,15 +124,14 @@ export default function Login() {
               <TextInput
                 placeholder="Enter password here"
                 secureTextEntry={showPassword}
-                value = {password}
                 style={{flex: 1}}
               />
-              <TouchableOpacity onPress={() => setShowPassword(!password)} onChangeText ={(text) => setPassword(text)}>
+              <TouchableOpacity onPress={() => onToggleShowPassword()}>
                 <Image
                   source={
                     showPassword
-                      ? require('../../../images/eye-hide.png')
-                      : require('../../../images/eye.png')
+                      ? require('../../../images/eye.png')
+                      : require('../../../images/eye-hide.png')
                   }
                   style={{width: width / 15, height: width / 15}}
                   resizeMode="contain"
