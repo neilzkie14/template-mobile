@@ -8,6 +8,7 @@ import Login from '../app/views/screens/Login/Login';
 import Home from '../app/views/screens/Home/Home';
 import Lms from '../app/views/screens/Lms/LmsScreen';
 import Ontraq from '../app/views/screens/Ontraq/OntraqScreen';
+import Settings from '../app/views/screens/Settings/Settings';
 const {width} = Dimensions.get('screen');
 
 const Stack = createStackNavigator();
@@ -15,9 +16,11 @@ const Tab = createBottomTabNavigator();
 const homeName = 'Announcements';
 const LmsName = 'LMS';
 const OntraqName = 'OnTraQ';
+const settings = 'Settings';
 const megaphone = require('../app/images/megaphone-green.png');
 const book = require('../app/images/book-green.png');
 const step = require('../app/images/steps-green.png');
+const settings_icon = require('../app/images/settings2.png');
 
 const MyTabs = () => {
   return (
@@ -90,6 +93,26 @@ const MyTabs = () => {
                   tintColor: focused ? '#A3D063' : 'gray',
                 }}
                 source={step}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name={settings}
+        component={Settings}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({size, focused, color}) => {
+            return (
+              <Image
+                resizeMode="contain"
+                style={{
+                  width: width / 15,
+                  height: width / 15,
+                  tintColor: focused ? '#A3D063' : 'gray',
+                }}
+                source={settings_icon}
               />
             );
           },

@@ -39,7 +39,7 @@ export default function Login() {
       await navigation.replace('Dashboard');
     } else {
       setLoader(false);
-      alert(response?.data?.errorMessage);
+      alert(response?.data?.message);
     }
   };
 
@@ -99,7 +99,7 @@ export default function Login() {
                 flexDirection: 'row',
                 alignItems: 'center'
               }}>
-              <TextInput placeholder="Enter email here" onChangeText ={(text) => setUsername(text)}/>
+              <TextInput placeholder="Enter email here" onChangeText ={(text) => setUsername(text)} style = {{ flex: 1 }}/>
             </View>
           </View>
           <View>
@@ -125,6 +125,7 @@ export default function Login() {
                 placeholder="Enter password here"
                 secureTextEntry={showPassword}
                 style={{flex: 1}}
+                onChangeText = {(text) => setPassword(text)}
               />
               <TouchableOpacity onPress={() => onToggleShowPassword()}>
                 <Image
