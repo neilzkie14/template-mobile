@@ -1,7 +1,14 @@
 import React from 'react';
-import {View, Text, TextInput} from 'react-native'
+import {View, Text, TextInput} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function InputText({onChangeText, label, placeholder}) {
+export default function InputText({
+  onChangeText,
+  label,
+  placeholder,
+  type,
+  onDatePress,
+}) {
   return (
     <View style={{marginTop: 20}}>
       <Text
@@ -22,11 +29,19 @@ export default function InputText({onChangeText, label, placeholder}) {
           flexDirection: 'row',
           alignItems: 'center',
         }}>
-        <TextInput
-          placeholder={placeholder}
-          onChangeText={onChangeText}
-          style={{flex: 1}}
-        />
+        {type == 'date' ? (
+          <View>
+            <TouchableOpacity onPress={onDatePress}>
+              <Text>openDate</Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <TextInput
+            placeholder={placeholder}
+            onChangeText={onChangeText}
+            style={{flex: 1}}
+          />
+        )}
       </View>
     </View>
   );
