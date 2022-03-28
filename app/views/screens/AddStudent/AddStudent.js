@@ -4,6 +4,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Text,
+  Platform
 } from 'react-native';
 import Student from '../../../api/Student';
 import InputText from './components/InputText';
@@ -83,10 +84,11 @@ export default function AddStudent() {
                 paddingHorizontal: 10,
                 flexDirection: 'row',
                 alignItems: 'center',
+                padding: Platform.OS == 'ios' ? 15 : 0
               }}>
                 <View>
                   <TouchableOpacity  onPress={() => setOpen(true)}>
-                    <Text>{birthDay == '' ? 'Select birthday' : `${moment(birthDay).format('MMMM DD, YYYY')}`}</Text>
+                    <Text style = {{ color: '#cccccc' }}>{birthDay == '' ? 'Select birthday' : `${moment(birthDay).format('MMMM DD, YYYY')}`}</Text>
                   </TouchableOpacity>
                 </View>
             </View>

@@ -7,6 +7,7 @@ import {
   Dimensions,
   TextInput,
   KeyboardAvoidingView,
+  Platform
 } from 'react-native';
 import parentlineLogo from '../../../images/parentline-logo.png';
 import headstartLogo from '../../../images/headstart-logo.png';
@@ -99,7 +100,7 @@ export default function Login() {
                 flexDirection: 'row',
                 alignItems: 'center'
               }}>
-              <TextInput placeholder="Enter email here" onChangeText ={(text) => setUsername(text)} style = {{ flex: 1 }}/>
+              <TextInput placeholder="Enter email here" onChangeText ={(text) => setUsername(text)} style = {{ flex: 1, padding: Platform.OS == 'ios' ? 15 : 0 }}/>
             </View>
           </View>
           <View>
@@ -124,7 +125,7 @@ export default function Login() {
               <TextInput
                 placeholder="Enter password here"
                 secureTextEntry={showPassword}
-                style={{flex: 1}}
+                style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 0}}
                 onChangeText = {(text) => setPassword(text)}
               />
               <TouchableOpacity onPress={() => onToggleShowPassword()}>

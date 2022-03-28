@@ -37,7 +37,7 @@ export default function Home() {
         }>
         <View>
           {messages.length <= 0 ? (
-            <View>
+            <View style = {{ flex: 1, justifyContent: 'center' }}>
               <Text>No Messages</Text>
             </View>
           ) : (

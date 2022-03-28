@@ -82,6 +82,8 @@ export default function AnnouncementItem({date, title, data}) {
         modalVisible={showModal}
         data = {messageInformation}
         onCloseModal={() => setShowModal(!showModal)}
+        setShowModal = {setShowModal}
+        showModal = {showModal}
       />
     </View>
   );

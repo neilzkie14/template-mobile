@@ -1,4 +1,4 @@
-import { NavigationContext } from '@react-navigation/native';
+import {NavigationContext} from '@react-navigation/native';
 import React, {useState, useEffect, useContext} from 'react';
 import {
   Text,
@@ -9,9 +9,10 @@ import {
   SafeAreaView,
   ScrollView,
   RefreshControl,
+  Platform,
 } from 'react-native';
 import Student from '../api/Student';
-import { StudentContext } from '../context/StudentContext';
+import {StudentContext} from '../context/StudentContext';
 import Loader from './Loader';
 const {width} = Dimensions.get('screen');
 
@@ -19,12 +20,14 @@ export default function StudentModalSelection({
   modalVisible,
   onRequestClose,
   onCloseModal,
+  setShowModal,
+  showModal,
 }) {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
-  const navigation = useContext(NavigationContext)
-  const studentContext = useContext(StudentContext)
-  const {setStudent} = studentContext.data 
+  const navigation = useContext(NavigationContext);
+  const studentContext = useContext(StudentContext);
+  const {setStudent} = studentContext.data;
 
   const getStudentList = async () => {
     setLoading(true);
@@ -41,7 +44,6 @@ export default function StudentModalSelection({
   useEffect(() => {
     getStudentList();
   }, []);
-
 
   return (
     <View>
@@ -92,7 +94,9 @@ export default function StudentModalSelection({
                       return (
                         <View key={key} style={{padding: 5}}>
                           <TouchableOpacity
-                            onPress={() => {setStudent(item)}}
+                            onPress={() => {
+                              setStudent(item);
+                            }}
                             style={{
                               backgroundColor: '#fff',
                               shadowColor: '#000',
@@ -106,7 +110,7 @@ export default function StudentModalSelection({
                               elevation: 5,
                               padding: 10,
                               borderRadius: 10,
-                              marginBottom: 10
+                              marginBottom: 10,
                             }}>
                             <Text>{`Name: ${item?.user?.first_name} ${item?.user?.last_name}`}</Text>
                             <Text>{`Email: ${item?.user?.email}`}</Text>
@@ -127,7 +131,7 @@ export default function StudentModalSelection({
                 alignItems: 'center',
                 padding: 15,
                 borderRadius: 10,
-                marginBottom: 10
+                marginBottom: 10,
               }}>
               <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 14}}>
                 Add Student

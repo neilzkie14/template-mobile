@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {View, Text, TextInput, Platform, TouchableOpacity} from 'react-native';
 
 export default function InputText({
   onChangeText,
@@ -28,6 +27,7 @@ export default function InputText({
           paddingHorizontal: 10,
           flexDirection: 'row',
           alignItems: 'center',
+          padding: Platform.OS == 'ios' ? 15 : 0
         }}>
         {type == 'date' ? (
           <View>
