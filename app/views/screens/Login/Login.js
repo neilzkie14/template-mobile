@@ -16,10 +16,13 @@ import Auth from './../../../api/Auth';
 import {UserContext} from './../../../context/UserContext';
 import Loader from '../../../components/Loader';
 import AsyncStorage from '@react-native-community/async-storage';
+import { StudentContext } from '../../../context/StudentContext';
 const {width} = Dimensions.get('screen');
 export default function Login() {
   const userContext = useContext(UserContext);
+  const studentContext = useContext(StudentContext);
   const {refreshUser} = userContext.data;
+  const {refreshStudent} = studentContext.data;
   const navigation = useContext(NavigationContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -37,6 +40,7 @@ export default function Login() {
       setLoader(false);
       await AsyncStorage.setItem('token', response.data.token);
       await refreshUser();
+      await refreshStudent();
       await navigation.replace('Dashboard');
     } else {
       setLoader(false);
