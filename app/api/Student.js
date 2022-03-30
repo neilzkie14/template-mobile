@@ -16,4 +16,11 @@ export default class Student extends Base {
       data
     });
   };
+
+  getStudentAttendance = async (id) => {
+    return this.sendRequest({
+      path: `/api/v2/attendance/get_student_attendance/${id}`,
+      method: 'GET'
+    });
+  };
 }
