@@ -12,6 +12,7 @@ import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 import { NavigationContext } from '@react-navigation/native';
 import AddStudentHeader from './components/AddStudentHeader';
+import { StudentContext } from '../../../context/StudentContext';
 
 export default function AddStudent() {
   const [firstname, setFirstname] = useState('');
@@ -22,6 +23,8 @@ export default function AddStudent() {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const navigation = useContext(NavigationContext)
+  const studentContext = useContext(StudentContext)
+  const {refreshStudent} = studentContext.data
 
   const addStudent = async () => {
     let response = await new Student().addStudent({
@@ -34,6 +37,7 @@ export default function AddStudent() {
     if (response.ok) {
       alert('Successfully added student');
       console.log({response: response.data});
+      refreshStudent()
       await navigation.goBack(null)
     } else {
       alert('something went wrong in adding student');

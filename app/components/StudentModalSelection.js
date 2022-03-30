@@ -23,27 +23,10 @@ export default function StudentModalSelection({
   setShowModal,
   showModal,
 }) {
-  const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigation = useContext(NavigationContext);
   const studentContext = useContext(StudentContext);
-  const {setStudent} = studentContext.data;
-
-  const getStudentList = async () => {
-    setLoading(true);
-    let response = await new Student().getStudentList();
-    if (response.ok) {
-      setStudents(response.data);
-      setLoading(false);
-    } else {
-      alert('Something went wrong in fetching Students');
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getStudentList();
-  }, []);
+  const {setStudent, students, student} = studentContext.data;
 
   return (
     <View>
@@ -92,13 +75,13 @@ export default function StudentModalSelection({
                     {students?.map((item, key) => {
                       console.log({item});
                       return (
-                        <View key={key} style={{padding: 5}}>
+                        <View key={key} style={{padding: 5, }}>
                           <TouchableOpacity
                             onPress={() => {
                               setStudent(item);
                             }}
                             style={{
-                              backgroundColor: '#fff',
+                              backgroundColor: student?.id == item?.id ? '#ecffd1' : '#fff',
                               shadowColor: '#000',
                               shadowOffset: {
                                 width: 0,
