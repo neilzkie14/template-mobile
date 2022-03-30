@@ -11,7 +11,7 @@ export default function Home() {
   const {student} = studentContext.data;
   const [loading, setLoading] = useState(false);
   const [room, setRoom] = useState([]);
-
+  const [attendances, setAttendances] = useState([]);
   console.log({student});
 
   const getStundentAttenance = async () => {
@@ -21,6 +21,7 @@ export default function Home() {
       if (response.ok) {
         // console.log({response})
         let data = response?.data?.venue_attendances?.map(item => item?.venue);
+        setAttendances(response?.data?.venue_attendances);
         let uniqueData = [];
         data.forEach(item => {
           let isUnique = true;
@@ -61,8 +62,18 @@ export default function Home() {
                   room.map((item, key) => {
                     console.log({DITO: item})
                     return(
-                      <View key = {key}>
-                        <Text>asdasd</Text>
+                      <View key={key} style={{marginBottom: 12}}>
+                        <Text>{item.name}</Text>
+                        <View>
+                          {attendances.filter(attendance => attendance.venue.id == item.id).map((attendance, key) => {
+                            return(
+                              <View key = {key}>
+                                <Text>{attendance.attendance_status}</Text>
+                                <Text>{attendance.created_at}</Text>
+                              </View>
+                            )
+                          })}
+                        </View>
                       </View>
                     )
                   })
