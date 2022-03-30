@@ -1,18 +1,34 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationContext } from '@react-navigation/native';
 import React, {useEffect, useContext} from 'react';
-import {View, Text, Dimensions, Image} from 'react-native'
+import {View, Dimensions, Image} from 'react-native'
+import Auth from '../../../api/Auth';
+import { StudentContext } from '../../../context/StudentContext';
+import { UserContext } from '../../../context/UserContext';
 import splashScreenImg from '../../../images/splash-screen.gif' 
 const {width, height} = Dimensions.get('screen');
 
 export default function SplashScreen() {
   const navigation = useContext(NavigationContext)
+  const userContext = useContext(UserContext)
+  const studentContext = useContext(StudentContext)
+  const {refreshStudent} = studentContext.data
+  const {refreshUser} = userContext.data
+
+  const init = async () => {
+    let  response = await new Auth().profile();
+    if(response.ok){
+      await refreshUser();
+      await refreshStudent();
+      navigation.navigate('Dashboard')
+    }else{
+      navigation.navigate('Login')
+    }
+  }
 
   useEffect(() => {
-    const timer = setTimeout(() => navigation.push('Login'), 2000);
-    return(
-      () => clearTimeout(timer)
-    )
-  }, [navigation])
+   init()
+  }, [])
   
 
   return (

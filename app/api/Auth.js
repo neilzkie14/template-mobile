@@ -4,7 +4,7 @@ export default class Auth extends Base {
 
   login = async (data) => {
     return this.sendRequest({
-      path: `api/Login`,
+      path: `/api/v2/auth/login`,
       method: 'POST',
       data,
     });
@@ -12,7 +12,8 @@ export default class Auth extends Base {
 
   profile = async () => {
     return this.sendRequest({
-      path: `api/Parent`,
+      path: `/api/v2/auth/profile`,
+      method: 'GET'
     });
   };
 
