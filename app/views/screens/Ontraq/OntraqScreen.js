@@ -4,7 +4,8 @@ import Student from '../../../api/Student';
 import Header from '../../../components/Header';
 import Loader from '../../../components/Loader';
 import {StudentContext} from '../../../context/StudentContext';
-import Ontraq from '../Ontraq/Ontraq';
+import moment from 'moment';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default function Home() {
   const studentContext = useContext(StudentContext);
@@ -26,11 +27,11 @@ export default function Home() {
         data.forEach(item => {
           let isUnique = true;
           uniqueData.forEach(uniqueItem => {
-            if(uniqueItem?.id == item?.id){
+            if (uniqueItem?.id == item?.id) {
               isUnique = false;
             }
-          })
-          if(isUnique){
+          });
+          if (isUnique) {
             uniqueData.push(item);
           }
         });
@@ -51,36 +52,78 @@ export default function Home() {
       <Header />
       <ScrollView>
         <View>
-          {
-            room.length <= 0 ? (
+          {room.length <= 0 ? (
+            <View>
+              <Text>No Data Available</Text>
+            </View>
+          ) : (
+            <ScrollView>
               <View>
-                <Text>No Data Available</Text>
-              </View>
-            ) : (
-              <View>
-                {
-                  room.map((item, key) => {
-                    console.log({DITO: item})
-                    return(
-                      <View key={key} style={{marginBottom: 12}}>
-                        <Text>{item.name}</Text>
-                        <View>
-                          {attendances.filter(attendance => attendance.venue.id == item.id).map((attendance, key) => {
-                            return(
-                              <View key = {key}>
-                                <Text>{attendance.attendance_status}</Text>
-                                <Text>{attendance.created_at}</Text>
+                {room.map((item, key) => {
+                  console.log({DITO: item});
+                  return (
+                    <View key={key} style={{marginBottom: 12, padding: 10}}>
+                      <Text style={{fontWeight: 'bold', fontSize: 18}}>
+                        {item.name}
+                      </Text>
+                      <View>
+                        {attendances
+                          .filter(attendance => attendance.venue.id == item.id)
+                          .map((attendance, key) => {
+                            return (
+                              <View
+                                key={key}
+                                style={{
+                                  padding: 20,
+                                  borderRadius: 10,
+                                  backgroundColor: '#fff',
+                                  marginBottom: 10,
+                                  shadowColor: '#000',
+                                  shadowOffset: {
+                                    width: 0,
+                                    height: 2,
+                                  },
+                                  shadowOpacity: 0.25,
+                                  shadowRadius: 3.84,
+
+                                  elevation: 5,
+                                  flexDirection: 'row',
+                                  justifyContent: 'space-between',
+                                  alignItems: 'center',
+                                }}>
+                                <Text
+                                  style={{
+                                    backgroundColor:
+                                      attendance.attendance_status == 'time_in'
+                                        ? 'green'
+                                        : 'red',
+                                    padding: 10,
+                                    color:
+                                      attendance.attendance_status == 'time_in'
+                                        ? '#fff'
+                                        : '#fff',
+                                    borderRadius: 10,
+                                    fontWeight: 'bold',
+                                  }}>
+                                  {attendance.attendance_status == 'time_in'
+                                    ? 'TIME IN'
+                                    : 'TIME OUT'}
+                                </Text>
+                                <Text style={{fontSize: 16, color: '#000'}}>
+                                  {moment(attendance.created_at).format(
+                                    'MMMM DD YYYY, h:mm:ss a',
+                                  )}
+                                </Text>
                               </View>
-                            )
+                            );
                           })}
-                        </View>
                       </View>
-                    )
-                  })
-                }
+                    </View>
+                  );
+                })}
               </View>
-            )
-          }
+            </ScrollView>
+          )}
         </View>
       </ScrollView>
       {loading && <Loader />}
