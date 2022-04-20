@@ -13,8 +13,9 @@ class Lms {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'X-LMS-KEY': `Mobile|${await AsyncStorage.getItem('school-code')}`,
-        Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
+        // 'X-LMS-KEY': `Mobile|${await AsyncStorage.getItem('school-code')}`,
+        'X-LMS-KEY': `Mobile|dev`,
+        // Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
       },
       method: method,
     };
@@ -217,6 +218,13 @@ export default class LmsStudentAPI extends Lms {
     return this.sendRequest({
       path: `/api/ParentLine/user/${uniqueID}/qr`,
       method: 'PUT',
+    });
+  }
+
+  getNewsFeedLms = async (id) => {
+    return this.sendRequest({
+      path: `api/ParentLine/user/${id}/feed`,
+      method: 'GET',
     });
   }
 }

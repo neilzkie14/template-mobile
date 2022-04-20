@@ -73,7 +73,6 @@ export default function StudentModalSelection({
                 ) : (
                   <View>
                     {students?.map((item, key) => {
-                      console.log({item});
                       return (
                         <View key={key} style={{padding: 5, }}>
                           <TouchableOpacity
