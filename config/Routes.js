@@ -10,13 +10,15 @@ import Lms from '../app/views/screens/Lms/LmsScreen';
 import Ontraq from '../app/views/screens/Ontraq/OntraqScreen';
 import Settings from '../app/views/screens/Settings/Settings';
 import AddStudent from '../app/views/screens/AddStudent/AddStudent';
+import Index from '../app/views/screens/Ontraq/Index';
+import OntraqInOutScreen from '../app/views/screens/Ontraq/components/OntraqInOutScreen.';
 const {width} = Dimensions.get('screen');
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const homeName = 'Announcements';
 const LmsName = 'LMS';
-const OntraqName = 'OnTraQ';
+const OntraqName = 'Index';
 const settings = 'Settings';
 const megaphone = require('../app/images/megaphone-green.png');
 const book = require('../app/images/book-green.png');
@@ -81,7 +83,7 @@ const MyTabs = () => {
       />
       <Tab.Screen
         name={OntraqName}
-        component={Ontraq}
+        component={Index}
         options={{
           headerShown: false,
           tabBarIcon: ({size, focused, color}) => {
@@ -168,6 +170,15 @@ export default function Routes() {
           component={AddStudent}
           options={{
             title: 'AddStudent',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="OntraqInOutScreen"
+          component={OntraqInOutScreen}
+          options={{
+            title: 'OntraqInOutScreen',
             headerShown: false,
             gestureEnabled: false,
           }}

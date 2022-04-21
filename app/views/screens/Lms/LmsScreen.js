@@ -36,12 +36,10 @@ export default function Home() {
   return (
     <View style={{flex: 1, marginBottom: 60}}>
       <Header />
-      <ScrollView refreshControl={
-                <RefreshControl
-                  refreshing={loading}
-                  onRefresh={() => getFeedLMS()}
-                />
-              }>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={() => getFeedLMS()} />
+        }>
         <View style={{flex: 1, padding: 20}}>
           {feedData.length > 0 ? (
             <View>
@@ -64,7 +62,7 @@ export default function Home() {
                       teacher={item?.updatedBy}
                       type={item?.type}
                       description={item?.title}
-                      examCode = {item?.referenceId}
+                      examCode={item?.referenceId}
                     />
                   );
                 }
@@ -75,7 +73,7 @@ export default function Home() {
                       teacher={item?.updatedBy}
                       type={item?.type}
                       description={item?.title}
-                      examCode = {item?.referenceId}
+                      examCode={item?.referenceId}
                     />
                   );
                 }
@@ -86,7 +84,7 @@ export default function Home() {
                       teacher={item?.updatedBy}
                       type={item?.type}
                       description={item?.title}
-                      examCode = {item?.referenceId}
+                      examCode={item?.referenceId}
                     />
                   );
                 }
@@ -97,7 +95,7 @@ export default function Home() {
                       teacher={item?.updatedBy}
                       type={item?.type}
                       description={item?.title}
-                      examCode = {item?.referenceId}
+                      examCode={item?.referenceId}
                     />
                   );
                 }
