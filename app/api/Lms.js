@@ -5,7 +5,7 @@ import {DEV_LMS_API_URL} from '../constants'
 class Lms {
   constructor() {}
 
-  sendRequest = async ({path, method = 'GET', data = {}, base, headers}) => {
+  sendRequest = async ({path, method = 'GET', data = {}, base, headers, code = 'dev'}) => {
     let url = base ? base + path : DEV_LMS_API_URL + path;
 
     let config = {
@@ -14,7 +14,7 @@ class Lms {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
         // 'X-LMS-KEY': `Mobile|${await AsyncStorage.getItem('school-code')}`,
-        'X-LMS-KEY': `Mobile|dev`,
+        'X-LMS-KEY': `Mobile|` + code,
         // Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
       },
       method: method,
@@ -210,7 +210,8 @@ export default class LmsStudentAPI extends Lms {
     return this.sendRequest({
       path: `api/ParentLine/student/register`,
       method: 'POST',
-      data
+      data, 
+    
     });
   }
 
@@ -221,10 +222,11 @@ export default class LmsStudentAPI extends Lms {
     });
   }
 
-  getNewsFeedLms = async (id) => {
+  getNewsFeedLms = async (id, lmsCode) => {
     return this.sendRequest({
       path: `api/ParentLine/user/${id}/feed`,
       method: 'GET',
+      code: `${lmsCode}`
     });
   }
 }

@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import {View, Text, Image, Dimensions} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -12,6 +13,7 @@ export default function FeedAnnouncement({
   teacher,
   type,
   description,
+  dateCreated,
   like,
   setLike,
   onCommentPress,
@@ -70,14 +72,14 @@ export default function FeedAnnouncement({
           <Text style={{marginLeft: 10, fontSize: 12, color: '#7d7d7d', width: width/2}}>
             {`${teacher} has assigned an `}
             <Text
-              style={{color: '#ee9337', fontSize: 12}}
+              style={{color: '#A3D063', fontSize: 12}}
               >
               {test_type(type)}
             </Text>
           </Text>
         </View>
         <Text style={{fontSize: 12, color: '#7d7d7d', paddingRight: 10}}>
-          2 hr. ago
+        {moment(dateCreated).startOf().fromNow()}
         </Text>
       </View>
       <View style={{padding: 10}}>
@@ -93,7 +95,7 @@ export default function FeedAnnouncement({
           <TouchableOpacity
             style={{
               padding: 8,
-              backgroundColor: '#ee9337',
+              backgroundColor: '#2E3192',
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: 5,
@@ -103,54 +105,6 @@ export default function FeedAnnouncement({
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
-      <View
-        style={{
-          padding: 10,
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-        }}>
-        <TouchableOpacity
-          style={{flexDirection: 'row', alignItems: 'center'}}
-          onPress={onPressLike}>
-          {/* <Image
-            source={likes}
-            style={{
-              width: width / 20,
-              height: width / 20,
-              tintColor: isLike ? '#2a98d4' : '#ee9337',
-            }}
-            resizeMode="contain"
-          /> */}
-          <Text
-            style={{
-              color: isLike ? '#2a98d4' : '#ee9337',
-              fontWeight: 'bold',
-              marginLeft: 5,
-            }}>
-            Like
-          </Text>
-          <Text
-            style={{
-              color: isLike ? '#2a98d4' : '#ee9337',
-              fontWeight: 'bold',
-              marginLeft: 5,
-            }}>
-            {`(${like?.length})`}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{flexDirection: 'row', alignItems: 'center'}}
-          onPress={onCommentPress}>
-          {/* <Image
-            source={comment}
-            style={{width: width / 20, height: width / 20}}
-            resizeMode="contain"
-          /> */}
-          <Text style={{color: '#ee9337', fontWeight: 'bold', marginLeft: 5}}>
-            Comment
-          </Text>
-        </TouchableOpacity>
       </View>
     </View>
   );

@@ -15,18 +15,25 @@ export default function Home() {
   const {student} = studentContext.data;
   const [feedData, setFeedData] = useState([]);
   const [loading, setLoading] = useState(false);
-
   console.log({student});
 
   const getFeedLMS = async () => {
-    setLoading(true);
-    let response = await new LmsStudentAPI().getNewsFeedLms(16624);
-    if (response.ok) {
-      setFeedData(response.data);
+    if (student == null) {
+      alert('Select Student');
     } else {
-      alert('Something went wrong in fetching News Feed');
+      setLoading(true);
+      let response = await new LmsStudentAPI().getNewsFeedLms(
+        student?.user?.lms_id,
+        student?.user?.lms_school_code,
+      );
+      console.log({response: response.data});
+      if (response.ok) {
+        setFeedData(response.data);
+      } else {
+        alert('Something went wrong in fetching News Feed');
+      }
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -52,6 +59,7 @@ export default function Home() {
                       teacher={item?.updatedBy}
                       type={item?.type}
                       description={item?.title}
+                      dateCreated={item?.dateUpdated}
                     />
                   );
                 }
@@ -63,6 +71,7 @@ export default function Home() {
                       type={item?.type}
                       description={item?.title}
                       examCode={item?.referenceId}
+                      dateCreated={item?.dateUpdated}
                     />
                   );
                 }
@@ -74,6 +83,7 @@ export default function Home() {
                       type={item?.type}
                       description={item?.title}
                       examCode={item?.referenceId}
+                      dateCreated={item?.dateUpdated}
                     />
                   );
                 }
@@ -85,6 +95,7 @@ export default function Home() {
                       type={item?.type}
                       description={item?.title}
                       examCode={item?.referenceId}
+                      dateCreated={item?.dateUpdated}
                     />
                   );
                 }
@@ -96,6 +107,7 @@ export default function Home() {
                       type={item?.type}
                       description={item?.title}
                       examCode={item?.referenceId}
+                      dateCreated={item?.dateUpdated}
                     />
                   );
                 }

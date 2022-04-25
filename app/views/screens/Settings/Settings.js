@@ -33,6 +33,7 @@ export default function Settings() {
   const confirmLogOut = async () => {
     try {
       await AsyncStorage.removeItem('token');
+      await AsyncStorage.clear();
       await navigation.dispatch(
         CommonActions.reset({
           index: 0,

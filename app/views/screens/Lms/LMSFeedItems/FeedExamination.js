@@ -153,54 +153,6 @@ export default function FeedExamination({
           </TouchableOpacity>
         </View>
       </View>
-      <View
-        style={{
-          padding: 10,
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-        }}>
-        <TouchableOpacity
-          style={{flexDirection: 'row', alignItems: 'center'}}
-          onPress={onPressLike}>
-          {/* <Image
-            source={likes}
-            style={{
-              width: width / 20,
-              height: width / 20,
-              tintColor: isLike ? '#2a98d4' : '#A3D063',
-            }}
-            resizeMode="contain"
-          /> */}
-          <Text
-            style={{
-              color: isLike ? '#2a98d4' : '#A3D063',
-              fontWeight: 'bold',
-              marginLeft: 5,
-            }}>
-            Like
-          </Text>
-          <Text
-            style={{
-              color: isLike ? '#2a98d4' : '#A3D063',
-              fontWeight: 'bold',
-              marginLeft: 5,
-            }}>
-            {`(${like?.length})`}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{flexDirection: 'row', alignItems: 'center'}}
-          onPress={onCommentPress}>
-          {/* <Image
-            source={comment}
-            style={{width: width / 20, height: width / 20}}
-            resizeMode="contain"
-          /> */}
-          <Text style={{color: '#A3D063', fontWeight: 'bold', marginLeft: 5}}>
-            Comment
-          </Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
