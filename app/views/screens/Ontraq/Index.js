@@ -1,12 +1,20 @@
-import { NavigationContext } from '@react-navigation/native';
-import React, {useContext} from 'react';
-import {View, Text, ScrollView, Image, Dimensions} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {NavigationContext} from '@react-navigation/native';
+import React, {useContext, useState} from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import Header from '../../../components/Header';
+import Calendar from './components/Calendar';
 const {width, height} = Dimensions.get('window');
 
 export default function Index() {
-  const navigation = useContext(NavigationContext)
+  const navigation = useContext(NavigationContext);
+  const [toggleCalendar, setToggleCalendar] = useState(false);
   const temp_data = [
     {
       date: 'April 01',
@@ -25,41 +33,24 @@ export default function Index() {
     <View style={{flex: 1}}>
       <Header />
       <View style={{padding: 10}}>
-        <ScrollView>
-          <View>
-            {temp_data.map((item, key) => {
-              return (
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('OntraqInOutScreen', {item: item})}
-                  key={key}
-                  style={{
-                    padding: 20,
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    borderBottomWidth: 0.5,
-                    borderColor: '#cccccc',
-                  }}>
-                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style = {{ fontWeight: '700', fontSize: 15 }}>{item.date}</Text>
-                    <Text style = {{ fontWeight: '700', fontSize: 15 }}>, {item.day}</Text>
-                  </View>
-
-                  <Image
-                    source={require('../../../images/arrow-up.png')}
-                    resizeMode="contain"
-                    style={{
-                      width: width / 17,
-                      height: width / 17,
-                      tintColor: '#707070',
-                      transform: [{rotate: '90deg'}],
-                    }}
-                  />
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </ScrollView>
+        {/* {!toggleCalendar && (
+          <TouchableOpacity
+            onPress={() => setToggleCalendar(!toggleCalendar)}
+            style={{
+              padding: 10,
+              backgroundColor: '#2E3192',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 10,
+            }}>
+            <Text style={{fontWeight: 'bold', color: '#fff', fontSize: 14}}>
+              sample date
+            </Text>
+          </TouchableOpacity>
+        )}
+        {toggleCalendar && <Calendar onPress={() => setToggleCalendar(!toggleCalendar)}/>}
+        */}
+         <Calendar onPress={() => setToggleCalendar(!toggleCalendar)}/>
       </View>
     </View>
   );

@@ -60,15 +60,15 @@ export default function FeedAnnouncement({
             alignItems: 'center',
             padding: 5,
           }}>
-          <View
+          {/* <View
             style={{
               width: 35,
               height: 35,
               backgroundColor: '#cccccc',
               borderRadius: 50,
             }}
-          />
-          {/* <Image source={profile_icon} resizeMode = 'contain' style = {{ width: 35, height: 35, tintColor: '#cccccc', }}/> */}
+          /> */}
+          <Image source={require('../../../../images/profile.png')} resizeMode = 'contain' style = {{ width: 35, height: 35, tintColor: '#cccccc', }}/>
           <Text style={{marginLeft: 10, fontSize: 12, color: '#7d7d7d', width: width/2}}>
             {`${teacher} has assigned an `}
             <Text
@@ -83,11 +83,11 @@ export default function FeedAnnouncement({
         </Text>
       </View>
       <View style={{padding: 10}}>
-        <Text style={{fontWeight: '500', color: '#000', fontSize: 12}}>
+        <Text style={{fontWeight: '500', color: '#A3D063', fontSize: 20,}}>
           {description}
         </Text>
       </View>
-      <View style={{borderBottomWidth: 0.5, borderBottomColor: '#cccccc'}}>
+      {/* <View style={{borderBottomWidth: 0.5, borderBottomColor: '#cccccc'}}>
         <View
           style={{
             padding: 10,
@@ -105,7 +105,7 @@ export default function FeedAnnouncement({
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 }
