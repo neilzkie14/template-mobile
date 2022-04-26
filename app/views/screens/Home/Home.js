@@ -45,6 +45,7 @@ export default function Home() {
               {messages?.map((item, key) => {
                 return (
                   <AnnouncementItem
+                    getMessages={getMessages}
                     key={key}
                     date={item?.message?.updated_at}
                     title={item?.message?.content}

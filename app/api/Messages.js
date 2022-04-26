@@ -16,4 +16,12 @@ export default class Messages extends Base {
     });
   };
 
+  read = async (id) => {
+    return this.sendRequest({
+      path: `/api/v2/messages/${id}/read`,
+      method: 'POST'
+    }); 
+
+  }
+
 }

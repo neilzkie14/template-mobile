@@ -7,7 +7,9 @@ import {
   Modal,
   SafeAreaView,
   ScrollView,
+  Linking
 } from 'react-native';
+import { DEV_API_URL } from '../constants';
 const {width} = Dimensions.get('screen');
 
 export default function Modals({
@@ -16,6 +18,12 @@ export default function Modals({
   onCloseModal,
   data,
 }) {
+
+  const openURL = (url) => {
+    Linking.openURL(url);
+  };
+
+  
   return (
     <View>
       <Modal
@@ -47,9 +55,15 @@ export default function Modals({
                   </Text>
                 </View>
               </TouchableOpacity>
-              <View style={{flex: 1, backgroundColor: '#fff', marginTop: 10}}>
+              <View style={{flex: 1, backgroundColor: '#fff', marginTop: 10, marginBottom: 30}}>
                 <Text> {data?.message?.content}</Text>
               </View>
+              {data?.message?.attachment_path && (
+                <TouchableOpacity onPress={() => openURL(DEV_API_URL + data?.message?.attachment_path)}>
+                  <Text style={{color: 'blue'}}>Download Attachment </Text>
+                </TouchableOpacity>
+              )}
+              
             </ScrollView>
             <TouchableOpacity
               onPress={onCloseModal}

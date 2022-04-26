@@ -9,38 +9,32 @@ import {
 import moment from 'moment';
 import Modals from '../../../../components/Modals';
 import Messages from '../../../../api/Messages';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 const {width} = Dimensions.get('screen');
-export default function AnnouncementItem({date, title, data}) {
+export default function AnnouncementItem({date, title, data, getMessages = () => {}}) {
+  console.log({data})
   const [showModal, setShowModal] = useState(false);
   const [messageInformation, setMessageInformation] = useState(null)
   const [loading, setLoading] = useState(false)
-  const handleModal = () => {
+  const handleModal = async() => {
+    let response = await new Messages().read(data.id)
+    if(response.ok){
+      getMessages()
+
+    }else{
+      alert('Something went wrong in fetching Message Information')
+    }
+    
+
     setShowModal(true);
   };
 
-  const getMessageInformation = async () => {
-    setLoading(true)
-    let response = await new Messages().getMessageInformation(data?.message_id)
-    if(response.ok){
-      setMessageInformation(response.data)
-      setLoading(false)
-    }else{
-      alert('Something went wrong in fetching message Information')
-      setLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    getMessageInformation()
-  }, [])
-  
-
   return (
-    <View
+    <TouchableOpacity activeOpacity={0.8} onPress={() => handleModal()}
       style={{
         height: 50,
         width: width - 10,
-        backgroundColor: '#fff',
+        backgroundColor: data.read_status == "unread" ? '#2E319222' : "#fff",
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 5,
@@ -63,29 +57,15 @@ export default function AnnouncementItem({date, title, data}) {
           {title}
         </Text>
       </View>
-      <TouchableWithoutFeedback onPress={() => handleModal()}>
-        <View
-          style={{
-            height: 30,
-            width: 50,
-            backgroundColor: '#2E3192',
-            borderRadius: 5,
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-            right: 10,
-          }}>
-          <Text style={{fontSize: 15, color: '#fff'}}>View</Text>
-        </View>
-      </TouchableWithoutFeedback>
+     
       <Modals
         modalVisible={showModal}
-        data = {messageInformation}
+        data = {data}
         onCloseModal={() => setShowModal(!showModal)}
         setShowModal = {setShowModal}
         showModal = {showModal}
       />
-    </View>
+    </TouchableOpacity>
   );
 }
 
