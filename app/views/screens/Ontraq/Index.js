@@ -32,24 +32,7 @@ export default function Index() {
   return (
     <View style={{flex: 1}}>
       <Header />
-      <View style={{padding: 10}}>
-        {/* {!toggleCalendar && (
-          <TouchableOpacity
-            onPress={() => setToggleCalendar(!toggleCalendar)}
-            style={{
-              padding: 10,
-              backgroundColor: '#2E3192',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 10,
-            }}>
-            <Text style={{fontWeight: 'bold', color: '#fff', fontSize: 14}}>
-              sample date
-            </Text>
-          </TouchableOpacity>
-        )}
-        {toggleCalendar && <Calendar onPress={() => setToggleCalendar(!toggleCalendar)}/>}
-        */}
+      <View style={{padding: 10, flex: 1}}>
          <Calendar onPress={() => setToggleCalendar(!toggleCalendar)}/>
       </View>
     </View>

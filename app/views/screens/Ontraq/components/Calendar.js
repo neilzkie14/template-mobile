@@ -2,7 +2,7 @@ import {NavigationContext} from '@react-navigation/native';
 import React, {useState, useContext} from 'react';
 import {View, Text, TouchableOpacity, Dimensions, Image} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-const {width} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 export default function Calendar() {
   const [month, setMonth] = useState(new Date().getMonth());
@@ -38,86 +38,88 @@ export default function Calendar() {
   ];
   const last_date = new Date(year, month + 1, 0).getDate();
   const days = [...Array(last_date).keys()].map(i => i + 1);
-  console.log({last_date, days});
   return (
     <View>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-          backgroundColor: '#fff',
-          paddingTop: 10,
-        }}>
-        <TouchableOpacity
-          onPress={() => setYear(year - 1)}
-          style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Image
-            source={require('../../../../images/calendar_arrow.png')}
-            resizeMode="contain"
-            style={{
-              width: width / 25,
-              height: width / 25,
-              transform: [{rotateY: '180deg'}],
-              tintColor: '#2e3192',
-            }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text
-            style={{
-              fontWeight: 'bold',
-              color: '#2e3192',
-              fontSize: 20,
-              tintColor: '#2e3192',
-            }}>
-            {year}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setYear(year + 1)}
-          style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Image
-            source={require('../../../../images/calendar_arrow.png')}
-            resizeMode="contain"
-            style={{width: width / 25, height: width / 25}}
-          />
-        </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          backgroundColor: '#fff',
-        }}>
-        {months.map((item, key) => {
-          return (
-            <TouchableOpacity
-              onPress={() => setMonth(key)}
-              key={key}
+      <View>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            backgroundColor: '#fff',
+            paddingTop: 10,
+          }}>
+          <TouchableOpacity
+            onPress={() => setYear(year - 1)}
+            style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Image
+              source={require('../../../../images/calendar_arrow.png')}
+              resizeMode="contain"
               style={{
-                width: width / 4,
-                height: width / 15,
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginTop: 10,
-                borderRadius: 3,
-                backgroundColor: month == key ? '#fafafa' : '#fff',
+                width: width / 25,
+                height: width / 25,
+                transform: [{rotateY: '180deg'}],
+                tintColor: '#2e3192',
+              }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Text
+              style={{
+                fontWeight: 'bold',
+                color: '#2e3192',
+                fontSize: 20,
+                tintColor: '#2e3192',
               }}>
-              <Text
+              {year}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setYear(year + 1)}
+            style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Image
+              source={require('../../../../images/calendar_arrow.png')}
+              resizeMode="contain"
+              style={{width: width / 25, height: width / 25}}
+            />
+          </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            backgroundColor: '#fff',
+          }}>
+          {months.map((item, key) => {
+            return (
+              <TouchableOpacity
+                onPress={() => setMonth(key)}
+                key={key}
                 style={{
-                  fontSize: 12,
-                  fontWeight: '600',
-                  color: month == key ? '#2e3192' : '#707070',
+                  width: width / 4,
+                  height: width / 15,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginTop: 10,
+                  borderRadius: 3,
+                  backgroundColor: month == key ? '#fafafa' : '#fff',
                 }}>
-                {item}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: '600',
+                    color: month == key ? '#2e3192' : '#707070',
+                  }}>
+                  {item}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
       </View>
+      <View style = {{ height: height/1.9 }}>
         <ScrollView>
           <View>
             {days.map((item, key) => {
@@ -144,7 +146,6 @@ export default function Calendar() {
                       {tempDate.toDateString()}
                     </Text>
                   </View>
-
                   <Image
                     source={require('../../../../images/arrow-up.png')}
                     resizeMode="contain"
@@ -160,6 +161,7 @@ export default function Calendar() {
             })}
           </View>
         </ScrollView>
+      </View>
     </View>
   );
 }

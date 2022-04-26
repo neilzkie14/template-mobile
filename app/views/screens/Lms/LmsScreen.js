@@ -86,7 +86,7 @@ export default function Home() {
     return (
       <View style={{padding: 10}}>
         <View>
-        <Text style = {{ fontSize: 26, fontWeight: 'bold', color: '#d91f27', marginTop: 10, }}>Examination</Text>
+        <Text style = {{ fontSize: 26, fontWeight: 'bold', color: '#2e3192', marginTop: 10, }}>Examination</Text>
           {feedData
             .filter(feed => feed.class != null)
             .map((item, key) => {
@@ -104,7 +104,7 @@ export default function Home() {
             })}
         </View>
         <View>
-          <Text style = {{ fontSize: 26, fontWeight: 'bold', color: '#d91f27', marginTop: 10, }}>Task</Text>
+          <Text style = {{ fontSize: 26, fontWeight: 'bold', color: '#2e3192', marginTop: 10, }}>Task</Text>
           {feedData
             .filter(feed => feed.class != null)
             .map((item, key) => {
@@ -122,7 +122,7 @@ export default function Home() {
             })}
         </View>
         <View>
-          <Text style = {{ fontSize: 26, fontWeight: 'bold', color: '#d91f27', marginTop: 10, }}>Assignment</Text>
+          <Text style = {{ fontSize: 26, fontWeight: 'bold', color: '#2e3192', marginTop: 10, }}>Assignment</Text>
           {feedData
             .filter(feed => feed.class != null)
             .map((item, key) => {
@@ -140,7 +140,7 @@ export default function Home() {
             })}
         </View>
         <View>
-          <Text style = {{ fontSize: 26, fontWeight: 'bold', color: '#d91f27', marginTop: 10, }}>Interactive</Text>
+          <Text style = {{ fontSize: 26, fontWeight: 'bold', color: '#2e3192', marginTop: 10, }}>Interactive</Text>
           {feedData
             .filter(feed => feed.class != null)
             .map((item, key) => {
