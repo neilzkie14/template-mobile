@@ -21,7 +21,7 @@ export default function FeedExamination({
   onCommentPress,
   dateCreated,
   onPressLike,
-  isLike
+  isLike,
 }) {
   const test_type = type => {
     switch (type) {
@@ -71,7 +71,11 @@ export default function FeedExamination({
               borderRadius: 50,
             }}
           /> */}
-          <Image source={require('../../../../images/profile.png')} resizeMode = 'contain' style = {{ width: 35, height: 35, tintColor: '#cccccc', }}/>
+          <Image
+            source={require('../../../../images/profile.png')}
+            resizeMode="contain"
+            style={{width: 35, height: 35, tintColor: '#cccccc'}}
+          />
           <Text
             style={{
               marginLeft: 10,
@@ -80,12 +84,12 @@ export default function FeedExamination({
               width: width / 2,
             }}>
             {`${teacher} has assigned an `}
-            <Text style={{color: '#A3D063', fontSize: 12}}>
+            <Text style={{color: '#2E3192', fontSize: 16, fontWeight: 'bold'}}>
               {test_type(type)}
             </Text>
           </Text>
         </View>
-        <Text style={{fontSize: 12, color: '#7d7d7d', paddingRight: 10}}>
+        <Text style={{fontSize: 12, color: '#2E3192', paddingRight: 10}}>
           {moment(dateCreated).startOf().fromNow()}
         </Text>
       </View>

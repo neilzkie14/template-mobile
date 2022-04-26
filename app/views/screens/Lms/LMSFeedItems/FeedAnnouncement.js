@@ -72,13 +72,13 @@ export default function FeedAnnouncement({
           <Text style={{marginLeft: 10, fontSize: 12, color: '#7d7d7d', width: width/2}}>
             {`${teacher} has assigned an `}
             <Text
-              style={{color: '#A3D063', fontSize: 12}}
+              style={{color: '#2E3192', fontSize: 16, fontWeight: 'bold'}}
               >
               {test_type(type)}
             </Text>
           </Text>
         </View>
-        <Text style={{fontSize: 12, color: '#7d7d7d', paddingRight: 10}}>
+        <Text style={{fontSize: 12, color: '#2E3192', paddingRight: 10}}>
         {moment(dateCreated).startOf().fromNow()}
         </Text>
       </View>

@@ -7,6 +7,7 @@ import OntraqSwitchComponent from './OntraqSwitchComponent';
 import Student from '../../../../api/Student';
 import {StudentContext} from '../../../../context/StudentContext';
 import moment from 'moment';
+import Loader from '../../../../components/Loader';
 const {width} = Dimensions.get('window');
 
 export default function OntraqInOutScreen() {
@@ -69,7 +70,7 @@ export default function OntraqInOutScreen() {
         <ScrollView>
           <View>
             {room?.length <= 0 ? (
-              <View>
+              <View style = {{ padding: 20, justifyContent: 'center', alignItems: 'center' }}>
                 <Text>No Entry</Text>
               </View>
             ) : (
@@ -156,67 +157,12 @@ export default function OntraqInOutScreen() {
                 })}
               </View>
             )}
-            {/* {temp_data.map((item, key) => {
-              return (
-                <View
-                  style={{padding: 10, backgroundColor: '#fff', marginTop: 30}}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      borderBottomColor: '#cccccc',
-                      borderBottomWidth: 0.5,
-                      padding: 5,
-                    }}>
-                    <Image
-                      source={require('../../../../images/steps.png')}
-                      style={{
-                        width: width / 17,
-                        height: width / 17,
-                        tintColor: '#2E3192',
-                      }}
-                      resizeMode="contain"
-                    />
-                    <Text style={{marginLeft: 10}}>{item.location}</Text>
-                  </View>
-                  <View>
-                    {item.time.map((item, key) => {
-                      return (
-                        <View style = {{ borderBottomWidth: 0.5, borderBottomColor: '#cccccc', padding: 5 }}>
-                          <Text
-                            style={{
-                              fontSize: 12,
-                              color: '#C5C5C5',
-                              fontWeight: '600',
-                            }}>
-                            {`${item.timeIn}  |  `}{' '}
-                            <Text style={{color: '#2E3192', fontSize: 14}}>
-                              {' '}
-                              IN
-                            </Text>
-                          </Text>
-                          <Text
-                            style={{
-                              fontSize: 12,
-                              color: '#C5C5C5',
-                              fontWeight: '600',
-                            }}>
-                            {`${item.timOut}  |  `}{' '}
-                            <Text style={{color: 'red', fontSize: 14}}>
-                              {' '}
-                              OUT
-                            </Text>
-                          </Text>
-                        </View>
-                      );
-                    })}
-                  </View>
-                </View>
-              );
-            })} */}
           </View>
         </ScrollView>
       </View>
+      {
+        loading && <Loader/>
+      }
     </View>
   );
 }
