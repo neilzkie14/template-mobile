@@ -35,7 +35,7 @@ class Lms {
       })
       .catch(function(error) {
         if (error.message.match(/Network request failed/)) {
-          console.log({err: 'Failed to establish connection'});
+          console.log({err: 'Failed to establish connection', error});
           // alert("Please check your internet connection");
           return {network_error: true, ok: false};
         }
@@ -229,6 +229,31 @@ export default class LmsStudentAPI extends Lms {
       code: `${lmsCode}`
     });
   }
+
+  getClasses = async (id, lmsCode) => {
+    return this.sendRequest({
+      path: `api/ParentLine/user/${id}/class`,
+      method: 'GET',
+      code: `${lmsCode}`
+    });
+  }
+
+  getTerms = async (lmsCode) => {
+    return this.sendRequest({
+      path: `api/ParentLine/class/1`,
+      method: 'GET',
+      code: `${lmsCode}`
+    });
+  }
+
+  getGpa = async (id, classId, termId, lmsCode) => {
+    return this.sendRequest({
+      path: `/api/ParentLine/user/${id}/class/${classId}/grade/term/${termId}/gpa`,
+      method: 'GET',
+      code: `${lmsCode}`
+    });
+  }
+
 }
 
 
