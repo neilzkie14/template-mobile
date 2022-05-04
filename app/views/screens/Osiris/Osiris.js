@@ -15,8 +15,8 @@ export default function Osiris() {
 
   const getClasses = async () => {
     let response = await new LmsStudentAPI().getClasses(
-      student.user.lms_id,
-      student.user.lms_school_code,
+      student?.user.lms_id,
+      student?.user.lms_school_code,
     );
     if (response.ok) {
       let data = response.data;
@@ -28,7 +28,7 @@ export default function Osiris() {
 
   const getTerms = async () => {
     let response = await new LmsStudentAPI().getTerms(
-      student.user.lms_school_code,
+      student?.user.lms_school_code,
     );
     if (response.ok) {
       let data = response.data;
@@ -53,7 +53,7 @@ export default function Osiris() {
         <ScrollView>
       <View style={{padding: 12}}>
       <Text style={{fontSize: 18, fontWeight: 'bold', textAlign: 'center'}}>Report Card</Text>
-      {student.user.lms_id && (
+      {student?.user.lms_id && (
           <View>
             <ScrollView horizontal>
               <View s>
@@ -85,9 +85,9 @@ export default function Osiris() {
                             style={styles.cell}
                             key={index}
                             classId={classItem.id}
-                            studentId={student.user.lms_id}
+                            studentId={student?.user.lms_id}
                             termId={term.id}
-                            lms_school_code={student.user.lms_school_code}
+                            lms_school_code={student?.user.lms_school_code}
                           />
                         );
                       })}
