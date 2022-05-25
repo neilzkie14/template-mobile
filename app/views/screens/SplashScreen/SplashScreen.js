@@ -5,7 +5,7 @@ import {View, Dimensions, Image} from 'react-native'
 import Auth from '../../../api/Auth';
 import { StudentContext } from '../../../context/StudentContext';
 import { UserContext } from '../../../context/UserContext';
-import splashScreenImg from '../../../images/splash-screen.gif' 
+import splashScreenImg from '../../../images/SplashScreen.png' 
 const {width, height} = Dimensions.get('screen');
 
 export default function SplashScreen() {
