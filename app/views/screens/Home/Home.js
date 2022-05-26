@@ -37,7 +37,7 @@ export default function Home() {
         }>
         <View>
           {messages.length <= 0 ? (
-            <View style = {{ flex: 1, justifyContent: 'center' }}>
+            <View style = {{ flex: 1, justifyContent: 'center', padding: 20, alignItems: 'center' }}>
               <Text>No Messages</Text>
             </View>
           ) : (
@@ -45,6 +45,7 @@ export default function Home() {
               {messages?.map((item, key) => {
                 return (
                   <AnnouncementItem
+                    getMessages={getMessages}
                     key={key}
                     date={item?.message?.updated_at}
                     title={item?.message?.content}

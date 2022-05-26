@@ -22,7 +22,7 @@ export default function Ontraq({
 
   return (
     <View style={{padding: 5}}>
-      <DropdownList title={'December'} />
+      {/* <DropdownList title={'December'} /> */}
     </View>
   );
 }
