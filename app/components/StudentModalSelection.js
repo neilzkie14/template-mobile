@@ -26,7 +26,7 @@ export default function StudentModalSelection({
   const [loading, setLoading] = useState(false);
   const navigation = useContext(NavigationContext);
   const studentContext = useContext(StudentContext);
-  const {setStudent, students, student} = studentContext.data;
+  const {setStudent, students, student, refreshStudent} = studentContext.data;
 
   return (
     <View>
@@ -40,9 +40,10 @@ export default function StudentModalSelection({
               refreshControl={
                 <RefreshControl
                   refreshing={loading}
-                  onRefresh={() => getStudentList()}
+                  onRefresh={() => refreshStudent()}
                 />
-              }>
+              }
+              >
               <TouchableOpacity
                 style={{
                   borderBottomWidth: 1,
