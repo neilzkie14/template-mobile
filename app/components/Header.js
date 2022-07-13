@@ -24,7 +24,7 @@ export default function Header({}) {
   const {user} = userContext.data;
   
   return (
-    <View style={{padding: 10, flexDirection: 'row', alignItems: 'center'}}>
+    <View style={{padding: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff'}}>
       <View>
         <Image
           source={profile}
@@ -39,16 +39,27 @@ export default function Header({}) {
             flexDirection: 'row',
             alignItems: 'center',
             flex: 1,
-            backgroundColor: '#2E3192',
+            backgroundColor: '#fff',
             borderRadius: 50,
             paddingHorizontal: 5,
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: 12, color: '#fff', fontWeight: '500'}}>
+          
             {student == null || student == ''
-              ? `No student Selected`
-              : `Parent of ${student?.user?.first_name}  ${student?.user?.last_name} `}
-          </Text>
+              ? 
+              <Text style={{fontSize: 12, color: '#000', fontWeight: '500'}}>
+                No student Selected
+              </Text>
+              : 
+              <>
+                <Text style={{fontSize: 12, color: '#000', fontWeight: '500'}}>
+              {`Parent of `}
+              </Text>
+              <Text style={{fontSize: 12, color: '#A3D063', fontWeight: '500'}}>
+              {`${student?.user?.first_name}  ${student?.user?.last_name}`}
+                </Text>
+              </>
+              }
           <Image
             source={arrow}
             resizeMode="contain"

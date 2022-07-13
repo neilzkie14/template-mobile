@@ -7,6 +7,8 @@ const {width, height} = Dimensions.get('window');
 export default function Calendar() {
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
+  const [openMonth, setOpenMonth] = useState(false);
+  const [openDays, setOpenDays] = useState(false);
   const navigation = useContext(NavigationContext);
   const months = [
     'January',
@@ -46,8 +48,8 @@ export default function Calendar() {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-evenly',
-            backgroundColor: '#fff',
-            paddingTop: 10,
+            backgroundColor: openMonth ? '#fff' : '#2e3192',
+            paddingVertical: 10,
           }}>
           <TouchableOpacity
             onPress={() => setYear(year - 1)}
@@ -59,18 +61,19 @@ export default function Calendar() {
                 width: width / 25,
                 height: width / 25,
                 transform: [{rotateY: '180deg'}],
-                tintColor: '#2e3192',
+                tintColor: openMonth ? '#2e3192' : '#fff',
               }}
             />
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => {setOpenMonth(!openMonth), setOpenDays(false)}}
             style={{justifyContent: 'center', alignItems: 'center'}}>
             <Text
               style={{
                 fontWeight: 'bold',
-                color: '#2e3192',
+                color: openMonth ? '#2e3192' : '#fff',
                 fontSize: 20,
-                tintColor: '#2e3192',
+                // tintColor: '#2e3192',
               }}>
               {year}
             </Text>
@@ -81,21 +84,23 @@ export default function Calendar() {
             <Image
               source={require('../../../../images/calendar_arrow.png')}
               resizeMode="contain"
-              style={{width: width / 25, height: width / 25}}
+              style={{width: width / 25, height: width / 25, tintColor: openMonth ? '#2e3192' : '#fff'}}
             />
           </TouchableOpacity>
         </View>
+        {openMonth && 
         <View
           style={{
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'space-between',
             backgroundColor: '#fff',
+            padding: 5
           }}>
           {months.map((item, key) => {
             return (
               <TouchableOpacity
-                onPress={() => setMonth(key)}
+                onPress={() => {setMonth(key), setOpenDays(true)}}
                 key={key}
                 style={{
                   width: width / 4,
@@ -118,50 +123,53 @@ export default function Calendar() {
             );
           })}
         </View>
+        }
       </View>
-      <View style = {{ height: height/1.9 }}>
-        <ScrollView>
-          <View>
-            {days.map((item, key) => {
-              const tempDate = new Date(year, month, item);
-              return (
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('OntraqInOutScreen', {
-                      item: tempDate.toDateString(),
-                    })
-                  }
-                  key={key}
-                  style={{
-                    padding: 20,
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    borderBottomWidth: 0.5,
-                    borderColor: '#cccccc',
-                    backgroundColor: '#fff',
-                  }}>
-                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style={{fontWeight: '700', fontSize: 15}}>
-                      {tempDate.toDateString()}
-                    </Text>
-                  </View>
-                  <Image
-                    source={require('../../../../images/arrow-up.png')}
-                    resizeMode="contain"
+      {openMonth && openDays &&
+        <View style = {{ height: height/1.9 }}>
+          <ScrollView>
+            <View>
+              {days.map((item, key) => {
+                const tempDate = new Date(year, month, item);
+                return (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('OntraqInOutScreen', {
+                        item: tempDate.toDateString(),
+                      })
+                    }
+                    key={key}
                     style={{
-                      width: width / 17,
-                      height: width / 17,
-                      tintColor: '#707070',
-                      transform: [{rotate: '90deg'}],
-                    }}
-                  />
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </ScrollView>
-      </View>
+                      padding: 20,
+                      alignItems: 'center',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      borderBottomWidth: 0.5,
+                      borderColor: '#cccccc',
+                      backgroundColor: '#fff',
+                    }}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                      <Text style={{fontWeight: '700', fontSize: 15}}>
+                        {tempDate.toDateString()}
+                      </Text>
+                    </View>
+                    <Image
+                      source={require('../../../../images/arrow-up.png')}
+                      resizeMode="contain"
+                      style={{
+                        width: width / 17,
+                        height: width / 17,
+                        tintColor: '#707070',
+                        transform: [{rotate: '90deg'}],
+                      }}
+                    />
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </ScrollView>
+        </View>
+      }
     </View>
   );
 }
