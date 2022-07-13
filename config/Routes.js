@@ -26,6 +26,7 @@ const megaphone = require('../app/images/megaphone-green.png');
 const book = require('../app/images/book-green.png');
 const step = require('../app/images/steps-green.png');
 const settings_icon = require('../app/images/settings2.png');
+const osiris_icon = require('../app/images/osiris-icon.png');
 
 const MyTabs = () => {
   return (
@@ -117,7 +118,7 @@ const MyTabs = () => {
                   height: width / 15,
                   tintColor: focused ? '#A3D063' : 'gray',
                 }}
-                source={settings_icon}
+                source={osiris_icon}
               />
             );
           },

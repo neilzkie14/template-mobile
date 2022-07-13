@@ -34,7 +34,7 @@ export default function TermItem({style, studentId, termId, classId, lms_school_
           <Text style={{textAlign: 'right', paddingRight: 12}}>{`${item.gradeType.description} (${item.gradeType.percentage}%) : ${item.studentGrade?.percentage || 0}`}</Text>
         )
       })} */}
-      <TotalGPA grades={gpa.grades} />
+      <TotalGPA grades={gpa?.grades} />
     </View>
   )
 }
@@ -43,7 +43,7 @@ const TotalGPA = ({grades}) => {
   // let total = 0
   
   const gpa = (grades || []).reduce((total, item) => {
-    return total + ((item.gradeType.percentage * (item.studentGrade?.percentage || 0)) / 100)
+    return total + ((item?.gradeType?.percentage * (item?.studentGrade?.percentage || 0)) / 100)
   }, 0)
   return (
     <Text style={{textAlign: 'right', paddingRight: 12, fontWeight: 'bold'}}>{gpa}%</Text>
