@@ -6,8 +6,11 @@ import LmsStudentAPI from '../../../api/Lms';
 import Header from '../../../components/Header';
 import Loader from '../../../components/Loader';
 import {StudentContext} from '../../../context/StudentContext';
+import LmsItems from './components/LmsItem';
+import ClassItem from './components/ClassItem';
 import FeedAnnouncement from './LMSFeedItems/FeedAnnouncement';
 import FeedExamination from './LMSFeedItems/FeedExamination';
+import Modals from '../../../components/ClassModal';
 
 export default function Home() {
   const navigation = useContext(NavigationContext);
@@ -18,6 +21,7 @@ export default function Home() {
   const [classes, setClasses] = useState([]);
   const [lmsID, setLmsID] = useState('');
   const [schoolID, setSchoolID] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const title = [
     {
@@ -80,34 +84,41 @@ export default function Home() {
             fontSize: 20,
             color: isExpanded ? '#A3D063' : '#fff',
           }}>
-          {`Class: ${item}`}
+          {`Class`}
         </Text>
       </View>
     );
   };
 
   const _body = item => {
+    console.log({feedData})
     return (
-      <View style={{padding: 10}}>
+      <View style={{}}>
         <View>
-        <Text style = {{ fontSize: 26, fontWeight: 'bold', color: '#2e3192', marginTop: 10, }}>Examination</Text>
-          {feedData
+          {/* {feedData
             .filter(feed => feed.class != null)
             .map((item, key) => {
               if (item?.type == 4) {
                 return (
-                  <FeedExamination
-                    key={key}
-                    teacher={item?.updatedBy}
-                    type={item?.type}
-                    description={item?.title}
-                    dateCreated={item?.dateUpdated}
-                  />
+                  // <FeedExamination
+                  //   key={key}
+                  //   teacher={item?.updatedBy}
+                  //   type={item?.type}
+                  //   description={item?.title}
+                  //   dateCreated={item?.dateUpdated}
+                  // />
+                  <ClassItem key={key} item={item} />
+
                 );
               }
+            })} */}
+            {classes.map((item, key) => {
+              return (
+                <ClassItem key={key} item={item} showModal={showModal} setShowModal={setShowModal} />
+              );
             })}
         </View>
-        <View>
+        {/* <View>
           <Text style = {{ fontSize: 26, fontWeight: 'bold', color: '#2e3192', marginTop: 10, }}>Task</Text>
           {feedData
             .filter(feed => feed.class != null)
@@ -160,7 +171,7 @@ export default function Home() {
                 );
               }
             })}
-        </View>
+        </View> */}
       </View>
     );
   };
@@ -170,7 +181,7 @@ export default function Home() {
       <View
         style={{
           backgroundColor: isExpanded ? '#fff' : '#A3D063',
-          marginTop: 10,
+          // marginTop: 10,
           padding: 10,
           borderRadius: 10,
           borderRadius: 5,
@@ -191,20 +202,21 @@ export default function Home() {
 
   const announcementBody = item => {
     return (
-      <View style={{padding: 10}}>
+      <View style={{padding: 0}}>
         <View>
           {feedData
             .filter(feed => feed.class == null)
             .map((item, key) => {
               return (
-                <FeedAnnouncement
-                  key={key}
-                  teacher={item?.updatedBy}
-                  type={item?.type}
-                  description={item?.description}
-                  examCode={item?.referenceId}
-                  dateCreated={item?.dateUpdated}
-                />
+                <LmsItems key={key} item={item} />
+                // <FeedAnnouncement
+                //   key={key}
+                //   teacher={item?.updatedBy}
+                //   type={item?.type}
+                //   description={item?.description}
+                //   examCode={item?.referenceId}
+                //   dateCreated={item?.dateUpdated}
+                // />
               );
             })}
         </View>
@@ -227,7 +239,7 @@ export default function Home() {
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={() => getFeedLMS()} />
         }>
-        <View style={{flex: 1, padding: 20}}>
+        <View style={{flex: 1, paddingVertical: 5}}>
           <ScrollView>
             <View>
               <AccordionList
@@ -240,12 +252,20 @@ export default function Home() {
                 list={classes}
                 header={_head}
                 body={_body}
-                expandedKey={0}
+                expandedKey={1}
               />
             </View>
           </ScrollView>
         </View>
       </ScrollView>
+      <Modals
+        feedData={feedData}
+        modalVisible={showModal}
+        data={classes}
+        onPress={() => setShowModal(!showModal)}
+        setShowModal={setShowModal}
+        showModal={showModal}
+      />
       {loading && <Loader />}
     </View>
   );
