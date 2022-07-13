@@ -60,18 +60,18 @@ export default function Osiris() {
             <View>
               <ScrollView horizontal>
                 <View>
-                  <View style={{ flexDirection: 'row' }}>
-                    <View style={styles.cell}>
-                      <Text>Class</Text>
+                  <View style={{ flexDirection: 'row'}}>
+                    <View style={[styles.cell,{ justifyContent: 'center', alignItems: 'center' }]}>
+                      <Text style={{fontWeight: 'bold'}}>Class</Text>
                     </View>
                     {terms?.map((item, index) => {
                       return (
                         <View
                           style={[
                             styles.cell,
-                            { width: 100 }
+                            { width: 120, padding: 5 }
                           ]}>
-                          <Text style={{ textAlign: 'center' }}>{item?.description}</Text>
+                          <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>{item?.description}</Text>
                         </View>
                       )
                     })}
@@ -80,7 +80,7 @@ export default function Osiris() {
                     return (
                       <View style={{ flexDirection: 'row' }}>
                         <View style={styles.cell}>
-                          <Text>{classItem?.className}</Text>
+                          <Text style={{paddingLeft: 10}}>{classItem?.className}</Text>
                         </View>
                         {terms?.map((term, index) => {
                           return (

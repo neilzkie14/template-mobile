@@ -104,7 +104,12 @@ export default function Login() {
                 flexDirection: 'row',
                 alignItems: 'center'
               }}>
-              <TextInput placeholder="Enter email here" onChangeText ={(text) => setUsername(text)} style = {{ flex: 1, padding: Platform.OS == 'ios' ? 15 : 0 }}/>
+              <TextInput 
+                value={username}
+                placeholder="Enter email here" 
+                onChangeText ={(text) => setUsername(text)}
+                style = {{ flex: 1, padding: Platform.OS == 'ios' ? 15 : 10 }}
+              />
             </View>
           </View>
           <View>
@@ -127,9 +132,10 @@ export default function Login() {
                 alignItems: 'center',
               }}>
               <TextInput
+                value={password}
                 placeholder="Enter password here"
                 secureTextEntry={showPassword}
-                style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 0}}
+                style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10}}
                 onChangeText = {(text) => setPassword(text)}
               />
               <TouchableOpacity onPress={() => onToggleShowPassword()}>

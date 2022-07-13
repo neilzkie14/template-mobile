@@ -16,6 +16,8 @@ export default function Home() {
   const [feedData, setFeedData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [classes, setClasses] = useState([]);
+  const [lmsID, setLmsID] = useState('');
+  const [schoolID, setSchoolID] = useState('');
 
   const title = [
     {
@@ -23,14 +25,14 @@ export default function Home() {
     },
   ];
 
-  const getFeedLMS = async () => {
+  const getFeedLMS = async (lmsID,schoolID) => {
     if (student == null) {
       alert('Select Student');
     } else {
       setLoading(true);
       let response = await new LmsStudentAPI().getNewsFeedLms(
-        student?.user?.lms_id,
-        student?.user?.lms_school_code,
+        student?.user?.lms_id ? student?.user?.lms_id : lmsID,
+        student?.user?.lms_school_code ?  student?.user?.lms_school_code : schoolID
       );
       console.log({response: response.data});
       if (response.ok) {
@@ -52,7 +54,9 @@ export default function Home() {
         });
         setClasses(uniqueData);
       } else {
-        alert('Something went wrong in fetching News Feed');
+        response.status == 404 ? alert('Student is not registered to LMS') : alert('Something went wrong in fetching News Feed')
+        setClasses([]);
+        setFeedData([]);
       }
       setLoading(false);
     }
@@ -212,9 +216,13 @@ export default function Home() {
     getFeedLMS();
   }, []);
 
+  useEffect(() => {
+    getFeedLMS(lmsID,schoolID);
+  }, [student]);
+
   return (
     <View style={{flex: 1, marginBottom: 60}}>
-      <Header />
+      <Header setlmsID={()=>setLmsID()} setSchoolID={()=>setSchoolID()} lmsID={lmsID} schoolID={schoolID} />
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={() => getFeedLMS()} />
