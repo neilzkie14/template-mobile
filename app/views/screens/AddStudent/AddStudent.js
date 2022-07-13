@@ -48,7 +48,7 @@ export default function AddStudent() {
   return (
     <View style={{flex: 1}}>
       <AddStudentHeader previous={true} title={'Add Student'}/>
-      <View style={{flex: 1, padding: 10}}>
+      <View style={{flex: 1, padding: 20}}>
         <ScrollView>
           <InputText
             label="First Name"
@@ -82,17 +82,17 @@ export default function AddStudent() {
             </Text>
             <View
               style={{
-                borderWidth: 0.5,
+                borderWidth: 1,
                 borderColor: '#E9E9E9',
                 borderRadius: 10,
                 paddingHorizontal: 10,
                 flexDirection: 'row',
                 alignItems: 'center',
-                padding: Platform.OS == 'ios' ? 15 : 0
+                padding: Platform.OS == 'ios' ? 15 : 10
               }}>
                 <View>
                   <TouchableOpacity  onPress={() => setOpen(true)}>
-                    <Text style = {{ color: '#cccccc' }}>{birthDay == '' ? 'Select birthday' : `${moment(birthDay).format('MMMM DD, YYYY')}`}</Text>
+                    <Text style = {{ color: '#707070',  }}>{birthDay == '' ? 'Select birthday' : `${moment(birthDay).format('MMMM DD, YYYY')}`}</Text>
                   </TouchableOpacity>
                 </View>
             </View>

@@ -44,6 +44,7 @@ export default function FeedAnnouncement({
         borderColor: '#cccccc',
         borderRadius: 10,
         marginTop: 10,
+        backgroundColor: '#fff'
       }}>
       <View
         style={{

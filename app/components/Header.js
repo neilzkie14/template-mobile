@@ -16,7 +16,7 @@ import StudentModalSelection from './StudentModalSelection';
 import {StudentContext} from '../context/StudentContext';
 
 const {width} = Dimensions.get('screen');
-export default function Header({}) {
+export default function Header({lmsID,schoolID,setLmsID=()=>{},setSchoolID=()=>{}}) {
   const userContext = useContext(UserContext);
   const studentContext = useContext(StudentContext);
   const {student} = studentContext.data;
@@ -25,7 +25,7 @@ export default function Header({}) {
   
   return (
     <View style={{padding: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff'}}>
-      <View>
+      <View style={{padding: 5}}>
         <Image
           source={profile}
           style={{width: width / 10, height: width / 10}}
@@ -41,7 +41,7 @@ export default function Header({}) {
             flex: 1,
             backgroundColor: '#fff',
             borderRadius: 50,
-            paddingHorizontal: 5,
+            paddingHorizontal: 10,
             alignItems: 'center',
           }}>
           
@@ -71,9 +71,16 @@ export default function Header({}) {
             fontWeight: '700',
             color: '#707070',
             fontSize: 14,
-          }}>{`${user?.first_name} ${user?.last_name}`}</Text>
+            paddingLeft: 10
+          }}>
+          {`${user?.first_name} ${user?.last_name}`}
+        </Text>
       </View>
       <StudentModalSelection
+        lmsID={lmsID}
+        schoolID={schoolID}
+        setLmsID={() => setLmsID}
+        setSchoolID={() => setSchoolID}
         onCloseModal={() => setShowModal(!showModal)}
         modalVisible={showModal}
       />

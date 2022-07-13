@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import {View, Text} from 'react-native'
 import LmsStudentAPI from '../../../../api/Lms';
 export default function TermItem({style, studentId, termId, classId, lms_school_code}) {
-  console.log({studentId, termId, classId})
 
   const [gpa, setGpa] = useState(0)
 
@@ -13,7 +12,6 @@ export default function TermItem({style, studentId, termId, classId, lms_school_
     );
     if (response.ok) {
       let data = response.data;
-      console.log({data});
       setGpa(data)
 
     } else {
@@ -28,7 +26,7 @@ export default function TermItem({style, studentId, termId, classId, lms_school_
   
 
   return (
-    <View style={[style, {width: 100}]}>
+    <View style={[style, {width: 120}]}>
       {/* {(gpa.grades || []).map((item, index) => {
         return (
           <Text style={{textAlign: 'right', paddingRight: 12}}>{`${item.gradeType.description} (${item.gradeType.percentage}%) : ${item.studentGrade?.percentage || 0}`}</Text>
@@ -46,6 +44,6 @@ const TotalGPA = ({grades}) => {
     return total + ((item?.gradeType?.percentage * (item?.studentGrade?.percentage || 0)) / 100)
   }, 0)
   return (
-    <Text style={{textAlign: 'right', paddingRight: 12, fontWeight: 'bold'}}>{gpa}%</Text>
+    <Text style={{textAlign: 'center', fontWeight: 'bold'}}>{gpa}%</Text>
   )
 }

@@ -47,6 +47,7 @@ export default function FeedExamination({
         borderColor: '#cccccc',
         borderRadius: 10,
         marginTop: 10,
+        backgroundColor: '#fff'
       }}>
       <View
         style={{
@@ -55,7 +56,7 @@ export default function FeedExamination({
           borderBottomWidth: 0.5,
           borderBottomColor: '#cccccc',
           padding: 5,
-          justifyContent: 'space-between',
+          justifyContent: 'space-between'
         }}>
         <View
           style={{
@@ -78,7 +79,7 @@ export default function FeedExamination({
           />
           <Text
             style={{
-              marginLeft: 10,
+              marginLeft: 5,
               fontSize: 12,
               color: '#7d7d7d',
               width: width / 2,

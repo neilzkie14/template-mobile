@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import Student from '../api/Student';
 import {StudentContext} from '../context/StudentContext';
+import { UserContext } from '../context/UserContext';
 import Loader from './Loader';
 const {width} = Dimensions.get('screen');
 
@@ -22,11 +23,17 @@ export default function StudentModalSelection({
   onCloseModal,
   setShowModal,
   showModal,
+  lmsID,
+  schoolID,
+  setLmsID,
+  setSchoolID
 }) {
   const [loading, setLoading] = useState(false);
   const navigation = useContext(NavigationContext);
   const studentContext = useContext(StudentContext);
   const {setStudent, students, student, refreshStudent} = studentContext.data;
+  const userContext = useContext(UserContext);
+  const {refreshUser} = userContext.data;
 
   return (
     <View>
@@ -48,6 +55,7 @@ export default function StudentModalSelection({
                 style={{
                   borderBottomWidth: 1,
                   borderBottomColor: '#f0f0f0',
+                  padding: 10
                 }}>
                 <View
                   style={{
@@ -79,6 +87,10 @@ export default function StudentModalSelection({
                           <TouchableOpacity
                             onPress={() => {
                               setStudent(item);
+                              onCloseModal();
+                              setLmsID(item?.user?.lms_id);
+                              setSchoolID(item?.user?.lms_school_code);
+                              refreshUser()
                             }}
                             style={{
                               backgroundColor: student?.id == item?.id ? '#ecffd1' : '#fff',
@@ -101,7 +113,8 @@ export default function StudentModalSelection({
                           </TouchableOpacity>
                         </View>
                       );
-                    })}
+                    })
+                    }
                   </View>
                 )}
               </View>
