@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Header from '../../../components/Header';
 import Calendar from './components/Calendar';
+import OntraqInOutScreen from './components/OntraqInOutScreen.';
 const {width, height} = Dimensions.get('window');
 
 export default function Index() {
@@ -33,7 +34,8 @@ export default function Index() {
     <View style={{flex: 1}}>
       <Header />
       <View style={{padding: 10, flex: 1}}>
-         <Calendar onPress={() => setToggleCalendar(!toggleCalendar)}/>
+         {/* <Calendar onPress={() => setToggleCalendar(!toggleCalendar)}/> */}
+         <OntraqInOutScreen />
       </View>
     </View>
   );
