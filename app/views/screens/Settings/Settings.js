@@ -1,15 +1,20 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { CommonActions, NavigationContext } from '@react-navigation/native';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, TouchableOpacity, Alert, ScrollView, Image } from 'react-native';
 import { UserContext } from '../../../context/UserContext';
-
+import { StudentContext } from '../../../context/StudentContext';
 import arrow from '../../../images/arrow.png'
 import profile from '../../../images/profile.png'
+import Chrildren from './components/Children';
+import ChildInfomation from './components/ChildInformation';
 export default function Settings() {
   const navigation = useContext(NavigationContext);
   const userContext = useContext(UserContext);
-  const { user } = userContext.data;
+  const [showModal, setShowModal] = useState(false);
+  const studentContext = useContext(StudentContext);
+  const { setStudent, students, student, refreshStudent } = studentContext.data;
+  const { refreshUser } = userContext.data;
 
   const showAlert = () => {
     Alert.alert(
@@ -47,6 +52,8 @@ export default function Settings() {
     }
   };
 
+  console.log({ student })
+
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -54,7 +61,7 @@ export default function Settings() {
           borderBottomWidth: 0.5,
           borderBottomColor: '#707070'
         }}>
-        <TouchableOpacity onPress={{}} style={{ position: 'absolute', height: 70, justifyContent: 'center', padding: 10, zIndex: 99 }}>
+        {/* <TouchableOpacity onPress={{}} style={{ position: 'absolute', height: 70, justifyContent: 'center', padding: 10, zIndex: 99 }}>
           <Image
             source={arrow}
             style={{
@@ -65,7 +72,7 @@ export default function Settings() {
             }}
             resizeMethod="resize"
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View
           style={{
             justifyContent: 'center',
@@ -121,34 +128,23 @@ export default function Settings() {
           <Text style={{ fontSize: 16, fontWeight: '500', color: '#707070', paddingHorizontal: 15 }}>
             Children
           </Text>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <TouchableOpacity onPress={() => alert('Under Development')} style={{ paddingRight: 10 }}>
-              <Image
-                source={profile}
-                style={{
-                  height: 20,
-                  width: 20,
-                  tintColor: '#A3D063',
-                }}
-                resizeMethod="resize"
-              />
-            </TouchableOpacity>
-            <Text style={{ fontSize: 16 }}>Child 1</Text>
+          {students.length <= 0 ? (
+            <View style={{ flex: 1, justifyContents: 'center' }}>
+              <Text>No Students</Text>
             </View>
-            <TouchableOpacity onPress={() => alert('Under Development')} style={{ padding: 5 }}>
-              <Image
-                source={arrow}
-                style={{
-                  height: 20,
-                  width: 20,
-                  tintColor: '#707070',
-                  transform: [{ rotate: '270deg' }],
-                }}
-                resizeMethod="resize"
-              />
-            </TouchableOpacity>
-          </View>
+          ) : (
+            <View>
+              {students?.map((item, key) => {
+                console.log({ item, student })
+                return (
+                  <>
+                    <Chrildren key={key} item={item} setShowModal={setShowModal} />
+                  </>
+                );
+              })
+              }
+            </View>
+          )}
         </View>
         <View style={{ paddingHorizontal: 5, marginBottom: 100 }}>
           <TouchableOpacity
