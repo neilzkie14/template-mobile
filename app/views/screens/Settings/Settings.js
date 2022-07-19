@@ -94,7 +94,9 @@ export default function Settings() {
         <View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
             <Text style={{ fontSize: 16 }}>Personal Information</Text>
-            <TouchableOpacity onPress={() => alert('Under Development')} style={{ padding: 5 }}>
+            <TouchableOpacity 
+              onPress={() => navigation.navigate('UserInformation')} 
+              style={{ padding: 5 }}>
               <Image
                 source={arrow}
                 style={{
@@ -109,7 +111,9 @@ export default function Settings() {
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
             <Text style={{ fontSize: 16 }}>Security</Text>
-            <TouchableOpacity onPress={() => alert('Under Development')} style={{ padding: 5 }}>
+            <TouchableOpacity 
+              onPress={() => navigation.navigate('SecuritySettings')}
+              style={{ padding: 5 }}>
               <Image
                 source={arrow}
                 style={{

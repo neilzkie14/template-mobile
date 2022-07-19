@@ -8,9 +8,12 @@ import Login from '../app/views/screens/Login/Login';
 import Home from '../app/views/screens/Home/Home';
 import Lms from '../app/views/screens/Lms/LmsScreen';
 import Ontraq from '../app/views/screens/Ontraq/OntraqScreen';
-import Settings from '../app/views/screens/Settings/Settings';ChildInformation
+import Settings from '../app/views/screens/Settings/Settings';
 import AddStudent from '../app/views/screens/AddStudent/AddStudent';
 import ChildInformation from '../app/views/screens/Settings/components/ChildInformation';
+import UserInformation from '../app/views/screens/Settings/components/UserInformation';
+import SecuritySettings from '../app/views/screens/Settings/components/SecuritySettings';
+import PasswordScreen from '../app/views/screens/Settings/components/PasswordScreen';
 import Index from '../app/views/screens/Ontraq/Index';
 import OntraqInOutScreen from '../app/views/screens/Ontraq/components/OntraqInOutScreen.';
 import Osiris from '../app/views/screens/Osiris/Osiris';
@@ -207,6 +210,33 @@ export default function Routes() {
            gestureEnabled: false,
          }}
        />
+        <Stack.Screen
+         name="UserInformation"
+         component={UserInformation}
+         options={{
+           title: 'UserInformation',
+           headerShown: false,
+           gestureEnabled: false,
+         }}
+       />
+        <Stack.Screen
+          name="SecuritySettings"
+          component={SecuritySettings}
+          options={{
+            title: 'SecuritySettings',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+        name="PasswordScreen"
+        component={PasswordScreen}
+        options={{
+          title: 'PasswordScreen',
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
         <Stack.Screen
           name="OntraqInOutScreen"
           component={OntraqInOutScreen}

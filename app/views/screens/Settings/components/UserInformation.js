@@ -4,13 +4,14 @@ import React, { useContext, useState } from 'react';
 import { View, Text, TouchableOpacity, Alert, ScrollView, Image, SafeAreaView, Modal } from 'react-native';
 import Loader from '../../../../components/Loader';
 import arrow from '../../../../images/arrow.png'
+import { UserContext } from '../../../../context/UserContext';
 import { getParams } from '../../../../utils/navigation_helper';
-export default function ChildInformation({ }) {
+export default function UserInformation({ }) {
   const navigation = useContext(NavigationContext);
   const [loading, setLoading] = useState(false);
+  const userContext = useContext(UserContext);
   const params = getParams(navigation);
-
-  console.log({ params })
+  const { user } = userContext.data;
 
   return (
     <View style={{ flex: 1 }}>
@@ -45,18 +46,16 @@ export default function ChildInformation({ }) {
               padding: 20
             }}
           >
-            {`${params?.item?.user?.first_name} ${params?.item?.user?.last_name}`}
+            {'Personal Information'}
           </Text>
         </View>
       </View>
-      <View style={{ flex: 1, justifyContent: 'space-between', backgroundColor: '#F5F5F5' }}>
+      <View style={{ justifyContent: 'space-between', backgroundColor: '#fff', flex: 1 }}>
         <View>
 
           <View
             style={{
-              // justifyContent: 'center',
               backgroundColor: '#fff',
-              marginTop: 50,
               flexDirection: 'row'
             }}>
             <Text
@@ -66,9 +65,34 @@ export default function ChildInformation({ }) {
                 padding: 20
               }}
             >
-              Name:
+              Email:
             </Text>
 
+            <Text
+              style={{
+                color: '#707070',
+                fontWeight: '100',
+                fontSize: 16,
+                padding: 20,
+              }}
+            >
+              {user?.email}
+            </Text>
+          </View>
+          <View
+            style={{
+              backgroundColor: '#fff',
+              flexDirection: 'row'
+            }}>
+            <Text
+              style={{
+                color: '#707070',
+                fontSize: 16,
+                padding: 20
+              }}
+            >
+              Contact:
+            </Text>
             <Text
               style={{
                 color: '#707070',
@@ -77,54 +101,10 @@ export default function ChildInformation({ }) {
                 padding: 20
               }}
             >
-              {`${params?.item?.user?.first_name} ${params?.item?.user?.last_name}`}
+              {user?.contact_number}
             </Text>
-          </View>
-          <View
-            style={{
-              justifyContent: 'space-between',
-              backgroundColor: '#fff',
-              marginTop: 50,
-              flexDirection: 'row'
-            }}>
-            <Text
-              style={{
-                color: '#707070',
-                fontSize: 16,
-                padding: 20
-              }}
-            >
-              LMS
-            </Text>
-            <TouchableOpacity onPress={() => alert('Under Development')}>
-              <Text
-                style={{
-                  color: '#A3D063',
-                  fontWeight: '400',
-                  fontSize: 16,
-                  padding: 20
-                }}
-              >
-                connect
-              </Text>
-            </TouchableOpacity>
           </View>
         </View>
-      </View>
-      <View style={{ padding: 5 }}>
-        <TouchableOpacity
-          onPress={() => alert('Under Development!')}
-          style={{
-            padding: 10,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 5,
-            backgroundColor: '#2E3192',
-          }}>
-          <Text style={{ fontSize: 16, fontWeight: '600', color: '#fff' }}>
-            Remove Child
-          </Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
