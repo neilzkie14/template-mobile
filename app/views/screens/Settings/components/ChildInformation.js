@@ -80,7 +80,7 @@ export default function ChildInformation({ }) {
               {`${params?.item?.user?.first_name} ${params?.item?.user?.last_name}`}
             </Text>
           </View>
-          <View
+          {/* <View
             style={{
               justifyContent: 'space-between',
               backgroundColor: '#fff',
@@ -108,7 +108,7 @@ export default function ChildInformation({ }) {
                 connect
               </Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </View>
       <View style={{ padding: 5 }}>

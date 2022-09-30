@@ -12,6 +12,7 @@ export default function Settings() {
   const navigation = useContext(NavigationContext);
   const userContext = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const studentContext = useContext(StudentContext);
@@ -92,8 +93,33 @@ export default function Settings() {
           </Text>
         </View>
       </View>
-      <View style={{ flex: 1}}>
+      <View style={{ flex: 1, marginHorizontal: 10}}>
         <Text style={{color: '#707070', fontSize: 20, fontWeight: '500', padding: 20}}>Change Password</Text>
+        <View
+          style={{
+            backgroundColor: '#fff',
+            flexDirection: 'row',
+            // justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: 5,
+            marginLeft: 10,
+          }}>
+          <Text
+            style={{
+              color: '#707070',
+              fontSize: 16,
+              width: 150,
+            }}
+          >
+            Current Password:
+          </Text>
+          <TextInput
+            placeholder={'Enter current password here'}
+            onChangeText={text => setCurrentPassword(text)}
+            style={{ borderBottomColor: 'gray', borderBottomWidth: 0.5, flex: 1 }}
+            secureTextEntry={true}
+          />
+        </View>
         <View
           style={{
             backgroundColor: '#fff',
@@ -115,7 +141,8 @@ export default function Settings() {
           <TextInput
             placeholder={'Enter new password here'}
             onChangeText={text => setNewPassword(text)}
-            style={{ borderBottomColor: 'gray', borderBottomWidth: 0.5 }}
+            style={{ borderBottomColor: 'gray', borderBottomWidth: 0.5, flex: 1  }}
+            secureTextEntry={true}
           />
         </View>
         <View
@@ -139,7 +166,8 @@ export default function Settings() {
           <TextInput
             placeholder={'Confirm new password here'}
             onChangeText={text => setConfirmPassword(text)}
-            style={{ borderBottomColor: 'gray', borderBottomWidth: 0.5 }}
+            style={{ borderBottomColor: 'gray', borderBottomWidth: 0.5, flex: 1  }}
+            secureTextEntry={true}
           />
         </View>
         <View style={{ padding: 5 }}>

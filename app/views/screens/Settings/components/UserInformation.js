@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { CommonActions, NavigationContext } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, ScrollView, Image, SafeAreaView, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, ScrollView, Image, SafeAreaView, TextInput } from 'react-native';
 import Loader from '../../../../components/Loader';
 import arrow from '../../../../images/arrow.png'
 import { UserContext } from '../../../../context/UserContext';
@@ -12,6 +12,8 @@ export default function UserInformation({ }) {
   const userContext = useContext(UserContext);
   const params = getParams(navigation);
   const { user } = userContext.data;
+  const [email, setEmail] = useState(user?.email);
+  const [mobileNumber, setMobileNumber] = useState(user?.contact_number);
 
   return (
     <View style={{ flex: 1 }}>
@@ -67,17 +69,12 @@ export default function UserInformation({ }) {
             >
               Email:
             </Text>
-
-            <Text
-              style={{
-                color: '#707070',
-                fontWeight: '100',
-                fontSize: 16,
-                padding: 20,
-              }}
-            >
-              {user?.email}
-            </Text>
+            <TextInput
+              value={email}
+              placeholder={'Enter email here'}
+              onChangeText={text => setEmail(text)}
+              style={{ borderBottomColor: 'gray', borderBottomWidth: 0.5, flex: 1, marginRight: 20  }}
+          />
           </View>
           <View
             style={{
@@ -93,16 +90,12 @@ export default function UserInformation({ }) {
             >
               Contact:
             </Text>
-            <Text
-              style={{
-                color: '#707070',
-                fontWeight: '100',
-                fontSize: 16,
-                padding: 20
-              }}
-            >
-              {user?.contact_number}
-            </Text>
+            <TextInput
+              value={mobileNumber}
+              placeholder={'Enter mobile number here'}
+              onChangeText={text => setMobileNumber(text)}
+              style={{ borderBottomColor: 'gray', borderBottomWidth: 0.5, flex: 1, marginRight: 20  }}
+            />
           </View>
         </View>
       </View>
