@@ -7,7 +7,7 @@ import {
   Dimensions,
   TextInput,
   KeyboardAvoidingView,
-  Platform
+  Platform,
 } from 'react-native';
 import parentlineLogo from '../../../images/parentline-logo.png';
 import headstartLogo from '../../../images/headstart-logo.png';
@@ -16,7 +16,7 @@ import Auth from './../../../api/Auth';
 import {UserContext} from './../../../context/UserContext';
 import Loader from '../../../components/Loader';
 import AsyncStorage from '@react-native-community/async-storage';
-import { StudentContext } from '../../../context/StudentContext';
+import {StudentContext} from '../../../context/StudentContext';
 const {width} = Dimensions.get('screen');
 export default function Login() {
   const userContext = useContext(UserContext);
@@ -50,7 +50,7 @@ export default function Login() {
 
   const onToggleShowPassword = () => {
     setShowPassword(!showPassword);
-  }
+  };
   return (
     <KeyboardAvoidingView style={{flex: 1}} behavior={'height'}>
       <View style={{flex: 1, backgroundColor: 'white'}}>
@@ -66,19 +66,19 @@ export default function Login() {
             flex: 1,
             padding: 10,
             backgroundColor: '#fff',
-            shadowColor: '#000', 
+            shadowColor: '#000',
             shadowOffset: {
               width: 0,
               height: 12,
             },
-            shadowOpacity: 0.58,
-            shadowRadius: 16.0,
+            shadowOpacity: 0.48,
+            shadowRadius: 10.0,
 
-            elevation: 24,
+            elevation: 1,
             borderTopRightRadius: 50,
             borderTopLeftRadius: 50,
             padding: 20,
-            paddingHorizontal: 30
+            paddingHorizontal: 30,
           }}>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <Text style={{fontWeight: 'bold', fontSize: 30, color: '#707070'}}>
@@ -102,13 +102,13 @@ export default function Login() {
                 borderRadius: 10,
                 paddingHorizontal: 10,
                 flexDirection: 'row',
-                alignItems: 'center'
+                alignItems: 'center',
               }}>
-              <TextInput 
+              <TextInput
                 value={username}
-                placeholder="Enter email here" 
-                onChangeText ={(text) => setUsername(text)}
-                style = {{ flex: 1, padding: Platform.OS == 'ios' ? 15 : 10 }}
+                placeholder="Enter email here"
+                onChangeText={text => setUsername(text)}
+                style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10}}
               />
             </View>
           </View>
@@ -136,7 +136,7 @@ export default function Login() {
                 placeholder="Enter password here"
                 secureTextEntry={showPassword}
                 style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10}}
-                onChangeText = {(text) => setPassword(text)}
+                onChangeText={text => setPassword(text)}
               />
               <TouchableOpacity onPress={() => onToggleShowPassword()}>
                 <Image
@@ -160,9 +160,27 @@ export default function Login() {
                 backgroundColor: '#2E3192',
                 justifyContent: 'center',
                 alignItems: 'center',
+                borderColor: '#2E3192',
+                borderWidth: 1,
               }}>
               <Text style={{fontSize: 25, fontWeight: '600', color: '#fff'}}>
                 Login
+              </Text>
+            </TouchableOpacity>
+            <Text style={{textAlign: 'center', marginVertical: 12}}>or</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Registration')}
+              style={{
+                padding: 10,
+                borderRadius: 30,
+                backgroundColor: 'white',
+                borderWidth: 1,
+                borderColor: '#2E3192',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text style={{fontSize: 25, fontWeight: '600', color: '#2E3192'}}>
+                Register
               </Text>
             </TouchableOpacity>
           </View>
