@@ -17,6 +17,7 @@ import PasswordScreen from '../app/views/screens/Settings/components/PasswordScr
 import Index from '../app/views/screens/Ontraq/Index';
 import OntraqInOutScreen from '../app/views/screens/Ontraq/components/OntraqInOutScreen.';
 import Osiris from '../app/views/screens/Osiris/Osiris';
+import Registration from '../app/views/screens/Registration/Registration';
 const {width} = Dimensions.get('screen');
 
 const Stack = createStackNavigator();
@@ -25,7 +26,7 @@ const homeName = 'Announcements';
 const LmsName = 'LMS';
 const OntraqName = 'OntraQ';
 const settings = 'Settings';
-const osiris = 'Osiris'
+const osiris = 'Osiris';
 const megaphone = require('../app/images/megaphone-green.png');
 const book = require('../app/images/book-green.png');
 const step = require('../app/images/steps-green.png');
@@ -173,6 +174,15 @@ export default function Routes() {
             gestureEnabled: false,
           }}
         />
+        <Stack.Screen
+          name="Registration"
+          component={Registration}
+          options={{
+            title: 'Registration',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
 
         <Stack.Screen
           name="Home"
@@ -192,7 +202,7 @@ export default function Routes() {
             gestureEnabled: false,
           }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="AddStudent"
           component={AddStudent}
           options={{
@@ -202,23 +212,23 @@ export default function Routes() {
           }}
         />
         <Stack.Screen
-         name="ChildInformation"
-         component={ChildInformation}
-         options={{
-           title: 'ChildInformation',
-           headerShown: false,
-           gestureEnabled: false,
-         }}
-       />
+          name="ChildInformation"
+          component={ChildInformation}
+          options={{
+            title: 'ChildInformation',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
         <Stack.Screen
-         name="UserInformation"
-         component={UserInformation}
-         options={{
-           title: 'UserInformation',
-           headerShown: false,
-           gestureEnabled: false,
-         }}
-       />
+          name="UserInformation"
+          component={UserInformation}
+          options={{
+            title: 'UserInformation',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
         <Stack.Screen
           name="SecuritySettings"
           component={SecuritySettings}
@@ -229,14 +239,14 @@ export default function Routes() {
           }}
         />
         <Stack.Screen
-        name="PasswordScreen"
-        component={PasswordScreen}
-        options={{
-          title: 'PasswordScreen',
-          headerShown: false,
-          gestureEnabled: false,
-        }}
-      />
+          name="PasswordScreen"
+          component={PasswordScreen}
+          options={{
+            title: 'PasswordScreen',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
         <Stack.Screen
           name="OntraqInOutScreen"
           component={OntraqInOutScreen}
