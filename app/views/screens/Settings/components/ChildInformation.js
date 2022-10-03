@@ -13,7 +13,7 @@ export default function ChildInformation({ }) {
   const studentContext = useContext(StudentContext);
   const {refreshUser} = userContext.data;
   const {refreshStudent} = studentContext.data;
-  const [laoder, setLoader] = useState(false);
+  const [loader, setLoader] = useState(false);
   const params = getParams(navigation);
 
   const handleRemoveChild = async data => {
@@ -144,7 +144,7 @@ export default function ChildInformation({ }) {
           </Text>
         </TouchableOpacity>
       </View>
-      {laoder && <Loader />}
+      {loader && <Loader />}
     </View>
   );
 }

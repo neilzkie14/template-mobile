@@ -34,8 +34,8 @@ export default class Auth extends Base {
 
   changePassword = async data => {
     return this.sendRequest({
-      path: `/api/v2/auth/change-password`,
-      method: 'PATCH',
+      path: `/api/v2/auth/change_password`,
+      method: 'POST',
       data,
     });
   };

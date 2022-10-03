@@ -1,17 +1,20 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import { CommonActions, NavigationContext } from '@react-navigation/native';
+import { NavigationContext } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, ScrollView, Image, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { UserContext } from '../../../../context/UserContext';
 import { StudentContext } from '../../../../context/StudentContext';
 import arrow from '../../../../images/arrow.png'
 import PasswordInput from '../../../../components/form/PasswordInput';
 import {useForm} from 'react-hook-form';
+import Auth from '../../../../api/Auth';
+import Loader from '../../../../components/Loader';
 export default function Settings() {
   const navigation = useContext(NavigationContext);
   const userContext = useContext(UserContext);
   const studentContext = useContext(StudentContext);
-  const {  student } = studentContext.data;
+  const {refreshUser} = userContext.data;
+  const {refreshStudent} = studentContext.data;
+  const [loader, setLoader] = useState(false);
   const {
     control,
     handleSubmit,
@@ -20,18 +23,20 @@ export default function Settings() {
   } = useForm();
 
   const onSubmit = async data => {
-    alert(JSON.stringify(data))
-    // const response = await new Auth().register({user: data});
-    // setLoader(true);
-    // if (response.ok) {
-    //   await AsyncStorage.setItem('token', response.data.token);
-    //   await refreshUser();
-    //   await refreshStudent();
-    //   await navigation.replace('Dashboard');
-    // } else {
-    //   alert(response?.data?.errors?.join('\n'));
-    // }
-    // setLoader(false);
+    const response = await new Auth().changePassword(data= {
+      "old_password": data?.current_password,
+      "new_password": data?.password
+  });
+    setLoader(true);
+    if (response.ok) {
+      await refreshUser();
+      await refreshStudent();
+      alert(response?.data?.message);
+      navigation.navigate('Settings');
+    } else {
+      alert(response?.data?.message);
+    }
+    setLoader(false);
   };
 
   return (
@@ -144,6 +149,7 @@ export default function Settings() {
           </TouchableOpacity>
         </View>
       </View>
+      {loader && <Loader />}
     </View>
   );
 }
