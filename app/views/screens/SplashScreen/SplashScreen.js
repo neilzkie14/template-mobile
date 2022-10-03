@@ -20,9 +20,9 @@ export default function SplashScreen() {
     if(response.ok){
       await refreshUser();
       await refreshStudent();
-      navigation.navigate('Dashboard')
+      navigation.replace('Dashboard')
     }else{
-      navigation.navigate('Login')
+      navigation.replace('Login')
     }
   }
 
