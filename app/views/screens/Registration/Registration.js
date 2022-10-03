@@ -62,12 +62,22 @@ export default function Registration() {
               paddingVertical: 20,
               paddingHorizontal: 30,
             }}>
-            <Text style={{fontWeight: 'bold', fontSize: 30, color: '#707070'}}>
-              Registration
-            </Text>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+              <Text style={{fontWeight: 'bold', fontSize: 30, color: '#707070'}}>
+                Registration
+              </Text>
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{paddingHorizontal: 8}}>
+                <Text style={{fontWeight: '500', fontSize: 18, color: '#000'}}>
+                Go Back
+              </Text>
+              </TouchableOpacity>
+            </View>
             <Input
               name="email"
               label="Email"
+              placeholder='Enter email here'
               control={control}
               errors={errors}
               rules={{
@@ -78,6 +88,7 @@ export default function Registration() {
             <Input
               name="first_name"
               label="First name"
+              placeholder='Enter first name here'
               control={control}
               errors={errors}
               rules={{required: true, maxLength: 20}}
@@ -85,6 +96,7 @@ export default function Registration() {
             <Input
               name="last_name"
               label="Last name"
+              placeholder='Enter last name here'
               control={control}
               errors={errors}
               rules={{required: true, maxLength: 20}}
@@ -92,6 +104,7 @@ export default function Registration() {
             <Input
               name="contact_number"
               label="Contact number"
+              placeholder='Enter contact number here'
               control={control}
               errors={errors}
               rules={{
@@ -106,6 +119,7 @@ export default function Registration() {
             <PasswordInput
               name="password"
               label="Password"
+              placeholder='Enter password here'
               control={control}
               errors={errors}
               rules={{
@@ -128,6 +142,7 @@ export default function Registration() {
             <PasswordInput
               name="confirm_password"
               label="Confirm password"
+              placeholder='Enter confirm password here'
               control={control}
               errors={errors}
               rules={{
