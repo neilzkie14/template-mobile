@@ -8,6 +8,7 @@ export default function Input({
   name,
   control,
   defaultValue = '',
+  placeholder = '',
   rules = {},
   errors = {},
 }) {
@@ -41,7 +42,7 @@ export default function Input({
           alignItems: 'center',
         }}>
         <TextInput
-          placeholder="Enter email here"
+          placeholder={placeholder}
           value={field.value}
           onChangeText={field.onChange}
           style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10}}

@@ -20,6 +20,7 @@ import {useForm} from 'react-hook-form';
 import Input from '../../../components/form/Input';
 import SubmitButton from '../../../components/form/SubmitButton';
 import {EMAIL_REGEX, PHONE_REGEX} from '../../../constants/regex';
+import PasswordInput from '../../../components/form/PasswordInput';
 const {width} = Dimensions.get('screen');
 
 export default function Registration() {
@@ -102,7 +103,7 @@ export default function Registration() {
               }}
             />
 
-            <Input
+            <PasswordInput
               name="password"
               label="Password"
               control={control}
@@ -124,7 +125,7 @@ export default function Registration() {
                 },
               }}
             />
-            <Input
+            <PasswordInput
               name="confirm_password"
               label="Confirm password"
               control={control}
