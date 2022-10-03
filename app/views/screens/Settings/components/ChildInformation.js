@@ -10,7 +10,20 @@ export default function ChildInformation({ }) {
   const [loading, setLoading] = useState(false);
   const params = getParams(navigation);
 
-  console.log({ params })
+  const handleRemoveChild = async data => {
+    alert(JSON.stringify(data))
+    // const response = await new Auth().register({user: data});
+    // setLoader(true);
+    // if (response.ok) {
+    //   await AsyncStorage.setItem('token', response.data.token);
+    //   await refreshUser();
+    //   await refreshStudent();
+    //   await navigation.replace('Dashboard');
+    // } else {
+    //   alert(response?.data?.errors?.join('\n'));
+    // }
+    // setLoader(false);
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -113,7 +126,7 @@ export default function ChildInformation({ }) {
       </View>
       <View style={{ padding: 5 }}>
         <TouchableOpacity
-          onPress={() => alert('Under Development!')}
+          onPress={() => handleRemoveChild(params?.item?.user?.id)}
           style={{
             padding: 10,
             justifyContent: 'center',
