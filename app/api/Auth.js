@@ -26,7 +26,7 @@ export default class Auth extends Base {
 
   updateProfile = async data => {
     return this.sendRequest({
-      path: `/api/v2/auth/profile`,
+      path: `/api/v2/auth/update_profile`,
       method: 'PATCH',
       data,
     });
