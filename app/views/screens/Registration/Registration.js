@@ -25,18 +25,29 @@ const {width} = Dimensions.get('screen');
 export default function Registration() {
   const userContext = useContext(UserContext);
   const studentContext = useContext(StudentContext);
+  const {refreshUser} = userContext.data;
+  const {refreshStudent} = studentContext.data;
   const navigation = useContext(NavigationContext);
   const [loader, setLoader] = useState(false);
   const {
     control,
     handleSubmit,
     watch,
-    trigger,
     formState: {errors},
   } = useForm();
 
-  const onSubmit = data => {
-    alert(JSON.stringify(data));
+  const onSubmit = async data => {
+    const response = await new Auth().register({user: data});
+    setLoader(true);
+    if (response.ok) {
+      await AsyncStorage.setItem('token', response.data.token);
+      await refreshUser();
+      await refreshStudent();
+      await navigation.replace('Dashboard');
+    } else {
+      alert(response?.data?.errors?.join('\n'));
+    }
+    setLoader(false);
   };
 
   return (

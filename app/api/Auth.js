@@ -1,8 +1,7 @@
-import Base from './Base'
+import Base from './Base';
 
 export default class Auth extends Base {
-
-  login = async (data) => {
+  login = async data => {
     return this.sendRequest({
       path: `/api/v2/auth/login`,
       method: 'POST',
@@ -13,8 +12,31 @@ export default class Auth extends Base {
   profile = async () => {
     return this.sendRequest({
       path: `/api/v2/auth/profile`,
-      method: 'GET'
+      method: 'GET',
     });
   };
 
+  register = async data => {
+    return this.sendRequest({
+      path: `/api/v2/auth/register`,
+      method: 'POST',
+      data,
+    });
+  };
+
+  updateProfile = async data => {
+    return this.sendRequest({
+      path: `/api/v2/auth/profile`,
+      method: 'PATCH',
+      data,
+    });
+  };
+
+  changePassword = async data => {
+    return this.sendRequest({
+      path: `/api/v2/auth/change-password`,
+      method: 'PATCH',
+      data,
+    });
+  };
 }
