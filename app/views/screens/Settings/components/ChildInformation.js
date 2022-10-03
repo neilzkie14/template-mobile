@@ -1,16 +1,34 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import { CommonActions, NavigationContext } from '@react-navigation/native';
+import { NavigationContext } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, ScrollView, Image, SafeAreaView, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import Student from '../../../../api/Student';
 import Loader from '../../../../components/Loader';
 import arrow from '../../../../images/arrow.png'
 import { getParams } from '../../../../utils/navigation_helper';
+import {UserContext} from '../../../../context/UserContext';
+import {StudentContext} from '../../../../context/StudentContext';
 export default function ChildInformation({ }) {
   const navigation = useContext(NavigationContext);
-  const [loading, setLoading] = useState(false);
+  const userContext = useContext(UserContext);
+  const studentContext = useContext(StudentContext);
+  const {refreshUser} = userContext.data;
+  const {refreshStudent} = studentContext.data;
+  const [loader, setLoader] = useState(false);
   const params = getParams(navigation);
 
-  console.log({ params })
+  const handleRemoveChild = async data => {
+    const response = await new Student().removeStudent(data);
+    setLoader(true);
+    if (response.ok) {
+      await refreshUser();
+      await refreshStudent();
+      alert(response?.data?.message);
+      navigation.navigate('Settings');
+    } else {
+      alert(response?.data?.errors?.join('\n'));
+    }
+    setLoader(false);
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -113,7 +131,7 @@ export default function ChildInformation({ }) {
       </View>
       <View style={{ padding: 5 }}>
         <TouchableOpacity
-          onPress={() => alert('Under Development!')}
+          onPress={() => handleRemoveChild(params?.item?.id)}
           style={{
             padding: 10,
             justifyContent: 'center',
@@ -126,6 +144,7 @@ export default function ChildInformation({ }) {
           </Text>
         </TouchableOpacity>
       </View>
+      {loader && <Loader />}
     </View>
   );
 }

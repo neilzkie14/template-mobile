@@ -1,61 +1,43 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import { CommonActions, NavigationContext } from '@react-navigation/native';
+import { NavigationContext } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, ScrollView, Image, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { UserContext } from '../../../../context/UserContext';
 import { StudentContext } from '../../../../context/StudentContext';
 import arrow from '../../../../images/arrow.png'
-import profile from '../../../../images/profile.png'
-import Chrildren from './Children';
-import ChildInfomation from './ChildInformation';
+import PasswordInput from '../../../../components/form/PasswordInput';
+import {useForm} from 'react-hook-form';
+import Auth from '../../../../api/Auth';
+import Loader from '../../../../components/Loader';
 export default function Settings() {
   const navigation = useContext(NavigationContext);
   const userContext = useContext(UserContext);
-  const [showModal, setShowModal] = useState(false);
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const studentContext = useContext(StudentContext);
-  const { setStudent, students, student, refreshStudent } = studentContext.data;
-  const { refreshUser } = userContext.data;
+  const {refreshUser} = userContext.data;
+  const {refreshStudent} = studentContext.data;
+  const [loader, setLoader] = useState(false);
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: {errors},
+  } = useForm();
 
-  const showAlert = () => {
-    Alert.alert(
-      'Wait a minute!',
-      'Are you sure you want to logout?',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => { },
-          style: 'cancel',
-        },
-        {
-          text: 'Confirm',
-          onPress: () => {
-            confirmLogOut();
-          },
-        },
-      ],
-      'secure-text',
-    );
-  };
-
-  const confirmLogOut = async () => {
-    try {
-      await AsyncStorage.removeItem('token');
-      await AsyncStorage.clear();
-      await navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: 'SplashScreen' }],
-        }),
-      );
-    } catch (error) {
-      console.log({ error });
+  const onSubmit = async data => {
+    const response = await new Auth().changePassword(data= {
+      "old_password": data?.current_password,
+      "new_password": data?.password
+  });
+    setLoader(true);
+    if (response.ok) {
+      await refreshUser();
+      await refreshStudent();
+      alert(response?.data?.message);
+      navigation.navigate('Settings');
+    } else {
+      alert(response?.data?.message);
     }
+    setLoader(false);
   };
-
-  console.log({ student })
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -93,86 +75,67 @@ export default function Settings() {
           </Text>
         </View>
       </View>
-      <View style={{ flex: 1, marginHorizontal: 10}}>
-        <Text style={{color: '#707070', fontSize: 20, fontWeight: '500', padding: 20}}>Change Password</Text>
-        <View
-          style={{
-            backgroundColor: '#fff',
-            flexDirection: 'row',
-            // justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: 5,
-            marginLeft: 10,
-          }}>
-          <Text
-            style={{
-              color: '#707070',
-              fontSize: 16,
-              width: 150,
-            }}
-          >
-            Current Password:
-          </Text>
-          <TextInput
-            placeholder={'Enter current password here'}
-            onChangeText={text => setCurrentPassword(text)}
-            style={{ borderBottomColor: 'gray', borderBottomWidth: 0.5, flex: 1 }}
-            secureTextEntry={true}
-          />
-        </View>
-        <View
-          style={{
-            backgroundColor: '#fff',
-            flexDirection: 'row',
-            // justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: 5,
-            marginLeft: 10,
-          }}>
-          <Text
-            style={{
-              color: '#707070',
-              fontSize: 16,
-              width: 150,
-            }}
-          >
-            New Password:
-          </Text>
-          <TextInput
-            placeholder={'Enter new password here'}
-            onChangeText={text => setNewPassword(text)}
-            style={{ borderBottomColor: 'gray', borderBottomWidth: 0.5, flex: 1  }}
-            secureTextEntry={true}
-          />
-        </View>
-        <View
-          style={{
-            backgroundColor: '#fff',
-            // justifyContent: 'space-between',
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: 5,
-            marginLeft: 10,
-          }}>
-          <Text
-            style={{
-              color: '#707070',
-              width: 150,
-              fontSize: 16,
-            }}
-          >
-            Confirm Password:
-          </Text>
-          <TextInput
-            placeholder={'Confirm new password here'}
-            onChangeText={text => setConfirmPassword(text)}
-            style={{ borderBottomColor: 'gray', borderBottomWidth: 0.5, flex: 1  }}
-            secureTextEntry={true}
-          />
-        </View>
-        <View style={{ padding: 5 }}>
+      <View style={{ flex: 1, marginHorizontal: 32}}>
+        <PasswordInput
+          name="current_password"
+          label="Current Password"
+          placeholder='Enter current password here'
+          control={control}
+          errors={errors}
+          rules={{
+            required: true,
+            maxLength: 20,
+          }}
+        />
+        <PasswordInput
+          name="password"
+          label="New Password"
+          placeholder='Enter password here'
+          control={control}
+          errors={errors}
+          rules={{
+            required: true,
+            maxLength: 20,
+            validate: {
+              value: async value => {
+                if (value === watch('confirm_password')) {
+                  if (errors['confirm_password'] != null) {
+                    errors['confirm_password'] = null;
+                  }
+                  return true;
+                } else {
+                  return 'Password mismatch';
+                }
+              },
+            },
+          }}
+        />
+        <PasswordInput
+          name="confirm_password"
+          label="Confirm password"
+          placeholder='Enter confirm password here'
+          control={control}
+          errors={errors}
+          rules={{
+            required: true,
+            maxLength: 20,
+            validate: {
+              value: async value => {
+                if (value === watch('password')) {
+                  if (errors['password'] != null) {
+                    errors['password'] = null;
+                  }
+                  return true;
+                } else {
+                  return 'Password mismatch';
+                }
+              },
+            },
+          }}
+        />
+        <View style={{ padding: 6, marginTop: 18 }}>
           <TouchableOpacity
-            onPress={() => alert('Under Development!')}
+            onPress={handleSubmit(onSubmit)}
             style={{
               padding: 10,
               justifyContent: 'center',
@@ -186,6 +149,7 @@ export default function Settings() {
           </TouchableOpacity>
         </View>
       </View>
+      {loader && <Loader />}
     </View>
   );
 }
