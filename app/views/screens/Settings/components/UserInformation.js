@@ -1,20 +1,21 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import { CommonActions, NavigationContext } from '@react-navigation/native';
+import { NavigationContext } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, ScrollView, Image, SafeAreaView, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Loader from '../../../../components/Loader';
 import arrow from '../../../../images/arrow.png'
 import { UserContext } from '../../../../context/UserContext';
-import { getParams } from '../../../../utils/navigation_helper';
+import {StudentContext} from '../../../../context/StudentContext';
 import {useForm} from 'react-hook-form';
 import Input from '../../../../components/form/Input';
 import { EMAIL_REGEX, PHONE_REGEX } from '../../../../constants/regex';
+import Auth from '../../../../api/Auth';
 export default function UserInformation({ }) {
   const navigation = useContext(NavigationContext);
-  const [loading, setLoading] = useState(false);
+  const studentContext = useContext(StudentContext);
   const userContext = useContext(UserContext);
-  const params = getParams(navigation);
-  const { user } = userContext.data;
+  const { user, refreshUser } = userContext.data;
+  const {refreshStudent} = studentContext.data;
+  const [loader, setLoader] = useState(false);
   const {
     control,
     handleSubmit,
@@ -23,18 +24,16 @@ export default function UserInformation({ }) {
   } = useForm();
 
   const onSubmit = async data => {
-    alert(JSON.stringify(data))
-    // const response = await new Auth().register({user: data});
-    // setLoader(true);
-    // if (response.ok) {
-    //   await AsyncStorage.setItem('token', response.data.token);
-    //   await refreshUser();
-    //   await refreshStudent();
-    //   await navigation.replace('Dashboard');
-    // } else {
-    //   alert(response?.data?.errors?.join('\n'));
-    // }
-    // setLoader(false);
+    const response = await new Auth().updateProfile({user: data});
+    setLoader(true);
+    if (response.ok) {
+      await refreshUser();
+      await refreshStudent();
+      alert(response?.data?.message);
+    } else {
+      alert(response?.data?.errors?.join('\n'));
+    }
+    setLoader(false);
   };
 
   return (
@@ -80,6 +79,7 @@ export default function UserInformation({ }) {
           label="Email"
           placeholder='Enter email here'
           defaultValue={user?.email}
+          editable={false}
           control={control}
           errors={errors}
           rules={{
@@ -136,6 +136,7 @@ export default function UserInformation({ }) {
           </TouchableOpacity>
         </View>
       </View>
+      {loader && <Loader />}
     </View>
   );
 }

@@ -11,6 +11,7 @@ export default function Input({
   placeholder = '',
   rules = {},
   errors = {},
+  editable
 }) {
   const {field} = useController({
     control,
@@ -42,6 +43,7 @@ export default function Input({
           alignItems: 'center',
         }}>
         <TextInput
+          editable={editable}
           placeholder={placeholder}
           value={field.value}
           onChangeText={field.onChange}
