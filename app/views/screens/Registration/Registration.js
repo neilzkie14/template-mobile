@@ -62,17 +62,15 @@ export default function Registration() {
               paddingVertical: 20,
               paddingHorizontal: 30,
             }}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <TouchableOpacity
+                onPress={() => navigation.goBack()}
+                style={{paddingRight: 12}}>
+                <Image source = {require('../../../images/left-arrow.png')} resizeMode = 'contain' style = {{ width: 20, height: 20}}/>
+              </TouchableOpacity>
               <Text style={{fontWeight: 'bold', fontSize: 30, color: '#707070'}}>
                 Registration
               </Text>
-              <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                style={{paddingHorizontal: 8}}>
-                <Text style={{fontWeight: '500', fontSize: 18, color: '#000'}}>
-                Go Back
-              </Text>
-              </TouchableOpacity>
             </View>
             <Input
               name="email"

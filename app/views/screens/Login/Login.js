@@ -151,7 +151,7 @@ export default function Login() {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={{flex: 1, justifyContent: 'center'}}>
+          <View style={{ justifyContent: 'center', marginTop: 24}}>
             <TouchableOpacity
               onPress={() => HandleLogin()}
               style={{
