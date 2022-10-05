@@ -8,7 +8,7 @@ import profile from '../../../../images/profile.png'
 export default function Chrildren({item, setShowModal, key}) {
   const navigation = useContext(NavigationContext);
   return (
-    <View key={key} style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
+    <TouchableOpacity onPress={() => navigation.navigate('ChildInformation', { item: item })} key={key} style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Image
           source={profile}
@@ -22,11 +22,7 @@ export default function Chrildren({item, setShowModal, key}) {
         />
         <Text style={{ fontSize: 16 }}>{`${item?.user?.first_name} ${item?.user?.last_name}`}</Text>
       </View>
-      <TouchableOpacity onPress={() =>
-                      navigation.navigate('ChildInformation', {
-                        item: item,
-                      })
-                    } style={{ padding: 5 }}>
+      <View style={{ padding: 5 }}>
         <Image
           source={arrow}
           style={{
@@ -37,8 +33,8 @@ export default function Chrildren({item, setShowModal, key}) {
           }}
           resizeMethod="resize"
         />
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 }
 

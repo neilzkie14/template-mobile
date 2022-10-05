@@ -92,10 +92,9 @@ export default function Settings() {
       </View>
       <View style={{ flex: 1, justifyContent: 'space-between' }}>
         <View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
+          <TouchableOpacity onPress={() => navigation.navigate('UserInformation')}  style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
             <Text style={{ fontSize: 16 }}>Personal Information</Text>
-            <TouchableOpacity 
-              onPress={() => navigation.navigate('UserInformation')} 
+            <View 
               style={{ padding: 5 }}>
               <Image
                 source={arrow}
@@ -107,12 +106,11 @@ export default function Settings() {
                 }}
                 resizeMethod="resize"
               />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('SecuritySettings')} style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
             <Text style={{ fontSize: 16 }}>Security</Text>
-            <TouchableOpacity 
-              onPress={() => navigation.navigate('SecuritySettings')}
+            <View 
               style={{ padding: 5 }}>
               <Image
                 source={arrow}
@@ -124,8 +122,8 @@ export default function Settings() {
                 }}
                 resizeMethod="resize"
               />
-            </TouchableOpacity>
-          </View>
+            </View>
+          </TouchableOpacity>
         </View>
         <View>
 
