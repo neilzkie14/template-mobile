@@ -33,6 +33,15 @@ export default function Header({lmsID,schoolID,setLmsID=()=>{},setSchoolID=()=>{
         />
       </View>
       <View style={{marginLeft: 10}}>
+        <Text
+          style={{
+            fontWeight: '700',
+            color: '#707070',
+            fontSize: 14,
+            paddingLeft: 10
+          }}>
+        { `${user?.first_name} ${user?.last_name}`}
+        </Text>
         <TouchableOpacity
           onPress={() => setShowModal(!showModal)}
           style={{
@@ -45,36 +54,21 @@ export default function Header({lmsID,schoolID,setLmsID=()=>{},setSchoolID=()=>{
             alignItems: 'center',
           }}>
           
-            {student == null || student == ''
-              ? 
-              <Text style={{fontSize: 12, color: '#000', fontWeight: '500'}}>
-                No student Selected
-              </Text>
-              : 
-              <>
-                <Text style={{fontSize: 12, color: '#000', fontWeight: '500'}}>
-              {`Parent of `}
-              </Text>
-              <Text style={{fontSize: 12, color: '#A3D063', fontWeight: '500'}}>
+          {student == null || student == ''
+            ? <Text style={{fontSize: 12, color: '#f01', fontWeight: '500', textDecorationLine:'underline' }}>
+              No Student Selected!
+            </Text>
+            : <Text style={{fontSize: 12, color: '#A3D063', fontWeight: '500'}}>
               {`${student?.user?.first_name}  ${student?.user?.last_name}`}
-                </Text>
-              </>
-              }
+            </Text>
+          }
           <Image
             source={arrow}
             resizeMode="contain"
             style={{width: width / 30, height: width / 30, marginLeft: 20}}
           />
         </TouchableOpacity>
-        <Text
-          style={{
-            fontWeight: '700',
-            color: '#707070',
-            fontSize: 14,
-            paddingLeft: 10
-          }}>
-          {`${user?.first_name} ${user?.last_name}`}
-        </Text>
+
       </View>
       <StudentModalSelection
         lmsID={lmsID}

@@ -8,7 +8,7 @@ import profile from '../../../../images/profile.png'
 export default function Chrildren({item, setShowModal, key}) {
   const navigation = useContext(NavigationContext);
   return (
-    <View key={key} style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
+    <View key={key} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Image
           source={profile}

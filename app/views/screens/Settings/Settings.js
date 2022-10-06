@@ -90,9 +90,8 @@ export default function Settings() {
           </Text>
         </View>
       </View>
-      <View style={{ flex: 1, justifyContent: 'space-between' }}>
-        <View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
+        <View style={{padding: 20}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <Text style={{ fontSize: 16 }}>Personal Information</Text>
             <TouchableOpacity 
               onPress={() => navigation.navigate('UserInformation')} 
@@ -109,7 +108,8 @@ export default function Settings() {
               />
             </TouchableOpacity>
           </View>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
+
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',  }}>
             <Text style={{ fontSize: 16 }}>Security</Text>
             <TouchableOpacity 
               onPress={() => navigation.navigate('SecuritySettings')}
@@ -126,45 +126,26 @@ export default function Settings() {
               />
             </TouchableOpacity>
           </View>
-        </View>
-        <View>
 
-          <Text style={{ fontSize: 16, fontWeight: '500', color: '#707070', paddingHorizontal: 15 }}>
-            Children
-          </Text>
-          {students.length <= 0 ? (
-            <View style={{ flex: 1, justifyContents: 'center' }}>
-              <Text>No Students</Text>
-            </View>
-          ) : (
-            <View>
+        {students.length != 0 &&
+          <View style={{borderBottomWidth: 1, borderBottomColor: '#aaa', paddingTop: 5}}>
+            <Text style={{ fontSize: 16, color: '#707070', fontWeight: 'bold' }}>Children</Text>
+            <View style={{paddingVertical: 10}}>
               {students?.map((item, key) => {
-                console.log({ item, student })
-                return (
-                  <>
-                    <Chrildren key={key} item={item} setShowModal={setShowModal} />
-                  </>
-                );
-              })
+                return <Chrildren key={key} item={item} setShowModal={setShowModal} />;
+                })
               }
             </View>
-          )}
-        </View>
+          </View>
+        }
         <View style={{ paddingHorizontal: 5, marginBottom: 100 }}>
           <TouchableOpacity
             onPress={() => showAlert()}
-            style={{
-              padding: 10,
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 5,
-              backgroundColor: '#2E3192',
-            }}>
-            <Text style={{ fontSize: 16, fontWeight: '600', color: '#fff' }}>
-              Log out
-            </Text>
+            style={{ paddingTop: 20}}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold'}}>Log out</Text>
           </TouchableOpacity>
         </View>
+
       </View>
     </View>
   );
