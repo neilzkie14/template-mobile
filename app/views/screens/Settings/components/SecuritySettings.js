@@ -49,13 +49,11 @@ export default function SecuritySettings({ }) {
           </Text>
         </View>
       </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
+      <TouchableOpacity onPress={() => navigation.navigate('PasswordScreen')} style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Text style={{ fontSize: 16, paddingLeft: 10 }}>{'Password'}</Text>
         </View>
-        <TouchableOpacity 
-              onPress={() => navigation.navigate('PasswordScreen')}
-              style={{ padding: 5 }}>
+        <View style={{ padding: 5 }}>
           <Image
             source={arrow}
             style={{
@@ -66,8 +64,8 @@ export default function SecuritySettings({ }) {
             }}
             resizeMethod="resize"
           />
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
