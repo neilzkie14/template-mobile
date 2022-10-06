@@ -18,6 +18,7 @@ import Index from '../app/views/screens/Ontraq/Index';
 import OntraqInOutScreen from '../app/views/screens/Ontraq/components/OntraqInOutScreen.';
 import Osiris from '../app/views/screens/Osiris/Osiris';
 import Registration from '../app/views/screens/Registration/Registration';
+import StudentSelection from '../app/components/StudentModalSelection';
 import { StudentContext } from '../app/context/StudentContext';
 const {width} = Dimensions.get('screen');
 
@@ -262,6 +263,15 @@ export default function Routes() {
           component={OntraqInOutScreen}
           options={{
             title: 'OntraqInOutScreen',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="StudentSelection"
+          component={StudentSelection}
+          options={{
+            title: 'StudentSelection',
             headerShown: false,
             gestureEnabled: false,
           }}

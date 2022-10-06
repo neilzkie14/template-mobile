@@ -15,140 +15,127 @@ import Student from '../api/Student';
 import {StudentContext} from '../context/StudentContext';
 import { UserContext } from '../context/UserContext';
 import Loader from './Loader';
+import {getParams} from '../utils/navigation_helper';
 const {width} = Dimensions.get('screen');
 
-export default function StudentModalSelection({
-  modalVisible,
-  onRequestClose,
-  onCloseModal,
-  setShowModal,
-  showModal,
-  lmsID,
-  schoolID,
-  setLmsID,
-  setSchoolID
-}) {
+export default function StudentModalSelection() {
   const [loading, setLoading] = useState(false);
   const navigation = useContext(NavigationContext);
+  const params = getParams(navigation);
   const studentContext = useContext(StudentContext);
   const {setStudent, students, student, refreshStudent} = studentContext.data;
   const userContext = useContext(UserContext);
   const {refreshUser} = userContext.data;
 
   return (
-    <View>
-      <Modal
-        animationType="slide"
-        visible={modalVisible}
-        onRequestClose={onRequestClose}>
-        <SafeAreaView style={{flex: 1}}>
-          <View style={{padding: 10, flex: 1}}>
-            <ScrollView
-              refreshControl={
-                <RefreshControl
-                  refreshing={loading}
-                  onRefresh={() => refreshStudent()}
-                />
-              }
-              >
-              <TouchableOpacity
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <SafeAreaView style={{flex: 1}}>
+        <View style={{padding: 10, flex: 1}}>
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                onRefresh={() => refreshStudent()}
+              />
+            }
+            >
+            <TouchableOpacity
+              style={{
+                borderBottomWidth: 1,
+                borderBottomColor: '#f0f0f0',
+                padding: 10
+              }}>
+              <View
                 style={{
-                  borderBottomWidth: 1,
-                  borderBottomColor: '#f0f0f0',
-                  padding: 10
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
                 }}>
-                <View
+                <Text
                   style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                  }}>
-                  <Text
-                    style={{
-                      color: '#A3D063',
-                      fontWeight: 'bold',
-                      fontSize: 14,
-                      width: width / 2,
-                    }}
-                    numberOfLines={1}>
-                    Students
-                  </Text>
-                </View>
-              </TouchableOpacity>
-              <View style={{flex: 1, backgroundColor: '#fff', marginTop: 10}}>
-                {students.length <= 0 ? (
-                  <View style={{flex: 1, justifyContents: 'center'}}>
-                    <Text>No Students</Text>
-                  </View>
-                ) : (
-                  <View>
-                    {students?.map((item, key) => {
-                      return (
-                        <View key={key} style={{padding: 5, }}>
-                          <TouchableOpacity
-                            onPress={() => {
-                              setStudent(item);
-                              onCloseModal();
-                              setLmsID(item?.user?.lms_id);
-                              setSchoolID(item?.user?.lms_school_code);
-                              refreshUser()
-                            }}
-                            style={{
-                              backgroundColor: student?.id == item?.id ? '#ecffd1' : '#fff',
-                              shadowColor: '#000',
-                              shadowOffset: {
-                                width: 0,
-                                height: 2,
-                              },
-                              shadowOpacity: 0.25,
-                              shadowRadius: 3.84,
-
-                              elevation: 5,
-                              padding: 10,
-                              borderRadius: 10,
-                              marginBottom: 10,
-                            }}>
-                            <Text>{`Name: ${item?.user?.first_name} ${item?.user?.last_name}`}</Text>
-                            <Text>{`Email: ${item?.user?.email}`}</Text>
-                            <Text>{`Student Number: ${item?.student_no}`}</Text>
-                          </TouchableOpacity>
-                        </View>
-                      );
-                    })
-                    }
-                  </View>
-                )}
+                    color: '#A3D063',
+                    fontWeight: 'bold',
+                    fontSize: 14,
+                    width: width / 2,
+                  }}
+                  numberOfLines={1}>
+                  Students
+                </Text>
               </View>
-            </ScrollView>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('AddStudent')}
-              style={{
-                backgroundColor: '#A3D063',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 15,
-                borderRadius: 10,
-                marginBottom: 10,
-              }}>
-              <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 14}}>
-                Add Student
-              </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={onCloseModal}
-              style={{
-                backgroundColor: 'gray',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 15,
-                borderRadius: 10,
-              }}>
-              <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 14}}>
-                Close
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </SafeAreaView>
-      </Modal>
+            <View style={{flex: 1, backgroundColor: '#fff', marginTop: 10}}>
+              {students.length <= 0 ? (
+                <View style={{flex: 1, justifyContents: 'center'}}>
+                  <Text>No Students</Text>
+                </View>
+              ) : (
+                <View>
+                  {students?.map((item, key) => {
+                    return (
+                      <View key={key} style={{padding: 5, }}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            setStudent(item);
+                            params?.setLmsID(item?.user?.lms_id);
+                            params?.setSchoolID(item?.user?.lms_school_code);
+                            refreshUser(); 
+                            navigation.goBack()
+                          }}
+                          style={{
+                            backgroundColor: student?.id == item?.id ? '#ecffd1' : '#fff',
+                            shadowColor: '#000',
+                            shadowOffset: {
+                              width: 0,
+                              height: 2,
+                            },
+                            shadowOpacity: 0.25,
+                            shadowRadius: 3.84,
+
+                            elevation: 5,
+                            padding: 10,
+                            borderRadius: 10,
+                            marginBottom: 10,
+                          }}>
+                          <Text>{`Name: ${item?.user?.first_name} ${item?.user?.last_name}`}</Text>
+                          <Text>{`Email: ${item?.user?.email}`}</Text>
+                          <Text>{`Student Number: ${item?.student_no}`}</Text>
+                        </TouchableOpacity>
+                      </View>
+                    );
+                  })
+                  }
+                </View>
+              )}
+            </View>
+          </ScrollView>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('AddStudent')}
+            style={{
+              backgroundColor: '#A3D063',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: 15,
+              borderRadius: 10,
+              marginBottom: 10,
+            }}>
+            <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 14}}>
+              Add Student
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={{
+              backgroundColor: 'gray',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: 15,
+              borderRadius: 10,
+            }}>
+            <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 14}}>
+              Close
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
       {loading && <Loader />}
     </View>
   );
