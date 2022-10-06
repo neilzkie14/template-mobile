@@ -70,8 +70,8 @@ export default function OntraqInOutScreen() {
         <ScrollView>
           <View>
             {room?.length <= 0 ? (
-              <View style = {{ padding: 20, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>No Entry</Text>
+              <View style = {{  justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{fontWeight: 'bold', color: '#aaa', fontSize: 20,}}>There is no entry as of now</Text>
               </View>
             ) : (
               <View>

@@ -29,6 +29,7 @@ export default function Home() {
     <View style={{flex: 1, marginBottom: 60}}>
       <Header/>
       <ScrollView
+        contentContainerStyle={{flex: 1, justifyContent: 'center', alignContent: 'center'}}
         refreshControl={
           <RefreshControl
             refreshing={loading}
@@ -37,8 +38,8 @@ export default function Home() {
         }>
         <View>
           {messages.length <= 0 ? (
-            <View style = {{ flex: 1, justifyContent: 'center', padding: 20, alignItems: 'center' }}>
-              <Text>No Messages</Text>
+            <View style = {{ justifyContent: 'center', padding: 20, alignItems: 'center' }}>
+              <Text style={{fontWeight: 'bold', color: '#aaa', fontSize: 20,}}>There is no announcements as of now</Text>
             </View>
           ) : (
             <View style={{padding: 5, flex: 1}}>

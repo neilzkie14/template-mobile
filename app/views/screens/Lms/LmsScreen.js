@@ -232,29 +232,40 @@ export default function Home() {
     getFeedLMS(lmsID,schoolID);
   }, [student]);
 
+  console.log({feedData})
+
   return (
     <View style={{flex: 1, marginBottom: 60}}>
       <Header setlmsID={()=>setLmsID()} setSchoolID={()=>setSchoolID()} lmsID={lmsID} schoolID={schoolID} />
       <ScrollView
+        contentContainerStyle={{flex: 1, justifyContent: 'center', alignContent: 'center'}}
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={() => getFeedLMS()} />
         }>
         <View style={{flex: 1, paddingVertical: 5}}>
           <ScrollView>
-            <View>
-              <AccordionList
-                list={title}
-                header={announcementHead}
-                body={announcementBody}
-                expandedKey={0}
-              />
+              {feedData?.length == 0 ?
+                <View style = {{ justifyContent: 'center', padding: 20, alignItems: 'center' }}>
+                  <Text style={{fontWeight: 'bold', color: '#aaa', fontSize: 20,}}>There is no data to display as of now</Text>
+                </View> :
+                feedData?.length == 0 ? <AccordionList
+                    list={title}
+                    body={announcementBody}
+                    expandedKey={0}
+                  />
+                : <AccordionList
+                    list={title}
+                    header={announcementHead}
+                    body={announcementBody}
+                    expandedKey={0}
+                  />
+              }
               <AccordionList
                 list={classes}
                 header={_head}
                 body={_body}
                 expandedKey={1}
               />
-            </View>
           </ScrollView>
         </View>
       </ScrollView>
