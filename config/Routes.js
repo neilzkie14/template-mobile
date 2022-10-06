@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text, Image, Dimensions} from 'react-native';
+import React, {useContext} from 'react';
+import {Image, Dimensions} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -18,6 +18,7 @@ import Index from '../app/views/screens/Ontraq/Index';
 import OntraqInOutScreen from '../app/views/screens/Ontraq/components/OntraqInOutScreen.';
 import Osiris from '../app/views/screens/Osiris/Osiris';
 import Registration from '../app/views/screens/Registration/Registration';
+import { StudentContext } from '../app/context/StudentContext';
 const {width} = Dimensions.get('screen');
 
 const Stack = createStackNavigator();
@@ -34,6 +35,9 @@ const settings_icon = require('../app/images/settings2.png');
 const osiris_icon = require('../app/images/osiris-icon.png');
 
 const MyTabs = () => {
+
+  const studentContext = useContext(StudentContext);
+  const {student} = studentContext.data;
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -69,66 +73,72 @@ const MyTabs = () => {
           },
         }}
       />
-      <Tab.Screen
-        name={LmsName}
-        component={Lms}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({size, focused, color}) => {
-            return (
-              <Image
-                resizeMode="contain"
-                style={{
-                  width: width / 15,
-                  height: width / 15,
-                  tintColor: focused ? '#A3D063' : 'gray',
-                }}
-                source={book}
-              />
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name={OntraqName}
-        component={Index}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({size, focused, color}) => {
-            return (
-              <Image
-                resizeMode="contain"
-                style={{
-                  width: width / 15,
-                  height: width / 15,
-                  tintColor: focused ? '#A3D063' : 'gray',
-                }}
-                source={step}
-              />
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name={osiris}
-        component={Osiris}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({size, focused, color}) => {
-            return (
-              <Image
-                resizeMode="contain"
-                style={{
-                  width: width / 15,
-                  height: width / 15,
-                  tintColor: focused ? '#A3D063' : 'gray',
-                }}
-                source={osiris_icon}
-              />
-            );
-          },
-        }}
-      />
+      {student &&
+        <Tab.Screen
+          name={LmsName}
+          component={Lms}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({size, focused, color}) => {
+              return (
+                <Image
+                  resizeMode="contain"
+                  style={{
+                    width: width / 15,
+                    height: width / 15,
+                    tintColor: focused ? '#A3D063' : 'gray',
+                  }}
+                  source={book}
+                />
+              );
+            },
+          }}
+        />
+      }
+      {student &&
+        <Tab.Screen
+          name={OntraqName}
+          component={Index}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({size, focused, color}) => {
+              return (
+                <Image
+                  resizeMode="contain"
+                  style={{
+                    width: width / 15,
+                    height: width / 15,
+                    tintColor: focused ? '#A3D063' : 'gray',
+                  }}
+                  source={step}
+                />
+              );
+            },
+          }}
+        />
+      }
+      {student &&
+        <Tab.Screen
+          name={osiris}
+          component={Osiris}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({size, focused, color}) => {
+              return (
+                <Image
+                  resizeMode="contain"
+                  style={{
+                    width: width / 15,
+                    height: width / 15,
+                    tintColor: focused ? '#A3D063' : 'gray',
+                  }}
+                  source={osiris_icon}
+                />
+              );
+            },
+          }}
+        />
+      }
       <Tab.Screen
         name={settings}
         component={Settings}
