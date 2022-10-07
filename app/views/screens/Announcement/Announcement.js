@@ -12,27 +12,25 @@ import {
 import AnnouncementItem from './components/AnnouncementItem';
 import {UserContext} from '../../../context/UserContext';
 const {width} = Dimensions.get('screen');
-export default function Announcement({
-}) {
+export default function Announcement({}) {
   const userContext = useContext(UserContext);
   const [announcements, setAnnouncements] = useState([]);
   const {user} = userContext.data;
 
   return (
     <View style={{padding: 5}}>
-        {announcements?.map((item, index) => {
-            return (
-              <AnnouncementItem
-                key={index}
-                date={item?.date}
-                title={item?.title}
-                message={item?.message}
-              />
-            );
-          })}
+      {announcements?.map((item, index) => {
+        return (
+          <AnnouncementItem
+            key={index}
+            date={item?.date}
+            title={item?.title}
+            message={item?.message}
+          />
+        );
+      })}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});
