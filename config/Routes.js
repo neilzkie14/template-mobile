@@ -19,7 +19,7 @@ import OntraqInOutScreen from '../app/views/screens/Ontraq/components/OntraqInOu
 import Osiris from '../app/views/screens/Osiris/Osiris';
 import Registration from '../app/views/screens/Registration/Registration';
 import StudentSelection from '../app/components/StudentModalSelection';
-import { StudentContext } from '../app/context/StudentContext';
+import {StudentContext} from '../app/context/StudentContext';
 const {width} = Dimensions.get('screen');
 
 const Stack = createStackNavigator();
@@ -36,7 +36,6 @@ const settings_icon = require('../app/images/settings2.png');
 const osiris_icon = require('../app/images/osiris-icon.png');
 
 const MyTabs = () => {
-
   const studentContext = useContext(StudentContext);
   const {student} = studentContext.data;
   return (
@@ -74,7 +73,7 @@ const MyTabs = () => {
           },
         }}
       />
-      {student &&
+      {/* {student &&
         <Tab.Screen
           name={LmsName}
           component={Lms}
@@ -95,8 +94,8 @@ const MyTabs = () => {
             },
           }}
         />
-      }
-      {student &&
+      } */}
+      {student && (
         <Tab.Screen
           name={OntraqName}
           component={Index}
@@ -117,8 +116,8 @@ const MyTabs = () => {
             },
           }}
         />
-      }
-      {student &&
+      )}
+      {/* {student &&
         <Tab.Screen
           name={osiris}
           component={Osiris}
@@ -139,7 +138,7 @@ const MyTabs = () => {
             },
           }}
         />
-      }
+      } */}
       <Tab.Screen
         name={settings}
         component={Settings}
