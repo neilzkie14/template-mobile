@@ -8,19 +8,17 @@ import {
   Text,
 } from 'react-native';
 import profile from '../images/profile.png';
-import menu from '../images/menu.png';
 import arrow from '../images/arrow.png';
-import arrowUp from '../images/arrow-up.png';
 import {UserContext} from '../context/UserContext';
-import StudentModalSelection from './StudentModalSelection';
 import {StudentContext} from '../context/StudentContext';
+import {NavigationContext} from '@react-navigation/native';
 
 const {width} = Dimensions.get('screen');
 export default function Header({lmsID,schoolID,setLmsID=()=>{},setSchoolID=()=>{}}) {
   const userContext = useContext(UserContext);
   const studentContext = useContext(StudentContext);
   const {student} = studentContext.data;
-  const [showModal, setShowModal] = useState(false);
+  const navigation = useContext(NavigationContext);
   const {user} = userContext.data;
   
   return (
@@ -43,7 +41,12 @@ export default function Header({lmsID,schoolID,setLmsID=()=>{},setSchoolID=()=>{
         { `${user?.first_name} ${user?.last_name}`}
         </Text>
         <TouchableOpacity
-          onPress={() => setShowModal(!showModal)}
+          onPress={() => navigation.navigate('StudentSelection', {
+            lmsID,
+            schoolID,
+            setLmsID,
+            setSchoolID,
+          })}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
@@ -70,14 +73,6 @@ export default function Header({lmsID,schoolID,setLmsID=()=>{},setSchoolID=()=>{
         </TouchableOpacity>
 
       </View>
-      <StudentModalSelection
-        lmsID={lmsID}
-        schoolID={schoolID}
-        setLmsID={() => setLmsID}
-        setSchoolID={() => setSchoolID}
-        onCloseModal={() => setShowModal(!showModal)}
-        modalVisible={showModal}
-      />
     </View>
   );
 }

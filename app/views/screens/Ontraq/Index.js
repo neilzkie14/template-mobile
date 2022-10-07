@@ -34,8 +34,8 @@ export default function Index() {
     <View style={{flex: 1}}>
       <Header />
       <View style={{padding: 10, flex: 1}}>
-         {/* <Calendar onPress={() => setToggleCalendar(!toggleCalendar)}/> */}
-         <OntraqInOutScreen />
+         <Calendar onPress={() => setToggleCalendar(!toggleCalendar)}/>
+         {/* <OntraqInOutScreen /> */}
       </View>
     </View>
   );

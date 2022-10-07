@@ -19,16 +19,22 @@ export default function OntraqInOutScreen() {
   const [attendances, setAttendances] = useState([]);
   const [room, setRoom] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log({params});
 
-  const getStundentAttenance = async () => {
+  const getStudentAttendance = async () => {
     if (student != null) {
       setLoading(true);
       let response = await new Student().getStudentAttendance(student?.id);
       if (response.ok) {
         console.log({response});
-        let data = response?.data?.venue_attendances?.map(item => item?.venue);
-        setAttendances(response?.data?.venue_attendances);
+        const attendances = response?.data?.venue_attendances.filter(item => {
+          return (
+            moment(item?.created_at).format('YYYY-MM-DD') ==
+            moment(params.item).format('YYYY-MM-DD')
+          );
+        });
+
+        let data = attendances?.map(item => item?.venue);
+        setAttendances(attendances);
         let uniqueData = [];
         data.forEach(item => {
           let isUnique = true;
@@ -41,6 +47,7 @@ export default function OntraqInOutScreen() {
             uniqueData.push(item);
           }
         });
+        console.log({uniqueData});
         setRoom(uniqueData);
       } else {
         alert('Something went wrong in fetching student attendance');
@@ -49,29 +56,24 @@ export default function OntraqInOutScreen() {
     }
   };
 
-  // const sampledata = () => {
-  //   created_at >= selectedDate && created_at <= selectedDate + 1.day
-  //   let temp_room = room.filter(item =>moment(item.created_at).format('MMMM Do YYYY, h:mm:ss a') == moment(params.item).format('MMMM Do YYYY, h:mm:ss a'))
-  //   return console.log({temp_room})
-  // }
-
   useEffect(() => {
-    getStundentAttenance();
+    getStudentAttendance();
   }, [student]);
 
   return (
     <View style={{flex: 1}}>
-      {/* <OntraqHeader
+      <OntraqHeader
         onBackPress={() => navigation.goBack(null)}
         title={params.item}
-      /> */}
+      />
       <View style={{flex: 1, padding: 10}}>
-        {/* <OntraqSwitchComponent active={active} setActive={setActive} /> */}
         <ScrollView>
           <View>
             {room?.length <= 0 ? (
-              <View style = {{  justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{fontWeight: 'bold', color: '#aaa', fontSize: 20,}}>There is no entry as of now</Text>
+              <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <Text style={{fontWeight: 'bold', color: '#aaa', fontSize: 20}}>
+                  There is no entry as of now
+                </Text>
               </View>
             ) : (
               <View>
@@ -160,9 +162,7 @@ export default function OntraqInOutScreen() {
           </View>
         </ScrollView>
       </View>
-      {
-        loading && <Loader/>
-      }
+      {loading && <Loader />}
     </View>
   );
 }

@@ -24,20 +24,6 @@ export default function Calendar() {
     'November',
     'December',
   ];
-  const temp_data = [
-    {
-      date: 'April 01',
-      day: 'Monday',
-    },
-    {
-      date: 'April 01',
-      day: 'Monday',
-    },
-    {
-      date: 'April 01',
-      day: 'Monday',
-    },
-  ];
   const last_date = new Date(year, month + 1, 0).getDate();
   const days = [...Array(last_date).keys()].map(i => i + 1);
   return (
@@ -66,7 +52,9 @@ export default function Calendar() {
             />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => {setOpenMonth(!openMonth), setOpenDays(false)}}
+            onPress={() => {
+              setOpenMonth(!openMonth), setOpenDays(false);
+            }}
             style={{justifyContent: 'center', alignItems: 'center'}}>
             <Text
               style={{
@@ -84,23 +72,28 @@ export default function Calendar() {
             <Image
               source={require('../../../../images/calendar_arrow.png')}
               resizeMode="contain"
-              style={{width: width / 25, height: width / 25, tintColor: openMonth ? '#2e3192' : '#fff'}}
+              style={{
+                width: width / 25,
+                height: width / 25,
+                tintColor: openMonth ? '#2e3192' : '#fff',
+              }}
             />
           </TouchableOpacity>
         </View>
-        {openMonth && 
         <View
           style={{
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'space-between',
             backgroundColor: '#fff',
-            padding: 5
+            padding: 5,
           }}>
           {months.map((item, key) => {
             return (
               <TouchableOpacity
-                onPress={() => {setMonth(key), setOpenDays(true)}}
+                onPress={() => {
+                  setMonth(key), setOpenDays(true);
+                }}
                 key={key}
                 style={{
                   width: width / 4,
@@ -123,53 +116,50 @@ export default function Calendar() {
             );
           })}
         </View>
-        }
       </View>
-      {openMonth && openDays &&
-        <View style = {{ height: height/1.9 }}>
-          <ScrollView>
-            <View>
-              {days.map((item, key) => {
-                const tempDate = new Date(year, month, item);
-                return (
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate('OntraqInOutScreen', {
-                        item: tempDate.toDateString(),
-                      })
-                    }
-                    key={key}
+      <View style={{marginTop: 4}}>
+        <ScrollView>
+          <View>
+            {days.map((item, key) => {
+              const tempDate = new Date(year, month, item);
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('OntraqInOutScreen', {
+                      item: tempDate.toDateString(),
+                    })
+                  }
+                  key={key}
+                  style={{
+                    padding: 20,
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    borderBottomWidth: 0.5,
+                    borderColor: '#cccccc',
+                    backgroundColor: '#fff',
+                  }}>
+                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text style={{fontWeight: '700', fontSize: 12}}>
+                      {tempDate.toDateString()}
+                    </Text>
+                  </View>
+                  <Image
+                    source={require('../../../../images/arrow-up.png')}
+                    resizeMode="contain"
                     style={{
-                      padding: 20,
-                      alignItems: 'center',
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      borderBottomWidth: 0.5,
-                      borderColor: '#cccccc',
-                      backgroundColor: '#fff',
-                    }}>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                      <Text style={{fontWeight: '700', fontSize: 15}}>
-                        {tempDate.toDateString()}
-                      </Text>
-                    </View>
-                    <Image
-                      source={require('../../../../images/arrow-up.png')}
-                      resizeMode="contain"
-                      style={{
-                        width: width / 17,
-                        height: width / 17,
-                        tintColor: '#707070',
-                        transform: [{rotate: '90deg'}],
-                      }}
-                    />
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </ScrollView>
-        </View>
-      }
+                      width: 16,
+                      height: 16,
+                      tintColor: '#707070',
+                      transform: [{rotate: '90deg'}],
+                    }}
+                  />
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        </ScrollView>
+      </View>
     </View>
   );
 }

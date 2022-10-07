@@ -52,9 +52,9 @@ export default function Registration() {
   };
 
   return (
-    <KeyboardAvoidingView style={{flex: 1}} behavior={'height'}>
-      <View style={{flex: 1, backgroundColor: 'white'}}>
-        <ScrollView>
+    <KeyboardAvoidingView style={{flex: 1}} behavior={'position'}>
+      <ScrollView>
+        <View style={{flex: 1, backgroundColor: 'white'}}>
           <View
             style={{
               flex: 1,
@@ -163,9 +163,9 @@ export default function Registration() {
 
             <SubmitButton onPress={handleSubmit(onSubmit)} label="REGISTER" />
           </View>
-        </ScrollView>
+        </View>
         {loader && <Loader />}
-      </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
