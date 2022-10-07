@@ -61,12 +61,11 @@ export default function OntraqInOutScreen() {
 
   return (
     <View style={{flex: 1}}>
-      {/* <OntraqHeader
+      <OntraqHeader
         onBackPress={() => navigation.goBack(null)}
         title={params.item}
-      /> */}
+      />
       <View style={{flex: 1, padding: 10}}>
-        {/* <OntraqSwitchComponent active={active} setActive={setActive} /> */}
         <ScrollView>
           <View>
             {room?.length <= 0 ? (
