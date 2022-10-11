@@ -63,8 +63,8 @@ const MyTabs = () => {
               <Image
                 resizeMode="contain"
                 style={{
-                  width: width / 15,
-                  height: width / 15,
+                  width: 25,
+                  height: 25,
                   tintColor: focused ? '#A3D063' : 'gray',
                 }}
                 source={megaphone}
@@ -84,8 +84,8 @@ const MyTabs = () => {
                 <Image
                   resizeMode="contain"
                   style={{
-                    width: width / 15,
-                    height: width / 15,
+                    width: 25,
+                    height: 25,
                     tintColor: focused ? '#A3D063' : 'gray',
                   }}
                   source={book}
@@ -106,8 +106,8 @@ const MyTabs = () => {
                 <Image
                   resizeMode="contain"
                   style={{
-                    width: width / 15,
-                    height: width / 15,
+                    width: 25,
+                    height: 25,
                     tintColor: focused ? '#A3D063' : 'gray',
                   }}
                   source={step}
@@ -128,8 +128,8 @@ const MyTabs = () => {
                 <Image
                   resizeMode="contain"
                   style={{
-                    width: width / 15,
-                    height: width / 15,
+                    width: 25,
+                    height: 25,
                     tintColor: focused ? '#A3D063' : 'gray',
                   }}
                   source={osiris_icon}
@@ -149,8 +149,8 @@ const MyTabs = () => {
               <Image
                 resizeMode="contain"
                 style={{
-                  width: width / 15,
-                  height: width / 15,
+                  width: 25,
+                  height: 25,
                   tintColor: focused ? '#A3D063' : 'gray',
                 }}
                 source={settings_icon}

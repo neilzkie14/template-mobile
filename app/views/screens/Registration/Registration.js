@@ -52,7 +52,7 @@ export default function Registration() {
   };
 
   return (
-    <KeyboardAvoidingView style={{flex: 1}} behavior={'position'}>
+    <KeyboardAvoidingView style={{flex: 1}} behavior={'height'} keyboardVerticalOffset={30}>
       <ScrollView>
         <View style={{flex: 1, backgroundColor: 'white'}}>
           <View
