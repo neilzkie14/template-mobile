@@ -27,7 +27,7 @@ export default function Calendar() {
   const last_date = new Date(year, month + 1, 0).getDate();
   const days = [...Array(last_date).keys()].map(i => i + 1);
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View>
         <View
           style={{
@@ -117,7 +117,7 @@ export default function Calendar() {
           })}
         </View>
       </View>
-      <View style={{marginTop: 4}}>
+      <View style={{marginTop: 4, flex: 1, marginBottom: 50}}>
         <ScrollView>
           <View>
             {days.map((item, key) => {
