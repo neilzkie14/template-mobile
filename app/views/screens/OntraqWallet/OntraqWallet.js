@@ -7,13 +7,16 @@ import TransactionItem from './components/TransactionItem';
 import qrIcon from '../../../images/qrcode-wallet.png'
 import Button from './components/Button';
 import Header from '../../../components/Header';
+import Loader from '../../../components/Loader';
 
 export default function OntraqWallet() {
   const studentContext = useContext(StudentContext);
   const {student} = studentContext.data;
   const [transaction, setTransaction] = useState(null);
+  const [loader, setLoader] = useState(false);
 
   const getWallet = async () => {
+    setLoader(true)
     let res = await new OntraqWalletAPI().getTransactions(student?.student_no);
     console.log(JSON.stringify(res));
     if (res.ok) {
@@ -21,6 +24,7 @@ export default function OntraqWallet() {
     } else {
       alert('Something went wrong');
     }
+    setLoader(false)
   };
 
   useEffect(() => {
@@ -95,6 +99,7 @@ export default function OntraqWallet() {
           })}
         </View>
       </ScrollView>
+    {loader && <Loader />}
     </View>
   );
 }
