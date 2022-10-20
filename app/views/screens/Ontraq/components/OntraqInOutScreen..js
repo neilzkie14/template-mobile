@@ -1,6 +1,6 @@
 import {NavigationContext} from '@react-navigation/native';
 import React, {useContext, useState, useEffect} from 'react';
-import {View, Text, ScrollView, Dimensions, Image} from 'react-native';
+import {View, Text, ScrollView, Dimensions, Image, StyleSheet} from 'react-native';
 import {getParams} from '../../../../utils/navigation_helper';
 import OntraqHeader from './OntraqHeader';
 import OntraqSwitchComponent from './OntraqSwitchComponent';
@@ -61,18 +61,26 @@ export default function OntraqInOutScreen() {
   }, [student]);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1,}}>
       <OntraqHeader
         onBackPress={() => navigation.goBack(null)}
         title={params.item}
       />
-      <View style={{flex: 1, padding: 10}}>
+      <View style={{flex: 1, padding: 10, backgroundColor: '#fff', marginTop: 5}}>
         <ScrollView>
           <View>
             {room?.length <= 0 ? (
-              <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <Text style={{fontWeight: 'bold', color: '#aaa', fontSize: 20}}>
-                  There is no entry as of now
+              <View
+              style={{
+                padding: 30,
+                backgroundColor: '#fff',
+                marginTop: 30,
+                borderRadius: 10,
+                borderWidth: StyleSheet.hairlineWidth,
+                borderColor: 'gray'
+              }}>
+                <Text style={{textAlign: 'center',fontWeight: 'bold', color: '#000', fontSize: 12}}>
+                  No Entries
                 </Text>
               </View>
             ) : (
@@ -85,6 +93,9 @@ export default function OntraqInOutScreen() {
                         padding: 10,
                         backgroundColor: '#fff',
                         marginTop: 30,
+                        borderRadius: 10,
+                        borderWidth: StyleSheet.hairlineWidth,
+                        borderColor: 'gray'
                       }}>
                       <View
                         style={{
@@ -123,10 +134,9 @@ export default function OntraqInOutScreen() {
                                     style={{
                                       fontSize: 12,
                                       color: '#C5C5C5',
-                                      fontWeight: '600',
                                     }}>
                                     {`${moment(item.created_at).format(
-                                      'MMMM DD YYYY, h:mm:ss a',
+                                      'h:mm A',
                                     )}  |  `}{' '}
                                     <Text
                                       style={{color: '#2E3192', fontSize: 14}}>
@@ -139,10 +149,9 @@ export default function OntraqInOutScreen() {
                                     style={{
                                       fontSize: 12,
                                       color: '#C5C5C5',
-                                      fontWeight: '600',
                                     }}>
                                     {`${moment(item.created_at).format(
-                                      'MMMM DD YYYY, h:mm:ss a',
+                                      'h:mm A',
                                     )}  |  `}{' '}
                                     <Text style={{color: 'red', fontSize: 14}}>
                                       {' '}
