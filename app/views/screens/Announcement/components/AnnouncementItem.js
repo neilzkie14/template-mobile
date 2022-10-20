@@ -40,22 +40,35 @@ export default function AnnouncementItem({
         backgroundColor: data.read_status == 'unread' ? '#2E319222' : '#fff',
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 12,
         marginBottom: 5,
+        borderWidth: StyleSheet.hairlineWidth,
+        borderColor: '#EBE4E4', 
+        marginHorizontal: 32,
+        marginVertical: 12,
+        borderRadius: 15,
       }}>
-      <View>
+      <View style={{flexDirection: 'row'}}>
+        <View style={{alignItems: 'center', paddingRight: 20, marginHorizontal: 20, borderRightWidth: StyleSheet.hairlineWidth, width: 80, paddingVertical: 8, borderColor: '#EBE4E4'}}>
+          <Text style={{fontSize: 24, color: '#17254A', fontWeight: 'bold'}}>
+            {moment(date).format('MMM')}
+          </Text>
+          <Text style={{fontSize: 24, color: '#17254A', fontWeight: 'bold'}}>
+            {moment(date).format('DD')}
+          </Text>
+          <Text style={{fontSize: 12, color: '#17254A'}}>
+            {moment(date).format('h:mm a')}
+          </Text>
+        </View>
         <Text
           style={{
             fontSize: 15,
-            color: 'black',
+            color: '#17254A',
             fontWeight: 'bold',
+            width: 200,
+            paddingVertical: 8,
           }}
           numberOfLines={1}>
           {title}
-        </Text>
-        <Text style={{fontSize: 12, marginTop: 4, color: '#BCBCBC'}}>
-          {moment(date).startOf().fromNow()}
         </Text>
       </View>
 
