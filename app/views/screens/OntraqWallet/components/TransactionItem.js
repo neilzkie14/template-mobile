@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import { currencyFormat } from '../../../../utils/MoneyConverter';
+import {currencyFormat} from '../../../../utils/MoneyConverter';
 
 export default function TransactionItem({item}) {
   return (
@@ -15,7 +15,7 @@ export default function TransactionItem({item}) {
       }}>
       <View style={{flex: 1}}>
         <Text style={{color: '#B7B7B7'}}>
-          {item.transaction_type == 'credit'
+          {item.transaction_type == 'debit'
             ? 'Send money to'
             : 'Received money from'}
         </Text>
@@ -37,7 +37,7 @@ export default function TransactionItem({item}) {
           style={{
             fontSize: 24,
             fontWeight: 'bold',
-            color: item.transaction_type == 'credit' ? '#FF0000' : '#A3D063',
+            color: item.transaction_type == 'debit' ? '#FF0000' : '#A3D063',
           }}>
           ₱ {currencyFormat(parseFloat(item.amount))}
         </Text>

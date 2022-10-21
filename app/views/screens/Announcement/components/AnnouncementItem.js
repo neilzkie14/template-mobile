@@ -42,13 +42,22 @@ export default function AnnouncementItem({
         alignItems: 'center',
         marginBottom: 5,
         borderWidth: StyleSheet.hairlineWidth,
-        borderColor: '#EBE4E4', 
+        borderColor: '#EBE4E4',
         marginHorizontal: 32,
         marginVertical: 12,
         borderRadius: 15,
       }}>
       <View style={{flexDirection: 'row'}}>
-        <View style={{alignItems: 'center', paddingRight: 20, marginHorizontal: 20, borderRightWidth: StyleSheet.hairlineWidth, width: 80, paddingVertical: 8, borderColor: '#EBE4E4'}}>
+        <View
+          style={{
+            alignItems: 'center',
+            paddingRight: 20,
+            marginHorizontal: 20,
+            borderRightWidth: StyleSheet.hairlineWidth,
+            width: 80,
+            paddingVertical: 8,
+            borderColor: '#EBE4E4',
+          }}>
           <Text style={{fontSize: 24, color: '#17254A', fontWeight: 'bold'}}>
             {moment(date).format('MMM')}
           </Text>
@@ -67,7 +76,7 @@ export default function AnnouncementItem({
             width: 200,
             paddingVertical: 8,
           }}
-          numberOfLines={1}>
+          numberOfLines={5}>
           {title}
         </Text>
       </View>

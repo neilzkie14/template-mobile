@@ -147,10 +147,15 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('Parentline.keystore')
-            storePassword 'parentline'
-            keyAlias 'parentline'
-            keyPassword 'parentline'
+            // storeFile file('Parentline.keystore')
+            // storePassword 'parentline'
+            // keyAlias 'parentline'
+            // keyPassword 'parentline'
+
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
         }
     }
     buildTypes {
@@ -196,6 +201,9 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation 'com.facebook.fresco:fresco:2.0.0'
     implementation 'com.facebook.fresco:animated-gif:2.5.0'
+    implementation project(':react-native-notifications')
+    // implementation 'com.google.firebase:firebase-core:16.0.0'
+
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
     }
@@ -226,3 +234,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+// apply plugin: 'com.google.gms.google-services'

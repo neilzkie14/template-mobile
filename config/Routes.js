@@ -75,7 +75,7 @@ const MyTabs = () => {
           },
         }}
       />
-      {/* {student &&
+      {student && (
         <Tab.Screen
           name={LmsName}
           component={Lms}
@@ -96,7 +96,7 @@ const MyTabs = () => {
             },
           }}
         />
-      } */}
+      )}
       {student && (
         <Tab.Screen
           name={OntraqName}
@@ -119,7 +119,7 @@ const MyTabs = () => {
           }}
         />
       )}
-      {student &&
+      {student && (
         <Tab.Screen
           name={'Wallet'}
           component={OntraqWallet}
@@ -140,7 +140,7 @@ const MyTabs = () => {
             },
           }}
         />
-      }
+      )}
       <Tab.Screen
         name={settings}
         component={Settings}
