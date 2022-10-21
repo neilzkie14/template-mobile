@@ -26,8 +26,9 @@ export default function Home() {
   }, []);
 
   return (
-    <View style={{flex: 1, marginBottom: 60}}>
+    <View style={{flex: 1, marginBottom: 60, backgroundColor: '#fff'}}>
       <Header />
+      <Text style={{color: '#17254A', fontWeight: 'bold', fontSize: 20, marginHorizontal: 32}}>Announcement</Text>
       <ScrollView
         contentContainerStyle={{
           justifyContent: 'center',

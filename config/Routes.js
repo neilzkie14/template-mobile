@@ -20,6 +20,8 @@ import Osiris from '../app/views/screens/Osiris/Osiris';
 import Registration from '../app/views/screens/Registration/Registration';
 import StudentSelection from '../app/components/StudentModalSelection';
 import {StudentContext} from '../app/context/StudentContext';
+import OntraqWallet from '../app/views/screens/OntraqWallet/OntraqWallet';
+
 const {width} = Dimensions.get('screen');
 
 const Stack = createStackNavigator();
@@ -33,7 +35,7 @@ const megaphone = require('../app/images/megaphone-green.png');
 const book = require('../app/images/book-green.png');
 const step = require('../app/images/steps-green.png');
 const settings_icon = require('../app/images/settings2.png');
-const osiris_icon = require('../app/images/osiris-icon.png');
+const wallet_icon = require('../app/images/wallet.png');
 
 const MyTabs = () => {
   const studentContext = useContext(StudentContext);
@@ -117,10 +119,10 @@ const MyTabs = () => {
           }}
         />
       )}
-      {/* {student &&
+      {student &&
         <Tab.Screen
-          name={osiris}
-          component={Osiris}
+          name={'Wallet'}
+          component={OntraqWallet}
           options={{
             headerShown: false,
             tabBarIcon: ({size, focused, color}) => {
@@ -132,13 +134,13 @@ const MyTabs = () => {
                     height: 25,
                     tintColor: focused ? '#A3D063' : 'gray',
                   }}
-                  source={osiris_icon}
+                  source={wallet_icon}
                 />
               );
             },
           }}
         />
-      } */}
+      }
       <Tab.Screen
         name={settings}
         component={Settings}
