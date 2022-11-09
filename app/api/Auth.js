@@ -39,4 +39,12 @@ export default class Auth extends Base {
       data,
     });
   };
+
+  accountDeletion = async data => {
+    return this.sendRequest({
+      path: `/api/v2/auth/delete_account`,
+      method: 'DELETE',
+      data,
+    });
+  };
 }

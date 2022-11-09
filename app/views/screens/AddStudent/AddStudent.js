@@ -25,8 +25,7 @@ export default function AddStudent() {
       firstname === '' ||
       lastname === '' ||
       schoolcode === '' ||
-      studentNumber === '' ||
-      birthDay === ''
+      studentNumber === ''
     ) {
       return alert('Please fill up all the fields');
     }
@@ -36,7 +35,7 @@ export default function AddStudent() {
       student_no: studentNumber,
       first_name: firstname,
       last_name: lastname,
-      birthday: moment(birthDay).format('MMMM DD, YYYY'),
+      birthday: birthDay == '' ? null: moment(birthDay).format('MMMM DD, YYYY'),
     });
     if (response.ok) {
       alert('Successfully added student');

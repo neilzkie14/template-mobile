@@ -21,6 +21,7 @@ import Registration from '../app/views/screens/Registration/Registration';
 import StudentSelection from '../app/components/StudentModalSelection';
 import {StudentContext} from '../app/context/StudentContext';
 import OntraqWallet from '../app/views/screens/OntraqWallet/OntraqWallet';
+import QrScanner from '../app/views/screens/AddStudent/QrScanner';
 
 const {width} = Dimensions.get('screen');
 
@@ -273,6 +274,15 @@ export default function Routes() {
           component={StudentSelection}
           options={{
             title: 'StudentSelection',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="QrScanner"
+          component={QrScanner}
+          options={{
+            title: 'QrScanner',
             headerShown: false,
             gestureEnabled: false,
           }}

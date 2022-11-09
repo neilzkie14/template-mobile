@@ -42,11 +42,11 @@ export const NotificationContextProvider = ({children}) => {
       };
       socket.onmessage = async e => {
         let data = JSON.parse(e.data);
-        if (data.type == 'ping') return;
+        if (data?.type == 'ping') return;
         console.log('Received notification');
         console.log({data});
-        if (data.message?.type == 'sms_status') {
-          notify('Announcement', data.message.content);
+        if (data?.message?.type == 'sms_status') {
+          notify('Announcement', data?.message?.content);
         }
       };
 
