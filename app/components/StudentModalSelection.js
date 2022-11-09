@@ -122,6 +122,20 @@ export default function StudentModalSelection() {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => navigation.navigate('QrScanner')}
+            style={{
+              backgroundColor: '#A3D063',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: 15,
+              borderRadius: 10,
+              marginBottom: 10,
+            }}>
+            <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 14}}>
+              Add Student By QR Code
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => navigation.goBack()}
             style={{
               backgroundColor: 'gray',

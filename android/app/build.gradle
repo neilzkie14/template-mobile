@@ -130,12 +130,18 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    dexOptions {
+       javaMaxHeapSize "3g"
+    }
+
     defaultConfig {
         applicationId "com.parentline"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6
-        versionName "1.0.3"
+        versionCode 8
+        versionName "1.0.4"
+        multiDexEnabled true
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
         abi {

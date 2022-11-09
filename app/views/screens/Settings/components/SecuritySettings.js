@@ -36,22 +36,23 @@ export default function SecuritySettings({ }) {
   };
 
   const confirmDeletion = async () => {
-    let response = await new Auth().accountDeletion();
+    let token = await AsyncStorage.getItem('token');
+    let response = await new Auth().accountDeletion(token);
     if (response.ok) {
+      try {
+        await AsyncStorage.removeItem('token');
+        await AsyncStorage.clear();
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{name: 'SplashScreen'}],
+          }),
+        );
+      } catch (error) {
+        console.log({error});
+      }
     } else {
-      alert('Something went wrong in fetching Messages');
-    }
-    try {
-      await AsyncStorage.removeItem('token');
-      await AsyncStorage.clear();
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{name: 'SplashScreen'}],
-        }),
-      );
-    } catch (error) {
-      console.log({error});
+      alert('Something went wrong white deleting you account.');
     }
   };
 
