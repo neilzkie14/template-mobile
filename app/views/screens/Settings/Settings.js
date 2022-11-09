@@ -96,7 +96,7 @@ export default function Settings() {
           </Text>
         </View>
       </View>
-      <View style={{justifyContent: 'space-between'}}>
+      <ScrollView contentContainerStyle={{justifyContent: 'space-between'}}>
         <View>
           <TouchableOpacity
             onPress={() => navigation.navigate('UserInformation')}
@@ -177,7 +177,7 @@ export default function Settings() {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
