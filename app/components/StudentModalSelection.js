@@ -64,7 +64,7 @@ export default function StudentModalSelection() {
             </TouchableOpacity>
             <View style={{flex: 1, backgroundColor: '#fff', marginTop: 10}}>
               {students.length <= 0 ? (
-                <View style={{flex: 1, justifyContents: 'center'}}>
+                <View style={{flex: 1, justifyContents: 'center', color: '#707070'}}>
                   <Text>No Students</Text>
                 </View>
               ) : (
@@ -95,9 +95,9 @@ export default function StudentModalSelection() {
                             borderRadius: 10,
                             marginBottom: 10,
                           }}>
-                          <Text>{`Name: ${item?.user?.first_name} ${item?.user?.last_name}`}</Text>
-                          <Text>{`Email: ${item?.user?.email}`}</Text>
-                          <Text>{`Student Number: ${item?.student_no}`}</Text>
+                          <Text style={{color: '#707070'}}>{`Name: ${item?.user?.first_name} ${item?.user?.last_name}`}</Text>
+                          <Text style={{color: '#707070'}}>{`Email: ${item?.user?.email}`}</Text>
+                          <Text style={{color: '#707070'}}>{`Student Number: ${item?.student_no}`}</Text>
                         </TouchableOpacity>
                       </View>
                     );

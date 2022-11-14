@@ -41,13 +41,14 @@ export default function Input({
           paddingHorizontal: 10,
           flexDirection: 'row',
           alignItems: 'center',
+          backgroundColor: '#fff',
         }}>
         <TextInput
           editable={editable}
           placeholder={placeholder}
           value={field.value}
           onChangeText={field.onChange}
-          style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10}}
+          style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10, color: '#000'}}
         />
       </View>
       {error != null && (

@@ -110,7 +110,7 @@ export default function Login() {
                   value={username}
                   placeholder="Enter email here"
                   onChangeText={text => setUsername(text)}
-                  style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10}}
+                  style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10, color: '#000'}}
                 />
               </View>
             </View>
@@ -137,7 +137,7 @@ export default function Login() {
                   value={password}
                   placeholder="Enter password here"
                   secureTextEntry={showPassword}
-                  style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10}}
+                  style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10, color: '#000'}}
                   onChangeText={text => setPassword(text)}
                 />
                 <TouchableOpacity onPress={() => onToggleShowPassword()}>

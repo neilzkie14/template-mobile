@@ -19,7 +19,7 @@ const navigation = useContext(NavigationContext)
           <Image source = {back} resizeMode = 'contain' style = {{ width: 20, height: 20}}/>
         </TouchableOpacity>
       )}
-      <Text style={{fontSize: 18, fontWeight: 'bold'}}>{title}</Text>
+      <Text style={{fontSize: 18, fontWeight: 'bold', color: '#707070'}}>{title}</Text>
     </View>
   );
 }

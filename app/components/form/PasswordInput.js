@@ -48,12 +48,13 @@ export default function PasswordInput({
           paddingHorizontal: 10,
           flexDirection: 'row',
           alignItems: 'center',
+          backgroundColor: '#fff',
         }}>
         <TextInput
           value={field.value}
           placeholder={placeholder}
           secureTextEntry={showPassword}
-          style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10}}
+          style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10, color: '#000'}}
           onChangeText={field.onChange}
         />
         <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
