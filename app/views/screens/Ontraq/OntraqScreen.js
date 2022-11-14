@@ -135,7 +135,7 @@ export default function Home() {
         <View>
           {room.length <= 0 ? (
             <View>
-              <Text>No Data Available</Text>
+              <Text style={{color: '#707070'}}>No Data Available</Text>
             </View>
           ) : (
             <ScrollView>

@@ -68,18 +68,6 @@ export default function Settings() {
           borderBottomWidth: 0.5,
           borderBottomColor: '#707070',
         }}>
-        {/* <TouchableOpacity onPress={{}} style={{ position: 'absolute', height: 70, justifyContent: 'center', padding: 10, zIndex: 99 }}>
-          <Image
-            source={arrow}
-            style={{
-              height: 20,
-              width: 20,
-              tintColor: '#A3D063',
-              transform: [{ rotate: '90deg' }],
-            }}
-            resizeMethod="resize"
-          />
-        </TouchableOpacity> */}
         <View
           style={{
             justifyContent: 'center',
@@ -106,7 +94,7 @@ export default function Settings() {
               padding: 15,
               alignItems: 'center',
             }}>
-            <Text style={{fontSize: 16}}>Personal Information</Text>
+            <Text style={{fontSize: 16, color: '#707070'}}>Personal Information</Text>
             <View style={{padding: 5}}>
               <Image
                 source={arrow}
@@ -129,7 +117,7 @@ export default function Settings() {
               paddingTop: 0,
               alignItems: 'center',
             }}>
-            <Text style={{fontSize: 16}}>Security</Text>
+            <Text style={{fontSize: 16, color: '#707070'}}>Security</Text>
             <View style={{padding: 5}}>
               <Image
                 source={arrow}
@@ -173,7 +161,7 @@ export default function Settings() {
             <TouchableOpacity
               onPress={() => showAlert()}
               style={{paddingTop: 20}}>
-              <Text style={{fontSize: 16, fontWeight: 'bold'}}>Log out</Text>
+              <Text style={{fontSize: 16, fontWeight: 'bold', color: '#707070'}}>Log out</Text>
             </TouchableOpacity>
           </View>
         </View>

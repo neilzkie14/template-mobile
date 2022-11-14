@@ -39,6 +39,7 @@ export default function Chrildren({item, setShowModal, key}) {
         <Text
           style={{
             fontSize: 16,
+            color: '#707070',
           }}>{`${item?.user?.first_name} ${item?.user?.last_name}`}</Text>
       </View>
       <View style={{padding: 5}}>

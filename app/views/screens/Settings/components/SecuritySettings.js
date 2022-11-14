@@ -94,7 +94,7 @@ export default function SecuritySettings({ }) {
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('PasswordScreen')} style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Text style={{ fontSize: 16, paddingLeft: 10 }}>{'Password'}</Text>
+          <Text style={{ fontSize: 16, paddingLeft: 10, color: '#707070' }}>{'Password'}</Text>
         </View>
         <View style={{ padding: 5 }}>
           <Image

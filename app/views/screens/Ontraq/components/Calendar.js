@@ -1,7 +1,6 @@
 import {NavigationContext} from '@react-navigation/native';
 import React, {useState, useContext} from 'react';
-import {View, Text, TouchableOpacity, Dimensions, Image} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {View, Text, TouchableOpacity, Dimensions, Image, ScrollView} from 'react-native';
 const {width, height} = Dimensions.get('window');
 
 export default function Calendar() {
@@ -140,7 +139,7 @@ export default function Calendar() {
                     backgroundColor: '#fff',
                   }}>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style={{fontWeight: '700', fontSize: 12}}>
+                    <Text style={{fontWeight: '700', fontSize: 12, color: '#707070'}}>
                       {tempDate.toDateString()}
                     </Text>
                   </View>
