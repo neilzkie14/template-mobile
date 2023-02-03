@@ -31,6 +31,8 @@ export default function OntraqWallet() {
     getWallet();
   }, [student]);
 
+  console.log({transaction: transaction})
+
   return (
     <View style={{backgroundColor: '#FFF', flex: 1}}>
       <Header />
@@ -101,8 +103,7 @@ export default function OntraqWallet() {
               </Text>
               <Text
                 style={{fontSize: 28, fontWeight: 'bold', color: '#FFFFFF'}}>
-                {currencyFormat(parseFloat(transaction?.points)) ||
-                  'Loading...'}
+                {!loader ? currencyFormat(parseFloat(transaction?.points)) : 'Loading...'}
               </Text>
             </View>
             <Text style={{color: '#FFFFFF', fontSize: 12}}>
