@@ -5,12 +5,12 @@ import {currencyFormat} from '../../../../utils/MoneyConverter';
 export default function TransactionItem({item}) {
 
   let amountColor = '#A3D063'
-  
+
   if(item.transaction_type == 'debit'){
     amountColor = '#FF0000'
   }
   if(item?.status != 'completed'){
-    amountColor = '#B7B7B7'
+    amountColor = '#FFC55C'
   }
 
   return (
