@@ -6,16 +6,14 @@ export default function SubmitButton({onPress, label}) {
     <TouchableOpacity
       onPress={onPress}
       style={{
-        marginTop: 16,
+        marginTop: 50,
         padding: 10,
-        borderRadius: 30,
-        backgroundColor: 'white',
-        borderWidth: 1,
-        borderColor: '#2E3192',
+        borderRadius: 10,
+        backgroundColor: '#A3D063',
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text style={{fontSize: 25, fontWeight: '600', color: '#2E3192'}}>
+      <Text style={{fontSize: 18, fontWeight: 'bold', color: '#fff'}}>
         {label}
       </Text>
     </TouchableOpacity>

@@ -30,16 +30,7 @@ export default function PasswordInput({
   const error = errors[name];
 
   return (
-    <View>
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: 'bold',
-          color: '#707070',
-          marginVertical: 10,
-        }}>
-        {label}
-      </Text>
+    <View style={{marginVertical: 10, }}>
       <View
         style={{
           borderWidth: 0.5,

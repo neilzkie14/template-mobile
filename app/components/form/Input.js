@@ -11,7 +11,9 @@ export default function Input({
   placeholder = '',
   rules = {},
   errors = {},
-  editable
+  editable,
+  keyboardType,
+  style
 }) {
   const {field} = useController({
     control,
@@ -23,32 +25,23 @@ export default function Input({
   const error = errors[name];
 
   return (
-    <View style={{marginTop: 20}}>
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: 'bold',
-          color: '#707070',
-          marginVertical: 10,
-        }}>
-        {label}
-      </Text>
+    <View style={{flex: 1}}>
       <View
-        style={{
+        style={[{
           borderWidth: 0.5,
           borderColor: error != null ? 'red' : '#E9E9E9',
           borderRadius: 10,
-          paddingHorizontal: 10,
           flexDirection: 'row',
           alignItems: 'center',
           backgroundColor: '#fff',
-        }}>
+        },style]}>
         <TextInput
           editable={editable}
           placeholder={placeholder}
           value={field.value}
           onChangeText={field.onChange}
-          style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10, color: '#000'}}
+          style={{ padding: Platform.OS == 'ios' ? 15 : 10, color: '#000', paddingHorizontal: 20, }}
+          keyboardType={keyboardType}
         />
       </View>
       {error != null && (
