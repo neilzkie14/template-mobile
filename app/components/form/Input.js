@@ -25,7 +25,7 @@ export default function Input({
   const error = errors[name];
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{}}>
       <View
         style={[{
           borderWidth: 0.5,

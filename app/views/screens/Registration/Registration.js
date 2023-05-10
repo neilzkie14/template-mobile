@@ -71,7 +71,7 @@ export default function Registration() {
               backgroundColor: '#fff',
               paddingVertical: 20,
             }}>
-            <View style={{ flexDirection: 'row', flex: 1, marginVertical: 20, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{flexDirection: 'row', flex: 1, marginVertical: 20, justifyContent: 'center', alignItems: 'center' }}>
               <Input
                 name="first_name"
                 label="First name"
@@ -79,7 +79,7 @@ export default function Registration() {
                 control={control}
                 errors={errors}
                 rules={{ required: true, maxLength: 20 }}
-                style={{marginRight: 5}}
+                style={{marginRight: 5, width: 155}}
               />
               <Input
                 name="last_name"
@@ -88,7 +88,7 @@ export default function Registration() {
                 control={control}
                 errors={errors}
                 rules={{ required: true, maxLength: 20 }}
-                style={{marginLeft: 5}}
+                style={{marginLeft: 5, width: 150}}
               />
             </View>
             <Input
