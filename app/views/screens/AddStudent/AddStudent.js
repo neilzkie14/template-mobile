@@ -1,9 +1,7 @@
 import React, {useState, useContext} from 'react';
-import {View, ScrollView, TouchableOpacity, Text, Platform} from 'react-native';
+import {View, ScrollView, TouchableOpacity, Text} from 'react-native';
 import Student from '../../../api/Student';
 import InputText from './components/InputText';
-import DatePicker from 'react-native-date-picker';
-import moment from 'moment';
 import {NavigationContext} from '@react-navigation/native';
 import AddStudentHeader from './components/AddStudentHeader';
 import {StudentContext} from '../../../context/StudentContext';
@@ -13,9 +11,6 @@ export default function AddStudent() {
   const [lastname, setLastname] = useState('');
   const [schoolcode, setSchoolcode] = useState('');
   const [studentNumber, setStudentNumber] = useState('');
-  const [birthDay, setBirthDay] = useState('');
-  const [date, setDate] = useState(new Date());
-  const [open, setOpen] = useState(false);
   const navigation = useContext(NavigationContext);
   const studentContext = useContext(StudentContext);
   const {refreshStudent} = studentContext.data;
@@ -35,7 +30,6 @@ export default function AddStudent() {
       student_no: studentNumber,
       first_name: firstname,
       last_name: lastname,
-      birthday: birthDay == '' ? null: moment(birthDay).format('MMMM DD, YYYY'),
     });
     if (response.ok) {
       alert('Successfully added student');
@@ -72,50 +66,6 @@ export default function AddStudent() {
             label="Student Number"
             placeholder="Student Number"
             onChangeText={text => setStudentNumber(text)}
-          />
-          <View style={{marginTop: 20}}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                color: '#707070',
-                marginBottom: 10,
-              }}>
-              {'Birthday'}
-            </Text>
-            <View
-              style={{
-                borderWidth: 1,
-                borderColor: '#E9E9E9',
-                borderRadius: 10,
-                paddingHorizontal: 10,
-                flexDirection: 'row',
-                alignItems: 'center',
-                padding: Platform.OS == 'ios' ? 15 : 10,
-              }}>
-              <View>
-                <TouchableOpacity onPress={() => setOpen(true)}>
-                  <Text style={{color: '#707070'}}>
-                    {birthDay == ''
-                      ? 'Select birthday'
-                      : `${moment(birthDay).format('MMMM DD, YYYY')}`}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-          <DatePicker
-            modal
-            open={open}
-            date={date}
-            mode="date"
-            onConfirm={date => {
-              setOpen(false);
-              setBirthDay(date);
-            }}
-            onCancel={() => {
-              setOpen(false);
-            }}
           />
         </ScrollView>
       </View>

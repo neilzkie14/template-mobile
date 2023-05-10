@@ -3,6 +3,16 @@ import {Text, View, StyleSheet} from 'react-native';
 import {currencyFormat} from '../../../../utils/MoneyConverter';
 
 export default function TransactionItem({item}) {
+
+  let amountColor = '#A3D063'
+
+  if(item.transaction_type == 'debit'){
+    amountColor = '#FF0000'
+  }
+  if(item?.status != 'completed'){
+    amountColor = '#FFC55C'
+  }
+
   return (
     <View
       style={{
@@ -13,7 +23,7 @@ export default function TransactionItem({item}) {
         marginBottom: 12,
         alignItems: 'center',
       }}>
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, alignSelf: 'flex-start'}}>
         <Text style={{color: '#B7B7B7'}}>
           {item.transaction_type == 'debit'
             ? 'Send money to'
@@ -37,9 +47,12 @@ export default function TransactionItem({item}) {
           style={{
             fontSize: 24,
             fontWeight: 'bold',
-            color: item.transaction_type == 'debit' ? '#FF0000' : '#A3D063',
+            color: amountColor,
           }}>
           ₱ {currencyFormat(parseFloat(item.amount))}
+        </Text>
+        <Text style={{color: '#B7B7B7', alignSelf: 'flex-end'}}>
+          {item?.status}
         </Text>
       </View>
     </View>
