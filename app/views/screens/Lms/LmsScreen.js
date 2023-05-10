@@ -11,6 +11,8 @@ import ClassItem from './components/ClassItem';
 import FeedAnnouncement from './LMSFeedItems/FeedAnnouncement';
 import FeedExamination from './LMSFeedItems/FeedExamination';
 import Modals from '../../../components/ClassModal';
+import LiteUserText from '../../../components/LiteUserText';
+import { UserContext } from '../../../context/UserContext';
 
 export default function Home() {
   const navigation = useContext(NavigationContext);
@@ -22,7 +24,8 @@ export default function Home() {
   const [lmsID, setLmsID] = useState('');
   const [schoolID, setSchoolID] = useState('');
   const [showModal, setShowModal] = useState(false);
-
+  const userContext = useContext(UserContext);
+  const {user} = userContext.data;
   const title = [
     {
       title: 'General Announcements',
@@ -235,10 +238,13 @@ export default function Home() {
   console.log({feedData})
 
   return (
-    <View style={{flex: 1, marginBottom: 60}}>
+    <View style={{flex: 1}}>
       <Header setlmsID={()=>setLmsID()} setSchoolID={()=>setSchoolID()} lmsID={lmsID} schoolID={schoolID} />
+      {user?.access_type === 'lite' ? 
+        <LiteUserText />
+      :
       <ScrollView
-        contentContainerStyle={{flex: 1, justifyContent: 'center', alignContent: 'center'}}
+        contentContainerStyle={{flex: 1, justifyContent: 'center', alignContent: 'center', marginBottom: 70}}
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={() => getFeedLMS()} />
         }>
@@ -269,6 +275,7 @@ export default function Home() {
           </ScrollView>
         </View>
       </ScrollView>
+      }
       <Modals
         feedData={feedData}
         modalVisible={showModal}
