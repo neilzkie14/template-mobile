@@ -95,10 +95,12 @@ export default function Settings() {
               justifyContent: 'space-between',
               padding: 15,
               alignItems: 'center',
-              borderRadius: 20,
+              borderRadius: 5,
               backgroundColor: '#A3D063',
               height: 50,
-              marginVertical: 10
+              marginVertical: 10,
+              marginRight: 10,
+              marginLeft: 10
             }}>
                <View>
               <Image
@@ -112,7 +114,7 @@ export default function Settings() {
                 resizeMode="contain"
               />
             </View>
-            <Text style={{fontSize: 16, color: '#707070', color: 'white', fontWeight: 'bold',marginRight: 160}}>Personal Information</Text>
+            <Text style={{fontSize: 16, color: '#707070', color: 'white', fontWeight: 'bold',marginRight: 120}}>Personal Information</Text>
             <View style={{padding: 5}}>
               <Image
                 source={arrow}
@@ -134,10 +136,12 @@ export default function Settings() {
               padding: 15,
               paddingTop: 0,
               alignItems: 'center',
-              borderRadius: 20,
+              borderRadius: 5,
               backgroundColor: '#A3D063',
               height: 50,
-              marginVertical: 10
+              marginVertical: 10,
+              marginRight: 10,
+              marginLeft: 10
             }}>
               <View>
               <Image
@@ -152,7 +156,7 @@ export default function Settings() {
                 resizeMode="contain"
               />
             </View>
-            <Text style={{fontSize: 16, color: '#707070', color: 'white', marginTop: 12, fontWeight: 'bold',marginRight: 250}}>Security</Text>
+            <Text style={{fontSize: 16, color: '#707070', color: 'white', marginTop: 12, fontWeight: 'bold',marginRight: 220}}>Security</Text>
             <View style={{padding: 5}}>
               <Image
                 source={arrow}
