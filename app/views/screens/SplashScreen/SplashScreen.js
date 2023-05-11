@@ -22,7 +22,7 @@ export default function SplashScreen() {
       await refreshStudent();
       navigation.replace('Dashboard')
     }else{
-      navigation.replace('Login')
+      navigation.replace('LoginOptional')
     }
   }
 
