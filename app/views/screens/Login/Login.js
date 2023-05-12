@@ -54,49 +54,24 @@ export default function Login() {
   };
   return (
     <KeyboardAvoidingView style={{flex: 1}} behavior={'height'}>
-      <View style={{flex: 1, backgroundColor: 'white'}}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'center', paddingHorizontal: 20}}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{justifyContent: 'center', flex: 1}}>
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <Image
               resizeMode="contain"
               source={parentlineLogo}
-              style={{width: width / 1.5, height: 200}}
+              style={{width: width / 1.5, height: 100}}
             />
           </View>
-          <View
-            style={{
-              flex: 1,
-              padding: 10,
-              backgroundColor: '#fff',
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 12,
-              },
-              shadowOpacity: 0.48,
-              shadowRadius: 10.0,
-
-              elevation: 1,
-              borderTopRightRadius: 50,
-              borderTopLeftRadius: 50,
-              padding: 20,
-              paddingHorizontal: 30,
-            }}>
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={{fontWeight: 'bold', fontSize: 30, color: '#707070'}}>
-                Login
+            <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 20}}>
+              <Text style={{fontWeight: 'bold', fontSize: 30, color: '#3E414D'}}>
+              Welcome Back!
+              </Text>
+              <Text style={{fontSize: 16, color: '#3E414D'}}>
+              Sign in to continue
               </Text>
             </View>
-            <View style={{marginTop: 20}}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  color: '#707070',
-                  marginBottom: 10,
-                }}>
-                E-mail / Username
-              </Text>
+            <View style={{marginVertical: 20}}>
               <View
                 style={{
                   borderWidth: 0.5,
@@ -108,22 +83,13 @@ export default function Login() {
                 }}>
                 <TextInput
                   value={username}
-                  placeholder="Enter email here"
+                  placeholder="Email"
                   onChangeText={text => setUsername(text)}
                   style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10, color: '#000'}}
                 />
               </View>
             </View>
             <View>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  color: '#707070',
-                  marginBottom: 10,
-                }}>
-                Password
-              </Text>
               <View
                 style={{
                   borderWidth: 0.5,
@@ -135,7 +101,7 @@ export default function Login() {
                 }}>
                 <TextInput
                   value={password}
-                  placeholder="Enter password here"
+                  placeholder="Password"
                   secureTextEntry={showPassword}
                   style={{flex: 1, padding: Platform.OS == 'ios' ? 15 : 10, color: '#000'}}
                   onChangeText={text => setPassword(text)}
@@ -158,19 +124,29 @@ export default function Login() {
                 onPress={() => HandleLogin()}
                 style={{
                   padding: 10,
-                  borderRadius: 30,
-                  backgroundColor: '#2E3192',
+                  borderRadius: 5,
+                  backgroundColor: '#A3D063',
                   justifyContent: 'center',
                   alignItems: 'center',
                   borderColor: '#2E3192',
                   borderWidth: 1,
                 }}>
-                <Text style={{fontSize: 25, fontWeight: '600', color: '#fff'}}>
+                <Text style={{fontSize: 16, fontWeight: '600', color: '#fff'}}>
                   Login
                 </Text>
               </TouchableOpacity>
-              <Text style={{textAlign: 'center', marginVertical: 12}}>or</Text>
-              <TouchableOpacity
+              <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row', marginTop: 16}}>
+                <Text style={{ fontSize: 16, color: '#3E414D'}}>
+                Not registered yet?
+                </Text>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Registration')}>
+                  <Text style={{fontSize: 16, color: '#A3D063'}}>
+                  {' Sign up now'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              {/* <TouchableOpacity
                 onPress={() => navigation.navigate('Registration')}
                 style={{
                   padding: 10,
@@ -184,17 +160,8 @@ export default function Login() {
                 <Text style={{fontSize: 25, fontWeight: '600', color: '#2E3192'}}>
                   Register
                 </Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
-            <View
-              style={{ justifyContent: 'center', alignItems: 'center'}}>
-              <Image
-                source={headstartLogo}
-                style={{width: width / 1.5, height: 200}}
-                resizeMode="contain"
-              />
-            </View>
-          </View>
         </ScrollView>
         {loader && <Loader />}
       </View>
