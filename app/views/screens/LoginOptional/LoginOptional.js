@@ -23,18 +23,17 @@ export default function LoginOptional() {
       <Text style={{ fontSize: 24, textAlign: 'center', height: 100, width: '80%', padding: 20, fontWeight: 'bold', color: '#3E414D' }}>
         Makes it easy to communicate with parents
       </Text>
-      <View style={{ borderRadius: 10, height: 50, width: '70%', borderColor: '#A3D063', borderWidth: 1 }}>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{ flexDirection: 'row', backgroundColor: 'white', borderRadius: 10, justifyContent: 'center', borderColor: '#A3D063', borderWidth: 2 }}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Login')}
             style={{
               padding: 10,
-              borderRadius: 10,
+              borderRadius: 5,
               backgroundColor: '#A3D063',
-              borderWidth: 1,
-              borderColor: '#A3D063',
-              height: 50,
-              width: 142
+              height: 51,
+              width: 142,
+              marginTop: -1,
+              marginLeft: -1
             }}>
             <Text style={{ fontSize: 18, fontWeight: '600', color: 'white', textAlign: 'center' }}>
               Login
@@ -46,17 +45,14 @@ export default function LoginOptional() {
               padding: 10,
               borderRadius: 10,
               backgroundColor: 'white',
-              borderWidth: 1,
-              borderColor: '#A3D063',
               height: 50,
-              width: 144
+              width: 142
             }}>
-            <Text style={{ fontSize: 18, fontWeight: '600', color: 'black', textAlign: 'center' }}>
+            <Text style={{ fontSize: 18, fontWeight: '600', color: '#3E414D', textAlign: 'center' }}>
               Sign up
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
     </View>
   )
 }
