@@ -141,7 +141,7 @@ export default function Settings() {
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: 5,
-              backgroundColor: '#2E3192',
+              backgroundColor: '#A3D063',
             }}>
             <Text style={{ fontSize: 16, fontWeight: '600', color: '#fff' }}>
               Change Password

@@ -7,12 +7,19 @@ import arrow from '../../../../images/arrow.png'
 import { UserContext } from '../../../../context/UserContext';
 import { getParams } from '../../../../utils/navigation_helper';
 import Auth from '../../../../api/Auth';
+import Input from '../../../../components/form/Input';
+import { useForm } from 'react-hook-form';
+import { EMAIL_REGEX } from '../../../../constants/regex';
 export default function SecuritySettings({ }) {
   const navigation = useContext(NavigationContext);
   const [loading, setLoading] = useState(false);
   const userContext = useContext(UserContext);
   const params = getParams(navigation);
   const { user } = userContext.data;
+  const {
+    control,
+    formState: {errors},
+  } = useForm();
 
   const showAlert = () => {
     Alert.alert(
@@ -93,23 +100,39 @@ export default function SecuritySettings({ }) {
         </View>
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('PasswordScreen')} style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: '#E9E9E9', padding: 12, marginHorizontal: 5, borderRadius: 10, flex: 1}}>
           <Text style={{ fontSize: 16, paddingLeft: 10, color: '#707070' }}>{'Password'}</Text>
         </View>
-        <View style={{ padding: 5 }}>
-          <Image
-            source={arrow}
-            style={{
-              height: 20,
-              width: 20,
-              tintColor: '#707070',
-              transform: [{ rotate: '270deg' }],
-            }}
-            resizeMethod="resize"
-          />
-        </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => showAlert()} style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center' }}>
+      <Input
+        name="contact"
+        label="contact"
+        placeholder='Mobile Number'
+        defaultValue={user?.contact_number}
+        editable={false}
+        control={control}
+        errors={errors}
+        style={{marginHorizontal: 20}}
+        rules={{
+          required: true,
+          pattern: {value: EMAIL_REGEX, message: 'Invalid email'},
+        }}
+      />
+      <Input
+        name="email"
+        label="Email"
+        placeholder='Email'
+        defaultValue={user?.email}
+        editable={false}
+        control={control}
+        errors={errors}
+        style={{marginHorizontal: 20, marginTop: 15}}
+        rules={{
+          required: true,
+          pattern: {value: EMAIL_REGEX, message: 'Invalid email'},
+        }}
+      />
+      <TouchableOpacity onPress={() => showAlert()} style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15, alignItems: 'center', marginTop: 50 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Text style={{ fontSize: 16, paddingLeft: 10, color: '#D82E2E' }}>{'Delete Account'}</Text>
         </View>
