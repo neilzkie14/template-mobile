@@ -22,6 +22,7 @@ import StudentSelection from '../app/components/StudentModalSelection';
 import {StudentContext} from '../app/context/StudentContext';
 import OntraqWallet from '../app/views/screens/OntraqWallet/OntraqWallet';
 import QrScanner from '../app/views/screens/AddStudent/QrScanner';
+import LoginOptional from '../app/views/screens/LoginOptional/LoginOptional';
 
 const {width} = Dimensions.get('screen');
 
@@ -174,6 +175,15 @@ export default function Routes() {
           name="SplashScreen"
           component={SplashScreen}
           options={{
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="LoginOptional"
+          component={LoginOptional}
+          options={{
+            title: 'LoginOptional',
             headerShown: false,
             gestureEnabled: false,
           }}
