@@ -41,31 +41,31 @@ export default function AnnouncementItem({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 5,
-        borderWidth: StyleSheet.hairlineWidth,
+        borderWidth: 1,
         borderColor: '#EBE4E4',
         marginHorizontal: 32,
         marginVertical: 12,
         borderRadius: 15,
       }}>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row', backgroundColor: '#F86767', borderRadius: 15}}>
         <View
           style={{
             alignItems: 'center',
             paddingRight: 20,
-            marginHorizontal: 20,
+            marginLeft: 20,
             borderRightWidth: StyleSheet.hairlineWidth,
             width: 80,
             paddingVertical: 8,
             borderColor: '#EBE4E4',
           }}>
-          <Text style={{fontSize: 24, color: '#17254A', fontWeight: 'bold'}}>
+          <Text style={{fontSize: 24, color: '#fff', fontWeight: 'bold'}}>
             {moment(date).format('MMM')}
           </Text>
-          <Text style={{fontSize: 24, color: '#17254A', fontWeight: 'bold'}}>
+          <Text style={{fontSize: 24, color: '#fff', fontWeight: 'bold'}}>
             {moment(date).format('DD')}
           </Text>
-          <Text style={{fontSize: 12, color: '#17254A'}}>
-            {moment(date).format('h:mm a')}
+          <Text style={{fontSize: 12, color: '#fff'}}>
+            {moment(date).format('h:mm A')}
           </Text>
         </View>
         <Text
@@ -75,6 +75,11 @@ export default function AnnouncementItem({
             fontWeight: 'bold',
             width: 200,
             paddingVertical: 8,
+            backgroundColor: data.read_status == 'unread' ? 'gray' : '#fff',
+            paddingLeft: 20,
+            flex: 1,
+            borderTopRightRadius: 15,
+            borderBottomRightRadius: 15,
           }}
           numberOfLines={5}>
           {title}
