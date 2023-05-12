@@ -19,6 +19,7 @@ export default function UserInformation({ }) {
   const studentContext = useContext(StudentContext);
   const userContext = useContext(UserContext);
   const { user, refreshUser } = userContext.data;
+  console.log({user})
   const {refreshStudent} = studentContext.data;
   const [loader, setLoader] = useState(false);
   const {
@@ -84,11 +85,13 @@ export default function UserInformation({ }) {
           resizeMethod="resize"
         />
         <View style={{paddingHorizontal: 20}}>
-          <Text style={{fontSize: 32, color: '#17254A', fontWeight: 'bold'}}>
-            Jack Santos
-          </Text>
+          <View style={{flexDirection: 'row', }}>
+            <Text style={{fontSize: 32, color: '#17254A', fontWeight: 'bold'}}>
+              {`${user?.first_name } ${user?.last_name}`}
+            </Text>
+          </View>
           <Text>
-            School Admin
+            {user?.role}
           </Text>
         </View>
       </View>
@@ -114,36 +117,6 @@ export default function UserInformation({ }) {
           errors={errors}
           style={{marginHorizontal: 10}}
           rules={{required: true, maxLength: 20}}
-        />
-        <Text style={{padding: 10, fontSize: 16, color: '#17254A', fontWeight: 'bold'}}>Mobile Number</Text>
-        <Input  
-          name="contact"
-          label="contact"
-          placeholder='Mobile Number'
-          defaultValue={user?.number}
-          editable={false}
-          control={control}
-          errors={errors}
-          style={{marginHorizontal: 10}}
-          rules={{
-            required: true,
-            pattern: {value: EMAIL_REGEX, message: 'Invalid email'},
-          }}
-        />
-        <Text style={{padding: 10, fontSize: 16, color: '#17254A', fontWeight: 'bold'}}>E-mail Address</Text>
-        <Input
-          name="email"
-          label="Email"
-          placeholder='Email'
-          defaultValue={user?.email}
-          editable={false}
-          control={control}
-          errors={errors}
-          style={{marginHorizontal: 10}}
-          rules={{
-            required: true,
-            pattern: {value: EMAIL_REGEX, message: 'Invalid email'},
-          }}
         />
         <View style={{ padding: 6, marginTop: 64, justifyContent: 'center', alignItems: 'center' }}>
           <TouchableOpacity
