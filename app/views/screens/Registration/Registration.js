@@ -22,6 +22,8 @@ import SubmitButton from '../../../components/form/SubmitButton';
 import { EMAIL_REGEX, PHONE_REGEX } from '../../../constants/regex';
 import PasswordInput from '../../../components/form/PasswordInput';
 import ParentLineLogo from '../../../images/parentline-logo-name.png';
+import arrow from '../../../images/arrow.png'
+
 const { width } = Dimensions.get('screen');
 
 export default function Registration() {
@@ -55,7 +57,27 @@ export default function Registration() {
   return (
     <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white', paddingHorizontal:20 }} behavior={'height'} keyboardVerticalOffset={30}>
       <ScrollView>
-        <View style={{ flex: 1, backgroundColor: 'white', paddingHorizontal: 20 }}>
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View
+          style={{
+            backgroundColor: '#FFFFFF',
+            justifyContent:'center',
+            height: 50
+          }}>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={{ zIndex: 99 }}>
+            <Image
+              source={arrow}
+              style={{
+                height: 20,
+                width: 20,
+                tintColor: '#BCB5B5',
+                transform: [{ rotate: '90deg' }],
+                marginTop: 10
+              }}
+              resizeMethod="resize"
+            />
+          </TouchableOpacity>
+        </View>
           <View style={{ alignItems: 'center' }}>
             <Image
               source={ParentLineLogo}
@@ -79,7 +101,7 @@ export default function Registration() {
                 control={control}
                 errors={errors}
                 rules={{ required: true, maxLength: 20 }}
-                style={{marginRight: 5, width: 155}}
+                style={{marginRight: 5, width: 170}}
               />
               <Input
                 name="last_name"
@@ -88,7 +110,7 @@ export default function Registration() {
                 control={control}
                 errors={errors}
                 rules={{ required: true, maxLength: 20 }}
-                style={{marginLeft: 5, width: 150}}
+                style={{marginLeft: 5, width: 170}}
               />
             </View>
             <Input
