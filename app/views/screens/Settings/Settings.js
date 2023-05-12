@@ -15,6 +15,8 @@ import arrow from '../../../images/arrow.png';
 import profile from '../../../images/profile.png';
 import Chrildren from './components/Children';
 import ChildInfomation from './components/ChildInformation';
+import Man from '../../../images/man_icon.png'
+import Lock from '../../../images/lock_icon.png'
 export default function Settings() {
   const navigation = useContext(NavigationContext);
   const userContext = useContext(UserContext);
@@ -93,15 +95,33 @@ export default function Settings() {
               justifyContent: 'space-between',
               padding: 15,
               alignItems: 'center',
+              borderRadius: 5,
+              backgroundColor: '#A3D063',
+              height: 50,
+              marginVertical: 10,
+              marginRight: 10,
+              marginLeft: 10
             }}>
-            <Text style={{fontSize: 16, color: '#707070'}}>Personal Information</Text>
+               <View>
+              <Image
+                source={Man}
+                style={{
+                  height: 20,
+                  width: 15,
+                  tintColor: '#FFFFFF',
+                }}
+                resizeMethod="resize"
+                resizeMode="contain"
+              />
+            </View>
+            <Text style={{fontSize: 16, color: '#707070', color: 'white', fontWeight: 'bold',marginRight: 120}}>Personal Information</Text>
             <View style={{padding: 5}}>
               <Image
                 source={arrow}
                 style={{
                   height: 20,
                   width: 20,
-                  tintColor: '#707070',
+                  tintColor: '#FFFFFF',
                   transform: [{rotate: '270deg'}],
                 }}
                 resizeMethod="resize"
@@ -116,15 +136,35 @@ export default function Settings() {
               padding: 15,
               paddingTop: 0,
               alignItems: 'center',
+              borderRadius: 5,
+              backgroundColor: '#A3D063',
+              height: 50,
+              marginVertical: 10,
+              marginRight: 10,
+              marginLeft: 10
             }}>
-            <Text style={{fontSize: 16, color: '#707070'}}>Security</Text>
+              <View>
+              <Image
+                source={Lock}
+                style={{
+                  height: 20,
+                  width: 15,
+                  marginTop: 12,
+                  tintColor: '#FFFFFF',
+                }}
+                resizeMethod="resize"
+                resizeMode="contain"
+              />
+            </View>
+            <Text style={{fontSize: 16, color: '#707070', color: 'white', marginTop: 12, fontWeight: 'bold',marginRight: 220}}>Security</Text>
             <View style={{padding: 5}}>
               <Image
                 source={arrow}
                 style={{
                   height: 20,
                   width: 20,
-                  tintColor: '#707070',
+                  marginTop: 12,
+                  tintColor: '#FFFFFF',
                   transform: [{rotate: '270deg'}],
                 }}
                 resizeMethod="resize"
