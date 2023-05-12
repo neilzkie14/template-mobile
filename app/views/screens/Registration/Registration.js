@@ -81,7 +81,7 @@ export default function Registration() {
           <View style={{ alignItems: 'center' }}>
             <Image
               source={ParentLineLogo}
-              style={{ height: 80, width: 300, marginTop: 50 }}
+              style={{ height: 80, width: 300, marginTop: 10 }}
               resizeMethod='resize'
             />
             <Text style={{ fontSize: 32, color: '#3E414D', fontWeight: 'bold' }}>Welcome!</Text>
