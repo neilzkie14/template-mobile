@@ -10,62 +10,16 @@ import moment from 'moment';
 import Loader from '../../../../components/Loader';
 const {width} = Dimensions.get('window');
 
-export default function OntraqInOutScreen() {
+export default function OntraqInOutScreen({room, attendances}) {
   const navigation = useContext(NavigationContext);
   const params = getParams(navigation);
   const [active, setActive] = useState(0);
   const studentContext = useContext(StudentContext);
   const {student} = studentContext.data;
-  const [attendances, setAttendances] = useState([]);
-  const [room, setRoom] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const getStudentAttendance = async () => {
-    if (student != null) {
-      setLoading(true);
-      let response = await new Student().getStudentAttendance(student?.id);
-      if (response.ok) {
-        console.log({response});
-        const attendances = response?.data?.venue_attendances.filter(item => {
-          return (
-            moment(item?.created_at).format('YYYY-MM-DD') ==
-            moment(params.item).format('YYYY-MM-DD')
-          );
-        });
-
-        let data = attendances?.map(item => item?.venue);
-        setAttendances(attendances);
-        let uniqueData = [];
-        data.forEach(item => {
-          let isUnique = true;
-          uniqueData.forEach(uniqueItem => {
-            if (uniqueItem?.id == item?.id) {
-              isUnique = false;
-            }
-          });
-          if (isUnique) {
-            uniqueData.push(item);
-          }
-        });
-        console.log({uniqueData});
-        setRoom(uniqueData);
-      } else {
-        alert('Something went wrong in fetching student attendance');
-      }
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getStudentAttendance();
-  }, [student]);
 
   return (
     <View style={{flex: 1,}}>
-      <OntraqHeader
-        onBackPress={() => navigation.goBack(null)}
-        title={params.item}
-      />
       <View style={{flex: 1, padding: 10, backgroundColor: '#fff', marginTop: 5}}>
         <ScrollView>
           <View>
@@ -74,10 +28,11 @@ export default function OntraqInOutScreen() {
               style={{
                 padding: 30,
                 backgroundColor: '#fff',
-                marginTop: 30,
+                marginTop: 10,
                 borderRadius: 10,
                 borderWidth: StyleSheet.hairlineWidth,
-                borderColor: 'gray'
+                borderColor: 'gray',
+                marginBottom: 10
               }}>
                 <Text style={{textAlign: 'center',fontWeight: 'bold', color: '#000', fontSize: 12}}>
                   No Entries
@@ -92,10 +47,11 @@ export default function OntraqInOutScreen() {
                       style={{
                         padding: 10,
                         backgroundColor: '#fff',
-                        marginTop: 30,
+                        marginTop: 10,
                         borderRadius: 10,
                         borderWidth: StyleSheet.hairlineWidth,
-                        borderColor: 'gray'
+                        borderColor: 'gray',
+                        marginBottom: 50
                       }}>
                       <View
                         style={{
