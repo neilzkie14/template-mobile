@@ -9,7 +9,7 @@ import {useForm} from 'react-hook-form';
 import Input from '../../../../components/form/Input';
 import { EMAIL_REGEX, PHONE_REGEX } from '../../../../constants/regex';
 import Auth from '../../../../api/Auth';
-import UserProfilePicture from '../../../../images/coco.png';
+import UserProfilePicture from '../../../../images/profile.png';
 import Camera from '../../../../images/camera.png';
 
 const { width } = Dimensions.get('screen');
@@ -73,7 +73,7 @@ export default function UserInformation({ }) {
             }}
             resizeMethod="resize"
           />
-        <Image
+        {/* <Image
           source={Camera}
           style={{
             height: 36,
@@ -83,7 +83,7 @@ export default function UserInformation({ }) {
             bottom: -10
           }}
           resizeMethod="resize"
-        />
+        /> */}
         <View style={{paddingHorizontal: 20}}>
           <View style={{flexDirection: 'row', }}>
             <Text style={{fontSize: 32, color: '#17254A', fontWeight: 'bold'}}>
