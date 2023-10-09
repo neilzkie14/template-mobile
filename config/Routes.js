@@ -23,6 +23,7 @@ import {StudentContext} from '../app/context/StudentContext';
 import OntraqWallet from '../app/views/screens/OntraqWallet/OntraqWallet';
 import QrScanner from '../app/views/screens/AddStudent/QrScanner';
 import LoginOptional from '../app/views/screens/LoginOptional/LoginOptional';
+import { UserContext } from '../app/context/UserContext';
 
 const {width} = Dimensions.get('screen');
 
@@ -41,7 +42,11 @@ const wallet_icon = require('../app/images/wallet.png');
 
 const MyTabs = () => {
   const studentContext = useContext(StudentContext);
+  const userContext = useContext(UserContext);
   const {student} = studentContext.data;
+  const {user} = userContext.data;
+  const subscribe = user?.parent?.students[0]?.school
+  console.log({subscribe})
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -77,7 +82,7 @@ const MyTabs = () => {
           },
         }}
       />
-      {student && (
+      {false && (
         <Tab.Screen
           name={LmsName}
           component={Lms}
@@ -99,7 +104,7 @@ const MyTabs = () => {
           }}
         />
       )}
-      {student && (
+      {subscribe?.ontraq_subscribe && student && (
         <Tab.Screen
           name={OntraqName}
           component={Index}
@@ -121,7 +126,7 @@ const MyTabs = () => {
           }}
         />
       )}
-      {student && (
+      {subscribe?.ontraq_wallet_subscribe && student && (
         <Tab.Screen
           name={'Wallet'}
           component={OntraqWallet}
