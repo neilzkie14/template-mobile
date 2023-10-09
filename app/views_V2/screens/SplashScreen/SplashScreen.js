@@ -20,7 +20,7 @@ export default function SplashScreen() {
     if(response.ok){
       await refreshUser();
       await refreshStudent();
-      navigation.replace('Dashboard')
+      navigation.replace('Home')
     }else{
       navigation.replace('Login')
     }

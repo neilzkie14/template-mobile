@@ -3,6 +3,8 @@ import {Image, Dimensions} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
 
 // Screens must be replaced for v2
 import Home from '../app/views/screens/Home/Home';
@@ -22,12 +24,14 @@ const {width} = Dimensions.get('screen');
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 const homeName = 'Announcements';
 const LmsName = 'LMS';
 const OntraqName = 'OntraQ';
 const settings = 'Settings';
 const osiris = 'Osiris';
+
 const megaphone = require('../app/images/megaphone-green.png');
 const book = require('../app/images/book-green.png');
 const step = require('../app/images/steps-green.png');
@@ -140,6 +144,7 @@ const MyTabs = () => {
           }}
         />
       )}
+
       <Tab.Screen
         name={settings}
         component={Settings}
@@ -164,6 +169,24 @@ const MyTabs = () => {
   );
 };
 
+// const SideMenu = () => {
+//   return (
+//     <Drawer.Navigator
+//       drawerContentOptions={{
+//         activeTintColor: '#e91e63',
+//         itemStyle: { marginVertical: 5 },
+//       }}
+//       backBehavior="history"
+//       drawerContent={props => <CustomMenu {...props} />}>
+//       <Drawer.Screen
+//         name="Dashboard"
+//         component={Dashboard}
+//         options={{ headerShown: true, header: header }}
+//       />
+//     </Drawer.Navigator>
+//   );
+// };
+
 export default function Routes_V2() {
   return (
     <NavigationContainer>
@@ -177,10 +200,10 @@ export default function Routes_V2() {
           }}
         />
       <Stack.Screen
-          name="Dashboard"
-          component={MyTabs}
+          name="Home"
+          component={Home}
           options={{
-            title: 'Dashboard',
+            title: 'Home',
             headerShown: false,
             gestureEnabled: false,
           }}
@@ -190,6 +213,15 @@ export default function Routes_V2() {
           component={Login}
           options={{
             title: 'Login',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+      <Stack.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            title: 'Settings',
             headerShown: false,
             gestureEnabled: false,
           }}
