@@ -67,7 +67,7 @@ export default function Login() {
               <Text style={{fontWeight: 'bold', fontSize: 30, color: '#3E414D'}}>
               Welcome Back!
               </Text>
-              <Text style={{fontSize: 16, color: '#3E414D'}}>
+              <Text style={{fontSize: 18, color: '#3E414D',fontWeight: '500'}}>
               Sign in to continue
               </Text>
             </View>
@@ -131,17 +131,17 @@ export default function Login() {
                   borderColor: '#2E3192',
                   borderWidth: 1,
                 }}>
-                <Text style={{fontSize: 16, fontWeight: '600', color: '#fff'}}>
+                <Text style={{fontSize: 18, fontWeight: 'bold', color: '#fff'}}>
                   Login
                 </Text>
               </TouchableOpacity>
               <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row', marginTop: 16}}>
-                <Text style={{ fontSize: 16, color: '#3E414D'}}>
+                <Text style={{ fontSize: 16, color: '#3E414D', fontWeight: '400'}}>
                 Not registered yet?
                 </Text>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('Registration')}>
-                  <Text style={{fontSize: 16, color: '#A3D063'}}>
+                  <Text style={{fontSize: 16, color: '#A3D063', fontWeight: '500'}}>
                   {' Sign up now'}
                   </Text>
                 </TouchableOpacity>
