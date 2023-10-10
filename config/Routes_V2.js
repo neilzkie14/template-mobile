@@ -15,9 +15,7 @@ import Registration from '../app/views_V2/screens/Registration/Registration';
 import AddStudent from '../app/views_V2/screens/AddStudent/AddStudent';
 import ChildInformation from '../app/views_V2/screens/Settings/components/ChildInformation';
 import UserInformation from '../app/views_V2/screens/Settings/components/UserInformation';
-import SecuritySettings from '../app/views_V2/screens/Settings/components/SecuritySettings';
 import PasswordScreen from '../app/views_V2/screens/Settings/components/PasswordScreen';
-import Settings from '../app/views_V2/screens/Settings/Settings';
 import Lms from '../app/views_V2/screens/Lms/Lms';
 import Index from '../app/views_V2/screens/Ontraq/Index';
 import OntraqWallet from '../app/views_V2/screens/OntraqWallet/OntraqWallet';
@@ -43,137 +41,6 @@ const book = require('../app/images/book-green.png');
 const step = require('../app/images/steps-green.png');
 const settings_icon = require('../app/images/settings2.png');
 const wallet_icon = require('../app/images/wallet.png');
-
-const MyTabs = () => {
-  const studentContext = useContext(StudentContext);
-  const { student } = studentContext.data;
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarActiveTintColor: '#A3D063',
-        tabBarInactiveTintColor: 'gray',
-        tabBarStyle: {
-          paddingVertical: 5,
-          borderTopLeftRadius: 15,
-          borderTopRightRadius: 15,
-          backgroundColor: 'white',
-          position: 'absolute',
-          height: 60,
-        },
-        tabBarLabelStyle: { paddingBottom: 3 },
-      })}>
-      <Tab.Screen
-        name={homeName}
-        component={Home}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ size, focused, color }) => {
-            return (
-              <Image
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? '#A3D063' : 'gray',
-                }}
-                source={megaphone}
-              />
-            );
-          },
-        }}
-      />
-
-      {student && (
-        <Tab.Screen
-          name={LmsName}
-          component={Lms}
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ size, focused, color }) => {
-              return (
-                <Image
-                  resizeMode="contain"
-                  style={{
-                    width: 25,
-                    height: 25,
-                    tintColor: focused ? '#A3D063' : 'gray',
-                  }}
-                  source={book}
-                />
-              );
-            },
-          }}
-        />
-      )}
-
-      {student && (
-        <Tab.Screen
-          name={OntraqName}
-          component={Index}
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ size, focused, color }) => {
-              return (
-                <Image
-                  resizeMode="contain"
-                  style={{
-                    width: 25,
-                    height: 25,
-                    tintColor: focused ? '#A3D063' : 'gray',
-                  }}
-                  source={step}
-                />
-              );
-            },
-          }}
-        />
-      )}
-      {student && (
-        <Tab.Screen
-          name={'Wallet'}
-          component={OntraqWallet}
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ size, focused, color }) => {
-              return (
-                <Image
-                  resizeMode="contain"
-                  style={{
-                    width: 25,
-                    height: 25,
-                    tintColor: focused ? '#A3D063' : 'gray',
-                  }}
-                  source={wallet_icon}
-                />
-              );
-            },
-          }}
-        />
-      )}
-
-      <Tab.Screen
-        name={settings}
-        component={Settings}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ size, focused, color }) => {
-            return (
-              <Image
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                  tintColor: focused ? '#A3D063' : 'gray',
-                }}
-                source={settings_icon}
-              />
-            );
-          },
-        }}
-      />
-    </Tab.Navigator>
-  );
-};
 
 // const SideMenu = () => {
 //   return (
@@ -260,15 +127,6 @@ export default function Routes_V2() {
           }}
         />
         <Stack.Screen
-          name="SecuritySettings"
-          component={SecuritySettings}
-          options={{
-            title: 'SecuritySettings',
-            headerShown: false,
-            gestureEnabled: false,
-          }}
-        />
-        <Stack.Screen
           name="PasswordScreen"
           component={PasswordScreen}
           options={{
@@ -304,15 +162,6 @@ export default function Routes_V2() {
             gestureEnabled: false,
           }}
         />
-        <Stack.Screen
-          name="Settings"
-          component={Settings}
-          options={{
-            title: 'Settings',
-            headerShown: false,
-            gestureEnabled: false,
-          }}
-        />
          <Stack.Screen
           name="OntraqWallet"
           component={OntraqWallet}
@@ -322,15 +171,6 @@ export default function Routes_V2() {
             gestureEnabled: false,
           }}
         />
-        {/* <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            title: 'Home',
-            headerShown: false,
-            gestureEnabled: false,
-          }}
-        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

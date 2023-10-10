@@ -14,7 +14,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const navigation = useContext(NavigationContext);
   const route = useRoute();
-  console.log(route.name);
   let screenName = route.name;
 
   const actions = [
@@ -143,7 +142,7 @@ export default function Home() {
             }else if(name === 'bt_wallet'){
               navigation.navigate('OntraqWallet');
             }else if(name === 'bt_settings'){
-              navigation.navigate('Settings');
+              alert(`selected button: ${name}`);
             }
           }}
           color='#A3D063'
