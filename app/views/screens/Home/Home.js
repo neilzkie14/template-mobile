@@ -5,48 +5,12 @@ import Header from '../../../components/Header';
 import Loader from '../../../components/Loader';
 import StudentModalSelection from '../../../components/StudentModalSelection';
 import AnnouncementItem from '../Announcement/components/AnnouncementItem';
-import { FloatingAction } from "react-native-floating-action";
 import { NavigationContext } from '@react-navigation/native';
-
-
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const navigation = useContext(NavigationContext);
 
-  const actions = [
-    {
-      text: "Announcement",
-      icon: require("../../../images/megaphone-green.png"),
-      name: "bt_announcement",
-      position: 2,
-    },
-    {
-      text: "LMS",
-      icon: require("../../../images/book-green.png"),
-      name: "bt_lms",
-      position: 1
-    },
-    {
-      text: "Ontraq",
-      icon: require("../../../images/steps-green.png"),
-      name: "bt_Ontraq",
-      position: 3
-    },
-    {
-      text: "Wallet",
-      icon: require("../../../images/wallet.png"),
-      name: "bt_wallet",
-      position: 4
-    },
-    {
-      text: "Settings",
-      icon: require("../../../images/settings2.png"),
-      name: "bt_settings",
-      position: 4
-    }
-  ];
 
   const getMessages = async () => {
     setLoading(true);
@@ -107,32 +71,6 @@ export default function Home() {
           )}
         </View>
       </ScrollView>
-
-      <FloatingAction
-          actions={actions}
-          onPressItem={name => {
-            console.log(`selected button: ${name}`)
-            if(name === 'bt_announcement'){
-            alert(`selected button: ${name}`);
-            }else if(name === 'bt_lms'){
-              alert(`selected button: ${name}`);
-            }else if(name === 'bt_ontraq'){
-              alert(`selected button: ${name}`);
-            }else if(name === 'bt_wallet'){
-              alert(name);
-            }else if(name === 'bt_settings'){
-              navigation.navigate('Settings');
-            }
-          }}
-          color='#A3D063'
-          shadow={{
-            shadowOpacity: 0.35, shadowOffset: { width: 0, height: 5 }, shadowColor: "#000000", shadowRadius: 3 
-          }}
-          textBackground={'#A3D063'}
-          visible={true}
-        />
-        
-
       {loading && <Loader />}
     </View>
   );

@@ -1,30 +1,36 @@
-import React, {useContext} from 'react';
-import {Image, Dimensions} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-
-
-// Screens must be replaced for v2
-import Home from '../app/views/screens/Home/Home';
-import Lms from '../app/views/screens/Lms/LmsScreen';
-import Settings from '../app/views/screens/Settings/Settings';
-import Index from '../app/views/screens/Ontraq/Index';
-import OntraqWallet from '../app/views/screens/OntraqWallet/OntraqWallet';
+import React, { useContext } from 'react';
+import { Image, Dimensions } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Global Components
-import {StudentContext} from '../app/context/StudentContext';
+import { StudentContext } from '../app/context/StudentContext';
 
 // Screens V2
 import SplashScreen from '../app/views_V2/screens/SplashScreen/SplashScreen';
 import Login from '../app/views_V2/screens/Login/Login';
+import Home from '../app/views_V2/screens/Home/Home';
+import Registration from '../app/views_V2/screens/Registration/Registration';
+import AddStudent from '../app/views_V2/screens/AddStudent/AddStudent';
+import ChildInformation from '../app/views_V2/screens/Settings/components/ChildInformation';
+import UserInformation from '../app/views_V2/screens/Settings/components/UserInformation';
+import SecuritySettings from '../app/views_V2/screens/Settings/components/SecuritySettings';
+import PasswordScreen from '../app/views_V2/screens/Settings/components/PasswordScreen';
+import Settings from '../app/views_V2/screens/Settings/Settings';
+import Lms from '../app/views_V2/screens/Lms/Lms';
+import Index from '../app/views_V2/screens/Ontraq/Index';
+import OntraqWallet from '../app/views_V2/screens/OntraqWallet/OntraqWallet';
+import OntraqInOutScreen from '../app/views_V2/screens/Ontraq/components/OntraqInOutScreen';
+import StudentSelection from '../app/components/StudentModalSelection';
+import QrScanner from '../app/views_V2/screens/AddStudent/QrScanner';
+import OntraqScreen from '../app/views_V2/screens/Ontraq/OntraqScreen'
 
-const {width} = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
+// const Drawer = createDrawerNavigator();
 
 const homeName = 'Announcements';
 const LmsName = 'LMS';
@@ -40,10 +46,10 @@ const wallet_icon = require('../app/images/wallet.png');
 
 const MyTabs = () => {
   const studentContext = useContext(StudentContext);
-  const {student} = studentContext.data;
+  const { student } = studentContext.data;
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
+      screenOptions={({ route }) => ({
         tabBarActiveTintColor: '#A3D063',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
@@ -54,14 +60,14 @@ const MyTabs = () => {
           position: 'absolute',
           height: 60,
         },
-        tabBarLabelStyle: {paddingBottom: 3},
+        tabBarLabelStyle: { paddingBottom: 3 },
       })}>
       <Tab.Screen
         name={homeName}
         component={Home}
         options={{
           headerShown: false,
-          tabBarIcon: ({size, focused, color}) => {
+          tabBarIcon: ({ size, focused, color }) => {
             return (
               <Image
                 resizeMode="contain"
@@ -83,7 +89,7 @@ const MyTabs = () => {
           component={Lms}
           options={{
             headerShown: false,
-            tabBarIcon: ({size, focused, color}) => {
+            tabBarIcon: ({ size, focused, color }) => {
               return (
                 <Image
                   resizeMode="contain"
@@ -106,7 +112,7 @@ const MyTabs = () => {
           component={Index}
           options={{
             headerShown: false,
-            tabBarIcon: ({size, focused, color}) => {
+            tabBarIcon: ({ size, focused, color }) => {
               return (
                 <Image
                   resizeMode="contain"
@@ -128,7 +134,7 @@ const MyTabs = () => {
           component={OntraqWallet}
           options={{
             headerShown: false,
-            tabBarIcon: ({size, focused, color}) => {
+            tabBarIcon: ({ size, focused, color }) => {
               return (
                 <Image
                   resizeMode="contain"
@@ -150,7 +156,7 @@ const MyTabs = () => {
         component={Settings}
         options={{
           headerShown: false,
-          tabBarIcon: ({size, focused, color}) => {
+          tabBarIcon: ({ size, focused, color }) => {
             return (
               <Image
                 resizeMode="contain"
@@ -199,15 +205,6 @@ export default function Routes_V2() {
             gestureEnabled: false,
           }}
         />
-      <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            title: 'Home',
-            headerShown: false,
-            gestureEnabled: false,
-          }}
-        />
         <Stack.Screen
           name="Login"
           component={Login}
@@ -217,7 +214,97 @@ export default function Routes_V2() {
             gestureEnabled: false,
           }}
         />
-      <Stack.Screen
+        <Stack.Screen
+          name="Registration"
+          component={Registration}
+          options={{
+            title: 'Registration',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: 'Home',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        /> 
+        <Stack.Screen
+          name="AddStudent"
+          component={AddStudent}
+          options={{
+            title: 'AddStudent',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="ChildInformation"
+          component={ChildInformation}
+          options={{
+            title: 'ChildInformation',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="UserInformation"
+          component={UserInformation}
+          options={{
+            title: 'UserInformation',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="SecuritySettings"
+          component={SecuritySettings}
+          options={{
+            title: 'SecuritySettings',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="PasswordScreen"
+          component={PasswordScreen}
+          options={{
+            title: 'PasswordScreen',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="OntraqInOutScreen"
+          component={OntraqInOutScreen}
+          options={{
+            title: 'OntraqInOutScreen',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="StudentSelection"
+          component={StudentSelection}
+          options={{
+            title: 'StudentSelection',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
+          name="QrScanner"
+          component={QrScanner}
+          options={{
+            title: 'QrScanner',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        <Stack.Screen
           name="Settings"
           component={Settings}
           options={{
@@ -226,6 +313,24 @@ export default function Routes_V2() {
             gestureEnabled: false,
           }}
         />
+         <Stack.Screen
+          name="OntraqWallet"
+          component={OntraqWallet}
+          options={{
+            title: 'OntraqWallet',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
+        {/* <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: 'Home',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
