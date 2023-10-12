@@ -53,18 +53,21 @@ export default function Home() {
     {
       text: "LMS",
       icon: require("../../../images/book-green.png"),
+      color: '#A3D063',
       name: "bt_lms",
       position: 1
     },
     {
       text: "Wallet",
       icon: require("../../../images/wallet.png"),
+      color: '#A3D063',
       name: "bt_wallet",
       position: 4
     },
     {
       text: "Settings",
       icon: require("../../../images/settings2.png"),
+      color: '#A3D063',
       name: "bt_settings",
       position: 5
     }

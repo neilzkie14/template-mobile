@@ -13,9 +13,6 @@ import Login from '../app/views_V2/screens/Login/Login';
 import Home from '../app/views_V2/screens/Home/Home';
 import Registration from '../app/views_V2/screens/Registration/Registration';
 import AddStudent from '../app/views_V2/screens/AddStudent/AddStudent';
-import ChildInformation from '../app/views_V2/screens/Settings/components/ChildInformation';
-import UserInformation from '../app/views_V2/screens/Settings/components/UserInformation';
-import PasswordScreen from '../app/views_V2/screens/Settings/components/PasswordScreen';
 import Lms from '../app/views_V2/screens/Lms/Lms';
 import Index from '../app/views_V2/screens/Ontraq/Index';
 import OntraqWallet from '../app/views_V2/screens/OntraqWallet/OntraqWallet';
@@ -104,33 +101,6 @@ export default function Routes_V2() {
           component={AddStudent}
           options={{
             title: 'AddStudent',
-            headerShown: false,
-            gestureEnabled: false,
-          }}
-        />
-        <Stack.Screen
-          name="ChildInformation"
-          component={ChildInformation}
-          options={{
-            title: 'ChildInformation',
-            headerShown: false,
-            gestureEnabled: false,
-          }}
-        />
-        <Stack.Screen
-          name="UserInformation"
-          component={UserInformation}
-          options={{
-            title: 'UserInformation',
-            headerShown: false,
-            gestureEnabled: false,
-          }}
-        />
-        <Stack.Screen
-          name="PasswordScreen"
-          component={PasswordScreen}
-          options={{
-            title: 'PasswordScreen',
             headerShown: false,
             gestureEnabled: false,
           }}
