@@ -10,6 +10,8 @@ import Header from '../../../components/Header';
 import Loader from '../../../components/Loader';
 import LiteUserText from '../../../components/LiteUserText';
 import { UserContext } from '../../../context/UserContext';
+import { NavigationContext, useRoute } from '@react-navigation/native';
+import { FloatingAction } from 'react-native-floating-action';
 
 export default function OntraqWallet() {
   const studentContext = useContext(StudentContext);
@@ -18,6 +20,46 @@ export default function OntraqWallet() {
   const [loader, setLoader] = useState(false);
   const userContext = useContext(UserContext);
   const {user} = userContext.data;
+  const navigation = useContext(NavigationContext);
+  const route = useRoute();
+  let screenName = route.name;
+
+  const actions = [
+    {
+      text: "Announcement",
+      icon: require("../../../images/megaphone-green.png"),
+      color: '#A3D063',
+      name: "bt_announcement",
+      position: 2,
+    },
+    {
+      text: "LMS",
+      icon: require("../../../images/book-green.png"),
+      color: '#A3D063',
+      name: "bt_lms",
+      position: 1
+    },
+    {
+      text: "Ontraq",
+      icon: require("../../../images/steps-green.png"),
+      color: '#A3D063',
+      name: "bt_Ontraq",
+      position: 3
+    },
+    // {
+    //   text: "Wallet",
+    //   icon: require("../../../images/wallet.png"),
+    //   name: "bt_wallet",
+    //   position: 4
+    // },
+    {
+      text: "Settings",
+      icon: require("../../../images/settings2.png"),
+      color: '#A3D063',
+      name: "bt_settings",
+      position: 4
+    }
+  ];
 
   const getWallet = async () => {
     setLoader(true);
@@ -152,6 +194,29 @@ export default function OntraqWallet() {
           </View>
         </ScrollView>
       }
+      <FloatingAction
+          actions={screenName != 'Home' ? actions : actionWithoutHome}
+          onPressItem={name => {
+            console.log(`selected button: ${name}`)
+            if(name === 'bt_announcement'){
+              navigation.navigate('Home');
+            }else if(name === 'bt_lms'){
+              alert(`selected button: ${name}`);
+            }else if(name === 'bt_ontraq'){
+              navigation.navigate('Home');
+            }else if(name === 'bt_wallet'){
+              navigation.navigate('OntraqWallet');
+            }else if(name === 'bt_settings'){
+              alert(`selected button: ${name}`);
+            }
+          }}
+          color='#A3D063'
+          shadow={{
+            shadowOpacity: 0.35, shadowOffset: { width: 0, height: 5 }, shadowColor: "#000000", shadowRadius: 3 
+          }}
+          textBackground={'#A3D063'}
+          visible={true}
+        />
       {loader && <Loader />}
     </View>
   );
