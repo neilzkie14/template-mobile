@@ -139,7 +139,7 @@ export default function Home() {
             if(name === 'bt_announcement'){
             alert(`selected button: ${name}`);
             }else if(name === 'bt_lms'){
-              alert(`selected button: ${name}`);
+              navigation.navigate('Lms');
             }else if(name === 'bt_ontraq'){
               navigation.navigate('Home');
             }else if(name === 'bt_wallet'){

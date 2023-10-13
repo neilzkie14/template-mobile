@@ -141,6 +141,15 @@ export default function Routes_V2() {
             gestureEnabled: false,
           }}
         />
+        <Stack.Screen
+          name="Lms"
+          component={Lms}
+          options={{
+            title: 'Lms',
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

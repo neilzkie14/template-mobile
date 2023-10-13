@@ -132,7 +132,7 @@ export default function Lms({}) {
   return (
     <View style = {{flex: 1 }}>
       {student != null ? (
-        <View style={{padding: 5, flex: 1}}>
+        <View style={{padding: 5, flex: 1, marginBottom: 60}}>
           <View style={{backgroundColor: '#fff'}}>
             <ScrollView>
               <View>
