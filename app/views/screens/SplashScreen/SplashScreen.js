@@ -4,7 +4,7 @@ import {View, Text} from 'react-native'
 import Auth from '../../../api/Auth';
 import { StudentContext } from '../../../context/StudentContext';
 import { UserContext } from '../../../context/UserContext';
-
+import styles from './styles';
 
 export default function SplashScreen() {
   const navigation = useContext(NavigationContext)
@@ -26,7 +26,7 @@ export default function SplashScreen() {
   }, [])
   
   return (
-    <View style = {{ flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+    <View style={styles.splashscreen}>
       <Text>Splash screen</Text>
     </View>
   )
