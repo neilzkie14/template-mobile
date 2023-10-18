@@ -5,7 +5,6 @@ import StudentContextProvider from './app/context/StudentContext';
 import UserContextProvider from './app/context/UserContext';
 import Routes from './config/Routes';
 import {APP_BUILD, BUILD_TYPES} from './env';
-import Routes_V2 from './config/Routes_V2';
 
 const App = () => {
   if (APP_BUILD == BUILD_TYPES.V1) {
@@ -21,19 +20,19 @@ const App = () => {
       </UserContextProvider>
     );
   }
-  if (APP_BUILD == BUILD_TYPES.V2) {
-    return (
-      <UserContextProvider>
-        <NotificationContextProvider>
-          <StudentContextProvider>
-            <SafeAreaView style={{flex: 1}}>
-              <Routes_V2 />
-            </SafeAreaView>
-          </StudentContextProvider>
-        </NotificationContextProvider>
-      </UserContextProvider>
-    );
-  }
+  // if (APP_BUILD == BUILD_TYPES.V2) {
+  //   return (
+  //     <UserContextProvider>
+  //       <NotificationContextProvider>
+  //         <StudentContextProvider>
+  //           <SafeAreaView style={{flex: 1}}>
+  //             <Routes_V2 />
+  //           </SafeAreaView>
+  //         </StudentContextProvider>
+  //       </NotificationContextProvider>
+  //     </UserContextProvider>
+  //   );
+  // }
 };
 
 export default App;

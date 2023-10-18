@@ -1,12 +1,10 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import { NavigationContext } from '@react-navigation/native';
 import React, {useEffect, useContext} from 'react';
-import {View, Dimensions, Image} from 'react-native'
+import { NavigationContext } from '@react-navigation/native';
+import {View, Text} from 'react-native'
 import Auth from '../../../api/Auth';
 import { StudentContext } from '../../../context/StudentContext';
 import { UserContext } from '../../../context/UserContext';
-import splashScreenImg from '../../../images/SplashScreen.png' 
-const {width, height} = Dimensions.get('screen');
+
 
 export default function SplashScreen() {
   const navigation = useContext(NavigationContext)
@@ -20,20 +18,16 @@ export default function SplashScreen() {
     if(response.ok){
       await refreshUser();
       await refreshStudent();
-      navigation.replace('Dashboard')
-    }else{
-      navigation.replace('LoginOptional')
-    }
+    }else{}
   }
 
   useEffect(() => {
    init()
   }, [])
   
-
   return (
-    <View style = {{ flex: 1 }}>
-      <Image source={splashScreenImg} style = {{ justifyContent: 'center', alignItems: 'center', width: width, height: height }} resizeMode = 'contain'/>
+    <View style = {{ flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+      <Text>Splash screen</Text>
     </View>
   )
 }
